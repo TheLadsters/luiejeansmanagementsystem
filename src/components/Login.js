@@ -29,8 +29,8 @@ const Login = () => {
                             <Button variant="btn btn-primary w-100" type="submit">Login</Button>
 
                             <div className="text-start mt-3">
-                                <a href="#"><small className="reset"> No Account yet?</small></a> ||
-                                <a href="#"><small className="reset ml-2"> Forgot Password?</small></a>
+                                <a href="/#"><small className="reset"> No Account yet?</small></a> ||
+                                <a href="/#"><small className="reset ml-2"> Forgot Password?</small></a>
                             </div>
                         </Form>
                     </Col>
