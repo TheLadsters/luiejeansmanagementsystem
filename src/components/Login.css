@@ -1,0 +1,36 @@
+.icon-img{
+    width: 65px;
+    height: 65px;
+    margin-bottom: 2rem;
+}
+
+input#formBasicEmail {
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+input#formBasicPassword {
+    margin-bottom: 20px;
+    line-height: 30px;
+}
+
+.btn-primary {
+    color: #EEEEEE;
+    background-color: #BBBBBB !important;
+    border-color: #888888 !important;
+}
+
+h3{
+    color: #333333
+}
+
+.reset {
+    color:#333333;
+}
+
+a {
+    text-decoration: none !important;
+}
+
+
+
+/*colors: #333333 #888888 #BBBBBB #EEEEEE*/
