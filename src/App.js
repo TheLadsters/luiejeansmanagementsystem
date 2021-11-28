@@ -1,13 +1,19 @@
-import 'bootstrap/dist/css/bootstrap.min.css';
+import Login from "./components/Login";
+import LandingPage from "./pages/LandingPage";
 import './App.css';
-import Login from  './components/Login';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { Route, Routes } from "react-router-dom";
 
-function App() {
-  return (
-    <div className="App">
-        <Login/>
-    </div>
-  );
+
+const App = () => {
+  return(
+    <>
+    <Routes>
+      <Route path="/" element={<Login />} />
+      <Route path="/landing-page" element={<LandingPage />} />
+    </Routes>
+    </>
+  )
 }
 
 export default App;
