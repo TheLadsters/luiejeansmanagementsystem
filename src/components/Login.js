@@ -3,6 +3,7 @@ import {Button, Col, Container, Form, Row} from "react-bootstrap";
 import loginIcon from '../images/login-icon.svg';
 import './Login.css';
 import loginBg from '../images/login-bg.svg';
+import { Link } from "react-router-dom";
 
 
 const Login = () => {
@@ -25,8 +26,10 @@ const Login = () => {
                                 <Form.Control type="password" placeholder="Password" />
                             </Form.Group>
 
-                            
-                            <Button variant="btn btn-primary w-100" type="submit">Login</Button>
+                            {/* The link is temporary, need to add verification logic */}
+                            <Link to='/landing-page'>
+                                <Button variant="btn btn-primary w-100" type="submit">Login</Button>
+                            </Link>
 
                             <div className="text-start mt-3">
                                 <a href="/#"><small className="reset"> No Account yet?</small></a> ||
