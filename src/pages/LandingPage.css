@@ -1,0 +1,28 @@
+th{
+   border-top:2px black solid;
+   border-bottom: 1px black solid;
+}
+
+tr, tbody tr{
+    border-bottom: 1px black solid;
+}
+
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato&display=swap');
+
+*{
+  box-sizing: border-box;
+  margin: 0;
+  padding:0px;
+  font-family: 'Lato', sans-serif;
+}
+
+.home, .reports, .products {
+  display: flex;
+  height: 90vh;
+  align-items: center;
+  justify-content: center;
+  font-size: 3rem;
+}
