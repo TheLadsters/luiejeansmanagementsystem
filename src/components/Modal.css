@@ -1,0 +1,90 @@
+.outer-box{
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    height: 80%;
+    width: 50%;
+    border: 1px solid black;
+    padding: 10px;
+    top:0;
+    left: 0;
+    background-color:  rgba(0,0,0,0.2);
+}
+div{
+    padding: 5px;
+}
+
+.inner-box-head{
+    display: flex;
+    justify-content: space-between;
+    height: 20%;
+}
+
+.inner-box-body{
+    margin: auto;
+    display: flex;
+    flex-direction: column;
+    height: 70%;
+    width: 85%;
+    border: 1px solid black;
+}
+
+.AddCancel{
+    display: flex;
+    justify-content: end;
+    width: 100%;
+    margin-top: 10px;
+}
+
+.AddCancel1 {
+    display: flex;
+    justify-content: space-between;
+    width: 15%;
+    margin-right: 5px;
+}
+
+.product-photo-name{
+    display: flex;
+    height: 30%;
+    width: 30%;
+    flex-direction: column;
+    border: 1px solid black;
+    margin: auto;
+    justify-content: center;
+    padding: 5px;
+}
+
+.product-photo-name input{
+    width: 96%;
+}
+
+
+
+.upload-photo{
+    height: 80%;
+    width: 100%;
+}
+
+.row{
+    display: flex;
+    justify-content: space-between;
+}
+.row input{
+    width: 5%;
+}
+
+.Total input{
+    width: 10%;
+}
+
+.Total{
+    display: flex;
+    justify-content: space-between;
+    margin: 5% 5% 5% 5%;
+
+}
+
+.row label{
+    display: inline-block;
+    width: 20px;
+}
