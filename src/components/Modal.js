@@ -1,70 +1,69 @@
 import React from "react";
 import './Modal.css';
 
-function Modal(props) {
+function Modal(props){
     return (props.trigger) ? (
-        <div className="outer-box">
-            <div className="inner-box-head">
-                <button className="customer-info">Customer Info</button>
-                <input className="deadline" type="text" placeholder="deadline" />
+        <div className="d-flex  flex-md-column modal-fade">
+            <div className="d-flex justify-content-between">
+                <button className="btn btn-info">Customer Info</button>
+                <input type="text" className="form-control" placeholder="Deadline"/>
             </div>
-            <div className="inner-box-body">
-                <div className="inner-box-head">
-                    <input className="order-code" type="text" placeholder="Order Code" />
+            <div className="d-flex flex-lg-column" >
+                <div className="d-flex justify-content-between">
+                    <input className="form-control" type="text" placeholder="Order Code" />
                     <div className="delivery-type">
-                        <button className="pick-up">P</button>
-                        <button className="deliver">D</button>
+                        <button className="btn btn-light">P</button>
+                        <button className="btn btn-dark">D</button>
                     </div>
-                    </div>
-                        <div className="product-photo-name">
-                        <div className="upload-photo"><h3>sdfadfa</h3></div>    
-                        <div className="product-name">
-                            <input className="product-name-name" type="text" placeholder="product_name" />
-                        </div>
-                    </div>
-                    <div className="Total">
-                        <label>Downpayment</label><input className="downpayment" />
-                        <label>Price</label><input className="price" />
-                        <label>Quantity</label><input className="quantity" />
-                        <label>Total</label><input className="total" />
-                    </div>
-                    <div className="row">
-                        <label>14</label><input className={14} />
-                        <label>16</label><input className={14} />
-                        <label>18</label><input className={18} />
-                        <label>20</label><input className={20} />
-                        <label>24</label><input className={24} />
-                        <label>26</label><input className={26} />
-                        <label>28</label><input className={28} />
-                    </div>
-                    <div className="row">
-                        <label>XS</label><input className="XS" />
-                        <label>S</label><input className="S" />
-                        <label>M</label><input className="M" />
-                        <label>L</label><input className="L" />
-                        <label>XL</label><input className="XL" />
-                        <label>2XL </label><input className="XXL" />
-                        <label>3XL</label> <input className="XXXL" />
-                    </div>
-                    <div className="row">
-                        <label>XSf</label><input className="XSf" />
-                        <label>Sf</label><input className="Sf" />
-                        <label>Mf</label><input className="Mf" />
-                        <label>Lf</label><input className="Lf" />
-                        <label>XLf</label><input className="XLf" />
-                        <label>2XLf</label><input className="XXLf" />
-                        <label>3XLf</label><input className="XXXLf" />
-                    </div>
+                
                 </div>
-            <div className="AddCancel">
-                <div className="AddCancel1">
-                    <button className="close-btn" onClick={() => props.setTrigger(false)}> Cancel </button>
+                <div className="d-flex flex-column">
+                    <div className="upload-photo"><h3>Upload Photo</h3></div>
+                    <input className="form-control" type="text" placeholder="product_name" />
+                </div>
+                <div className="d-flex justify-content-between">
+                    <label>Downpayment</label><input className="form-control" />
+                    <label>Price</label><input className="form-control" />
+                    <label>Quantity</label><input className="form-control" />
+                    <label>Total</label><input className="form-control" />
+                </div>
+                <div className="d-flex justify-content-between">
+                    <label>14</label><input className="form-control" />
+                    <label>16</label><input className="form-control"/>
+                    <label>18</label><input className="form-control" />
+                    <label>20</label><input className="form-control" />
+                    <label>24</label><input className="form-control" />
+                    <label>26</label><input className="form-control" />
+                    <label>28</label><input className="form-control"/>
+                </div>
+                <div className="d-flex justify-content-between">
+                    <label>XS</label><input className="form-control" />
+                    <label>S</label><input className="form-control" />
+                    <label>M</label><input className="form-control" />
+                    <label>L</label><input className="form-control"/>
+                    <label>XL</label><input className="form-control"/>
+                    <label>2XL </label><input className="form-control" />
+                    <label>3XL</label> <input className="form-control" />
+                </div>
+                <div className="d-flex justify-content-between">
+                    <label>XSf</label><input className="form-control" />
+                    <label>Sf</label><input className="form-control" />
+                    <label>Mf</label><input className="form-control"/>
+                    <label>Lf</label><input className="form-control" />
+                    <label>XLf</label><input className="form-control" />
+                    <label>2XLf</label><input className="form-control" />
+                    <label>3XLf</label><input className="form-control" />
+                </div>
+            </div>
+            <div className="d-flex justify-content-end">
+                <div className="d-flex justify-content-between">
+                    <button className="btn btn-secondary"> Cancel </button>
                     {props.children}
-                    <button> Add </button>
+                    <button className="btn btn-success"> Add </button>
                 </div>
             </div>
         </div>
-    ) : "";
+    ): "";
 }
 
 export default Modal;

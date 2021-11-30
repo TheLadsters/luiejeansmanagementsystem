@@ -31,9 +31,7 @@ const LandingPage = () => {
             </Row>
         </Container>
 
-            <Modal trigger={buttonAdd} setTrigger={setButtonAdd}>
-
-        </Modal>
+        <Modal trigger={buttonAdd} setTrigger={setButtonAdd}/>
         
         <Container>
             <Table className="text-center">
