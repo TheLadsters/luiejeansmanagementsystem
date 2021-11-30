@@ -1,12 +1,14 @@
-import React from 'react';
-import { Table, Container, Row, Col} from "react-bootstrap";
+import React, { useState } from 'react';
+import { Table, Container, Row, Col, ToggleButton} from "react-bootstrap";
 import './LandingPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as IoIcons from 'react-icons/io';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
+import Modal from '../components/Modal';
 
 const LandingPage = () => {
+    const [buttonAdd, setButtonAdd] =useState(false);
     return (
     <>
             <Routes>
@@ -18,7 +20,8 @@ const LandingPage = () => {
         <Container>
             <Row className="text-end">
                 <Col md={4} className="mt-5 pt-3 pr-5 text-start">
-                <button className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</button>
+                <button onClick={() => setButtonAdd(true)
+                } className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</button>
                 </Col>
 
                 <Col className="mt-5">
@@ -27,6 +30,10 @@ const LandingPage = () => {
                 </Col>
             </Row>
         </Container>
+
+            <Modal trigger={buttonAdd} setTrigger={setButtonAdd}>
+
+        </Modal>
         
         <Container>
             <Table className="text-center">

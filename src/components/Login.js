@@ -15,10 +15,10 @@ const Login = () => {
                         <img className="login-bg" src={loginBg} alt="icon"/>
                     </Col>
                     <Col lg ={4} md={6} sm={12} className="text-center" >
-                        <Form>
+                        <Form idControl="form">
                             <img className="icon-img" src={loginIcon} alt="icon"/>
                             <h3> Log-in</h3>
-                            <Form.Group controlId="formBasicEmail">
+                            <Form.Group className="mb-3" controlId="formBasicEmail">
                                 <Form.Control type="email" placeholder="Enter email" />
                             </Form.Group>
 
