@@ -1,0 +1,121 @@
+h1{
+    position: relative;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: rgb(30, 26, 83);
+    display: block;
+    color: white;
+    text-align: 200px;
+    padding: 14px 16px;
+    text-decoration: none;
+      
+      
+}
+.background{
+    left: 200px;
+    background-color: #F5F7FA;
+}
+
+
+.submitButton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: blue;
+    position: relative;
+    right: 7px;
+    font-size: 105%;
+}
+.nameButton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: blue;
+    position: relative;
+    left: 70px;
+    font-size: 105%;
+}
+
+.transact{
+
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: blue;
+    position: relative;
+    left: 20px;
+}
+
+
+table{
+    font-size: 10;
+}
+td{
+    width: 20%;
+    border-bottom: 1px solid #DDDDDD;
+    position: relative;
+
+}
+
+.name{
+    width: 20%;
+    border-bottom: 0px;
+    position: relative;
+}
+.belowjoin{
+    width: 20%;
+   
+    border-bottom: 1px solid #DDDDDD;
+    position: relative;
+}
+
+#lang{
+ 
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    width: 65%;
+    border-radius: 1px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+   
+
+ 
+}
+#time{
+ 
+    padding: 8px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    width: 65%;
+    border-radius: 1px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+ 
+}
+.Featmis{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    color: blue;
+    position: relative;
+    left: 0px;
+    font-size: 105%;
+}
