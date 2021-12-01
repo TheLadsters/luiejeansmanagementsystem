@@ -20,15 +20,15 @@ const OrderHistory = () => {
             <Form>
                 <Row>
                         <Col sm={3}>
-                            <Form.Control type="date" value="01/01/15" data-provide="datepicker" />
+                            <Form.Control type="date" value="01/01/15" className="w-75" data-provide="datepicker" />
                         </Col>
 
-                        <Col sm={{span:3, offset:5}} className="my-1    ">
-                            <Form.Control type="text" placeholder="Search"/>
+                        <Col sm={{span:3, offset:5}} className="my-1">
+                            <Form.Control type="text" className="w-100" placeholder="Search"/>
                         </Col>
 
                         <Col sm={{span:1, offset:0}} className="mt-1">
-                            <Button variant="primary" className="w-10 mx-2 mb-1 text-dark">Search</Button>
+                            <Button variant="primary" className="w-10 mx-2 mb-1 text-light">Search</Button>
                         </Col>
                 </Row>
             </Form>

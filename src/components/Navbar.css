@@ -42,7 +42,7 @@ header{
 }
 
 .menu-bars {
-    margin-left: 2rem;
+    margin-left: 0rem;
     font-size: 2rem;
     background:none;
 }
@@ -57,6 +57,7 @@ header{
     top:0;
     left: -100%;
     transition: 850mx;
+    z-index: 2000;
 }
 
 .nav-menu.active{
