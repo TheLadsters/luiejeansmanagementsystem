@@ -11,10 +11,15 @@ const Staff = () => {
         <>
         <Navbar />
 
-            <Container className="mt-5">
+            <Container className="mt-3">
+                <Row>
+                    <Col>
+                        <h1 style={{textAlign:"center"}}>Staff</h1>
+                    </Col>
+                </Row>
                 <Row className="my-3">
                     <Col>
-                        <input type="text" className="my-3" placeholder="Search a Staff Member"/>
+                        <input type="text" className="my-2 w-25" placeholder="Search a Staff Member"/>
                         <Button variant="primary" className="mx-2">
                         <IoIcons.IoIosSearch />Search
                         </Button>
