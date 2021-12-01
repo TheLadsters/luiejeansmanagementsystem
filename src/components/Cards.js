@@ -10,13 +10,13 @@ const Cards = () => {
 
     return (
         <>
-            <Card style={{ width: '25rem' }} className="real-card" onClick={handleShow}>
+            <Card style={{ width: '25rem', height:'14rem'}} className="real-card" onClick={handleShow}>
                         <Container>
                             <Card.Body>
                                 <Row>
                                     <Col>
                                         <Card.Img variant="top" style={{width:"8rem"}} src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=870&q=80" />
-                                        <Card.Title>Jerald Magsipoc</Card.Title>
+                                        <Card.Title style={{textAlign:"center"}}>Jerald Magsipoc</Card.Title>
                                         <Card.Text style={{textAlign:"center"}}>Tailor</Card.Text>
                                     </Col>
 
