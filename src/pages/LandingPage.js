@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Container, Row, Col, ToggleButton} from "react-bootstrap";
+import { Table, Container, Row, Col} from "react-bootstrap";
 import './LandingPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as IoIcons from 'react-icons/io';
@@ -25,7 +25,7 @@ const LandingPage = () => {
                 </Col>
 
                 <Col className="mt-5">
-                    <input type="text" className="my-3 mx-2" placeholder="Search"/>
+                    <input type="text" className="my-3 mx-2 w-25" placeholder="Search"/>
                     <button className=" btn btn-primary w-10 my-3 mx-2 text-dark">Search</button>
                 </Col>
             </Row>
