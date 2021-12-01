@@ -1,22 +1,16 @@
 import React from "react";
+import {Button, ButtonGroup} from "react-bootstrap";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import './Modal.css';
 
-function Modal(props){
-    return (props.trigger) ? (
+const Mods = () => {
+    return(
         <div className="d-flex  flex-md-column modal-fade">
-            <div className="d-flex justify-content-between">
-                <button className="btn btn-info">Customer Info</button>
-                <input type="text" className="form-control" placeholder="Deadline"/>
-            </div>
             <div className="d-flex flex-lg-column" >
-                <div className="d-flex justify-content-between">
-                    <input className="form-control" type="text" placeholder="Order Code" />
-                    <div className="delivery-type">
-                        <button className="btn btn-light">P</button>
-                        <button className="btn btn-dark">D</button>
-                    </div>
-                
-                </div>
+                <ButtonGroup>
+                    <Button variant = "primary">P</Button>
+                    <Button variant = "secondary">D</Button>
+                </ButtonGroup>
                 <div className="d-flex flex-column">
                     <div className="upload-photo"><h3>Upload Photo</h3></div>
                     <input className="form-control" type="text" placeholder="product_name" />
@@ -55,15 +49,8 @@ function Modal(props){
                     <label>3XLf</label><input className="form-control" />
                 </div>
             </div>
-            <div className="d-flex justify-content-end">
-                <div className="d-flex justify-content-between">
-                    <button className="btn btn-secondary"> Cancel </button>
-                    {props.children}
-                    <button className="btn btn-success"> Add </button>
-                </div>
-            </div>
         </div>
-    ): "";
+    );
 }
 
-export default Modal;
+export default Mods;

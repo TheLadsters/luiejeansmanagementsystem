@@ -1,4 +1,4 @@
-.justify-content-between {
+/* .justify-content-between {
     width: 100%;
 }
 
@@ -10,8 +10,14 @@
 }
 
 .btn-info {
-    height: 50%;
-    width: 25%;
+    height: 75%;
+    width: 30%;
+    text-align: left;
+}
+
+.btn-info 
+::placeholder{
+    color:blueviolet;
 }
 
 .justify-content-between:nth-child(1)
@@ -83,4 +89,4 @@ label{
     justify-content: space-between;
     margin: 5% 5% 5% 5%;
 
-}
+} */
