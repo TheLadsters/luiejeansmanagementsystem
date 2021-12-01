@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, Container, Row, Col, ToggleButton,Modal, ButtonGroup,Button,DropdownButton,Dropdown} from "react-bootstrap";
+import { CloseButton,Table, Container, Row, Col, ToggleButton,Modal, ButtonGroup,Button,DropdownButton,Dropdown} from "react-bootstrap";
 import './LandingPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as IoIcons from 'react-icons/io';
@@ -12,6 +12,10 @@ const LandingPage = () => {
     const [show,setShow] = useState(false);
     const handleShow = () => setShow(true);
     const handleClose = () => setShow(false);
+    
+    const [showInfo,setShowInfo] = useState(false);
+    const handleShowInfo = () => setShowInfo(true);
+    const handleCloseInfo = () => setShowInfo(false);
     return (
     <>
             <Routes>
@@ -33,9 +37,9 @@ const LandingPage = () => {
             </Row>
         </Container>
 
-        <Modal show={show}>
+        <Modal show={show} className="h-100">
             <Modal.Header>
-                <Button variant="info">Customer Info</Button>
+                <Button onClick={handleShowInfo} variant="info">Customer Info</Button>
                 <DropdownButton as={ButtonGroup} title="Delivery Type" id="bg-nested-dropdown">
                     <Dropdown.Item eventKey="1">Pick-Up</Dropdown.Item>
                     <Dropdown.Item eventKey="2">Deliver</Dropdown.Item>
@@ -46,8 +50,20 @@ const LandingPage = () => {
             </Modal.Body>
             <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-                    <Button variant="success" onClick={handleClose} ></Button>
+                    <Button variant="success" onClick={handleClose} >Add</Button>
             </Modal.Footer>
+        </Modal>
+
+        <Modal show={showInfo}>
+            <Modal.Header>
+                <Modal.Title>
+                    Customer Info
+                </Modal.Title>
+                <CloseButton onClick={handleCloseInfo} />
+            </Modal.Header>
+            <Modal.Body>
+                <CustomerInfo />
+            </Modal.Body>
         </Modal>
         
         <Container>
