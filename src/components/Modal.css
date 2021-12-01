@@ -1,19 +1,42 @@
-.outer-box{
-    display: flex;
-    flex-direction: column;
-    margin: auto;
-    height: 80%;
-    width: 50%;
-    border: 1px solid black;
-    padding: 10px;
-    top:0;
-    left: 0;
-    background-color:  rgba(0,0,0,0.2);
-}
-div{
-    padding: 5px;
+/* .justify-content-between {
+    width: 100%;
 }
 
+.d-flex.flex-md-column {
+    width: 35%;
+    background-color: #313841;
+    border-radius: 10px;
+    position:absolute;
+}
+
+.btn-info {
+    height: 75%;
+    width: 30%;
+    text-align: left;
+}
+
+.btn-info 
+::placeholder{
+    color:blueviolet;
+}
+
+.justify-content-between:nth-child(1)
+.form-control{
+    height: 50%;
+    width: 25%;
+}
+
+
+
+.d-flex{
+    width:95%;
+    margin: auto;
+    height: 80%;
+    border: none !important;
+    color: cornsilk;
+}
+
+<<<<<<< HEAD
 .inner-box-head{
     display: flex;
     justify-content: space-between;
@@ -46,13 +69,21 @@ div{
 .product-photo-name{
     display: flex;
     height: 30%;
+=======
+.flex-column:nth-child(1){
+>>>>>>> d9bdb29269c58e331b8b65725211e4771f37ead2
     width: 30%;
-    flex-direction: column;
-    border: 1px solid black;
-    margin: auto;
-    justify-content: center;
-    padding: 5px;
 }
+
+div{
+    padding: 10px;
+}
+
+
+.justify-content-between {
+    width: 100%;
+}
+
 
 .product-photo-name input{
     width: 96%;
@@ -65,12 +96,23 @@ div{
     width: 100%;
 }
 
-.row{
-    display: flex;
-    justify-content: space-between;
+.justify-content-between:nth-child(1) 
+input{
+    width: 15%;
 }
-.row input{
+
+.justify-content-between
+.justify-content-between
+input{
+    display: inline-block;
     width: 5%;
+}
+
+.justify-content-between    
+.justify-content-between
+label{
+    display: inline-block;
+    width: 20px;
 }
 
 .Total input{
@@ -82,9 +124,4 @@ div{
     justify-content: space-between;
     margin: 5% 5% 5% 5%;
 
-}
-
-.row label{
-    display: inline-block;
-    width: 20px;
-}
+} */

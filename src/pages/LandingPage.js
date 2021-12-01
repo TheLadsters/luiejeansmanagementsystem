@@ -1,14 +1,17 @@
 import React, { useState } from 'react';
-import { Table, Container, Row, Col} from "react-bootstrap";
+import { Table, Container, Row, Col, ToggleButton,Modal, ButtonGroup,Button,DropdownButton,Dropdown} from "react-bootstrap";
 import './LandingPage.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import * as IoIcons from 'react-icons/io';
 import { Routes, Route } from 'react-router-dom';
 import Navbar from '../components/Navbar';
-import Modal from '../components/Modal';
+import Mods from '../components/Modal';
+import CustomerInfo from '../components/CustomerInfo';
 
 const LandingPage = () => {
-    const [buttonAdd, setButtonAdd] =useState(false);
+    const [show,setShow] = useState(false);
+    const handleShow = () => setShow(true);
+    const handleClose = () => setShow(false);
     return (
     <>
             <Routes>
@@ -20,19 +23,31 @@ const LandingPage = () => {
         <Container>
             <Row className="text-end">
                 <Col md={4} className="mt-5 pt-3 pr-5 text-start">
-                <button onClick={() => setButtonAdd(true)
-                } className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</button>
+                <Button variant="primary" onClick={handleShow} className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</Button>
                 </Col>
 
                 <Col className="mt-5">
-                    <input type="text" className="my-3 mx-2 w-25" placeholder="Search"/>
-                    <button className=" btn btn-primary w-10 my-3 mx-2 text-dark">Search</button>
+                    <input type="text" className="my-3 mx-2" placeholder="Search"/>
+                    <Button variant="secondary"><IoIcons.IoIosAddCircleOutline />Search</Button>
                 </Col>
             </Row>
         </Container>
 
-            <Modal trigger={buttonAdd} setTrigger={setButtonAdd}>
-
+        <Modal show={show}>
+            <Modal.Header>
+                <Button variant="info">Customer Info</Button>
+                <DropdownButton as={ButtonGroup} title="Delivery Type" id="bg-nested-dropdown">
+                    <Dropdown.Item eventKey="1">Pick-Up</Dropdown.Item>
+                    <Dropdown.Item eventKey="2">Deliver</Dropdown.Item>
+                </DropdownButton>
+            </Modal.Header>
+            <Modal.Body>
+                <Mods />
+            </Modal.Body>
+            <Modal.Footer>
+                    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
+                    <Button variant="success" onClick={handleClose} ></Button>
+            </Modal.Footer>
         </Modal>
         
         <Container>
