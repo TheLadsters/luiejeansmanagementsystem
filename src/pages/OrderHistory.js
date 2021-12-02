@@ -24,11 +24,11 @@ const OrderHistory = () => {
                         </Col>
 
                         <Col sm={{span:3, offset:5}} className="my-1">
-                            <Form.Control type="text" className="w-100" placeholder="Search"/>
+                            <Form.Control type="text" className="w-100" placeholder="Search Orders"/>
                         </Col>
 
                         <Col sm={{span:1, offset:0}} className="mt-1">
-                            <Button variant="primary" className="w-10 mx-2 mb-1 text-light">Search</Button>
+                            <Button variant="dark" className="w-10 mx-2 mb-1 text-light">Search</Button>
                         </Col>
                 </Row>
             </Form>

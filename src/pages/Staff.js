@@ -17,15 +17,20 @@ const Staff = () => {
                         <h1 style={{textAlign:"center"}}>Staff</h1>
                     </Col>
                 </Row>
-                <Row className="my-3">
+            </Container>
+
+            <Container>
+                <Row className="my-3" className="my-3" style={{textAlign:'end'}}>
                     <Col>
                         <input type="text" className="my-2 w-25" placeholder="Search a Staff Member"/>
-                        <Button variant="primary" className="mx-2">
+                        <Button variant="dark" className="mx-2">
                         <IoIcons.IoIosSearch />Search
                         </Button>
                     </Col>
                 </Row>
+            </Container>
 
+            <Container>
                 <Row>
                     <Col>
                         <Cards />
