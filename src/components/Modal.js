@@ -8,11 +8,12 @@ const Mods = () => {
     const [newsize,setNewsize] = useState(false);
     const handleShow = () => setNewsize(true);
     const handleClose = () => setNewsize(false);
+
     return(
         <Container>
             <Row className="justify-content-start" >
                 <Container className="w-50 flex-row">
-                    <FormControl
+                    <FormControl    
                         className="w-50"
                         placeholder="Order-Code"
                         aria-label="Username"
@@ -68,13 +69,13 @@ const Mods = () => {
                     />
                 </Container>
             </Container>
-            <InputGroup className="mb-2">
-                <InputGroup.Text>@</InputGroup.Text>
+            {/* <InputGroup className="mb-2">
+                <InputGroup.Text> A </InputGroup.Text>
                 <FormControl id="inlineFormInputGroup" placeholder="Username" />
-            </InputGroup>
-            <Container className="flex-row">   
-                <InputGroup className="w-60" size="sm">
-                    <DropdownButton className="w-50" variant="primary" size="sm"  id="dropdown-basic-button" title="Add Size">
+            </InputGroup> */}
+            <Container className="flex-row-start ">   
+                <InputGroup className="" size="sm">
+                    <DropdownButton className="" variant="primary" size="sm"  id="dropdown-basic-button" title="Add Size">
                         <Row className="justify-content-between">
                             <Dropdown.Header>Kids</Dropdown.Header>
                             <Dropdown.Item as={Col} href="#/action-1" id="14">14</Dropdown.Item>
@@ -106,15 +107,15 @@ const Mods = () => {
                             <Dropdown.Item as={Col} href="#/action-3">3XLf</Dropdown.Item>
                         </Row>
                     </DropdownButton>
-                    <FormControl className="w-50" aria-label="Text input with dropdown button" />
+                    <FormControl type="number" className="sizecount" aria-label="Text input with dropdown button" />
                 </InputGroup>
             </Container>
 
             <Container className="mt-0">
                 <Row>
-                    <Col>Quantity: </Col>
-                    <Col>Total: </Col>
-                    <Col>Balance: </Col>
+                    <Col>Quantity:  10</Col>
+                    <Col>Total: 1000</Col>
+                    <Col>Balance: 500</Col>
                 </Row>
             </Container>
         </Container>
