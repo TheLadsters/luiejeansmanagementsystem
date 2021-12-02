@@ -61,7 +61,7 @@ const LandingPage = () => {
                 </Modal.Title>
                 <CloseButton onClick={handleCloseInfo} />
             </Modal.Header>
-            <Modal.Body>
+            <Modal.Body >
                 <CustomerInfo />
             </Modal.Body>
         </Modal>
