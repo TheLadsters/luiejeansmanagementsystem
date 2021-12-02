@@ -1,10 +1,13 @@
-import React from "react";
-import {Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Container,Row,FormControl,Card,Col, FormLabel,ListGroup,ListGroupItem} from "react-bootstrap";
+import React, {useState} from "react";
+import {InputGroup,Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Container,Row,FormControl,Card,Col, FormLabel,ListGroup,ListGroupItem} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
-import './Modal.css';
+import './Mods.css';
 import Upload from '../images/add-files.svg';
 
 const Mods = () => {
+    const [newsize,setNewsize] = useState(false);
+    const handleShow = () => setNewsize(true);
+    const handleClose = () => setNewsize(false);
     return(
         <Container>
             <Row className="justify-content-start" >
@@ -18,8 +21,8 @@ const Mods = () => {
                     />
                 </Container>
                 <ButtonGroup as={Row} className="w-50 flex-row-reverse" size="sm">
-                    <ButtonGroup as={Row} className="w-50 " size="sm">
-                        <Button as={Col}className="w-50" variant = "primary">P</Button>
+                    <ButtonGroup as={Row} className="w-50" size="sm">
+                        <Button className="w-50" variant = "primary">P</Button>
                         <Button className="w-50" variant = "secondary">D</Button>
                     </ButtonGroup>
                 </ButtonGroup>
@@ -27,7 +30,7 @@ const Mods = () => {
             <Container className="d-flex justify-content-center">
                 <Card style={{ width: '50%' }}>
                     <Nav>
-                        <Nav.Link href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>
+                        <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong" href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>
                     </Nav>
                     <ListGroup className="list-group-flush">
                         <FormControl
@@ -42,39 +45,78 @@ const Mods = () => {
                     <input className="form-control" type="text" placeholder="product_name" /> */}
             </Container>
             <Container className="d-flex justify-content-between">
-                <label>Price</label>
-                <FormControl
-                            className="w-50"
-                            placeholder="ex:1354"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            size = "sm"
-                />
-                <label>Downpayment</label>
-                <FormControl
-                            className="w-50"
-                            placeholder="ex:1354"
-                            aria-label="Username"
-                            aria-describedby="basic-addon1"
-                            size = "sm"
-                />
+                <Container className="d-inline-flex"    >
+                    <label>Price</label>
+                    <FormControl
+                                className="w-50"
+                                placeholder="ex:1354"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                size = "sm"
+                                type = "number"
+                    />
+                </Container>
+                <Container className="d-inline-flex" size="sm">
+                    <label>DP</label>
+                    <FormControl
+                                className="w-50"
+                                placeholder="ex:1354"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                size = "sm"
+                                type ="number"
+                    />
+                </Container>
             </Container>
-            <Dropdown>
-                <Dropdown.Toggle variant="success" id="dropdown-basic">
-                    Dropdown Button
-                </Dropdown.Toggle>
+            <InputGroup className="mb-2">
+                <InputGroup.Text>@</InputGroup.Text>
+                <FormControl id="inlineFormInputGroup" placeholder="Username" />
+            </InputGroup>
+            <Container className="flex-row">   
+                <InputGroup className="w-60" size="sm">
+                    <DropdownButton className="w-50" variant="primary" size="sm"  id="dropdown-basic-button" title="Add Size">
+                        <Row className="justify-content-between">
+                            <Dropdown.Header>Kids</Dropdown.Header>
+                            <Dropdown.Item as={Col} href="#/action-1" id="14">14</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2" id="14">16</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3" id="14">18</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-1" id="14">20</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2" id="14">22</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3" id="14">24</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3" id="14">26</Dropdown.Item>
+                        </Row>
+                        <Row className="justify-content-center">
+                            <Dropdown.Header>Male</Dropdown.Header>
+                            <Dropdown.Item as={Col} href="#/action-1">XS</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2">S</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">M</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-1">L</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2">XL</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">2XL</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">3XL</Dropdown.Item>
+                        </Row>
+                        <Row>
+                        <Dropdown.Header>Female</Dropdown.Header>
+                            <Dropdown.Item as={Col} href="#/action-1">XSf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2">Sf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">Mf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-1">Lf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-2">XLf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">2XLf</Dropdown.Item>
+                            <Dropdown.Item as={Col} href="#/action-3">3XLf</Dropdown.Item>
+                        </Row>
+                    </DropdownButton>
+                    <FormControl className="w-50" aria-label="Text input with dropdown button" />
+                </InputGroup>
+            </Container>
 
-                <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-                <Dropdown.Menu>
-                    <Dropdown.Item href="#/action-1">Action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-2">Another action</Dropdown.Item>
-                    <Dropdown.Item href="#/action-3">Something else</Dropdown.Item>
-                </Dropdown.Menu>
-            </Dropdown>
+            <Container className="mt-0">
+                <Row>
+                    <Col>Quantity: </Col>
+                    <Col>Total: </Col>
+                    <Col>Balance: </Col>
+                </Row>
+            </Container>
         </Container>
     );
 }
