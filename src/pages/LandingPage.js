@@ -32,7 +32,7 @@ const LandingPage = () => {
 
                 <Col className="mt-5">
                     <input type="text" className="my-3 mx-2" placeholder="Search"/>
-                    <Button variant="secondary"><IoIcons.IoIosAddCircleOutline />Search</Button>
+                    <Button variant="dark"><IoIcons.IoIosSearch />Search</Button>
                 </Col>
             </Row>
         </Container>
