@@ -1,8 +1,14 @@
 import React, {useState} from "react";
-import {InputGroup,Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Container,Row,FormControl,Card,Col, FormLabel,ListGroup,ListGroupItem} from "react-bootstrap";
+import {Form,InputGroup,Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, FormGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
+import { FaColumns } from "react-icons/fa";
+
+function changeBtn(ID,sizebtn) {
+    this.ID = ID;
+    this.sizebtn.title =  ID;
+}
 
 const Mods = () => {
     const [newsize,setNewsize] = useState(false);
@@ -70,47 +76,45 @@ const Mods = () => {
                     />
                 </Container>
             </Container>
-            {/* <InputGroup className="mb-2">
-                <InputGroup.Text> A </InputGroup.Text>
-                <FormControl id="inlineFormInputGroup" placeholder="Username" />
-            </InputGroup> */}
-            <Container className="flex-row-start" style={{margin:'10% 0% 10% 20%'},{padding:'0% 75% 0% 0%'}} >   
-                <InputGroup className="" size="sm">
-                    <DropdownButton className="" variant="primary" size="sm"  id="dropdown-basic-button" title="Add Size">
-                        <Row className="justify-content-between">
-                            <Dropdown.Header>Kids</Dropdown.Header>
-                            <Dropdown.Item as={Col} href="#/action-1" id="14">14</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2" id="14">16</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/ac  tion-3" id="14">18</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-1" id="14">20</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2" id="14">22</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3" id="14">24</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3" id="14">26</Dropdown.Item>
-                        </Row>
-                        <Row className="justify-content-center">
-                            <Dropdown.Header>Male</Dropdown.Header>
-                            <Dropdown.Item as={Col} href="#/action-1">XS</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2">S</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">M</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-1">L</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2">XL</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">2XL</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">3XL</Dropdown.Item>
-                        </Row>
-                        <Row>
-                        <Dropdown.Header>Female</Dropdown.Header>
-                            <Dropdown.Item as={Col} href="#/action-1">XSf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2">Sf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">Mf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-1">Lf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-2">XLf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">2XLf</Dropdown.Item>
-                            <Dropdown.Item as={Col} href="#/action-3">3XLf</Dropdown.Item>
-                        </Row>
-                    </DropdownButton>
-                    <FormControl type="number" className="sizecount" aria-label="Text input with dropdown button" />
-                </InputGroup>
-            </Container>
+
+            <FormGroup className="w-50 d-flex flex-col formSelect">  
+                <Form.Select className=" w-50" name="timezones" id="timezones">
+                        <optgroup label="kids-size">
+                            <option value="1">14</option>
+                            <option value="2">16</option>
+                            <option value="3">18</option>
+                            <option value="3">20</option>
+                            <option value="1">22</option>
+                            <option value="2">24</option>
+                            <option value="3">26</option>
+                        </optgroup>
+                        <optgroup label="male-size">
+                            <option value="1">XS</option>
+                            <option value="2">S</option>
+                            <option value="3">M </option>
+                            <option value="3">L</option>
+                            <option value="3">XL</option>
+                            <option value="3">2XL</option>
+                            <option value="3">3XL</option>
+                        </optgroup>
+                        <optgroup label="female-size">
+                            <option value="1">XSf</option>
+                            <option value="2">Sf</option>
+                            <option value="3">Mf</option>
+                            <option value="3">Lf</option>
+                            <option value="3">XLf</option>
+                            <option value="3">2XLf</option>
+                            <option value="3">3XLf</option>
+                        </optgroup>
+                        
+                </Form.Select>
+                <Form.Control
+                            id="size-quantity"
+                            type="number"
+                            placeholder="12345"
+                            className="w-50"
+                />
+            </FormGroup>
 
             <Container className="mt-0" style={{padding:'10 % 0% 5% 0%'}}>
                 <Row>

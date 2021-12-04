@@ -37,7 +37,7 @@ const LandingPage = () => {
             </Row>
         </Container>
 
-        <Modal show={show} className="h-100">
+        <Modal show={show} className="h-100" >
             <Modal.Header>
                 <Button onClick={handleShowInfo} variant="info">Customer Info</Button>
                 <DropdownButton as={ButtonGroup} title="Delivery Type" id="bg-nested-dropdown">
@@ -70,27 +70,27 @@ const LandingPage = () => {
             <Table className="text-center">
                 <thead>
                     <tr>
-                    <th>Deadline</th>
-                    <th>Customer's Name</th>
-                    <th>Order Code</th>
-                    <th>Quantity</th>
-                    <th>Price</th>
-                    <th>Downpayment</th>
-                    <th>Delivery Type</th>
-                    <th>Total Balance</th>
-                    <th>Actions</th>
+                        <th>Deadline</th>
+                        <th>Customer's Name</th>
+                        <th>Order Code</th>
+                        <th>Quantity</th>
+                        <th>Price</th>
+                        <th>Downpayment</th>
+                        <th>Delivery Type</th>
+                        <th>Total Balance</th>
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                    <td>October 29, 2021</td>
-                    <td>Janmel Mangubat</td>
-                    <td>X000001</td>
-                    <td>21</td>
-                    <td>100</td>
-                    <td>1000</td>
-                    <td>Pick-up</td>
-                    <td>2100</td>
+                        <td>October 29, 2021</td>
+                        <td>Janmel Mangubat</td>
+                        <td>X000001</td>
+                        <td>21</td>
+                        <td>100</td>
+                        <td>1000</td>
+                        <td>Pick-up</td>
+                        <td>2100</td>
                     <td>
                         <button className="btn btn-success mx-1">
                             Delivered

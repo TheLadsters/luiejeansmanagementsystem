@@ -37,13 +37,12 @@ const Cards = () => {
                 </Modal.Header>
 
                 <Modal.Body>
-                <div className="form-check">
-                    <input className="form-check-input" disabled type="checkbox" defaultValue id="flexCheckDefault" />
-                    <label className="form-check-label" htmlFor="flexCheckDefault">
-                        Default checkbox
-                    </label>
-                </div>
-
+                    <div className="form-check">
+                        <input className="form-check-input" disabled type="checkbox" defaultValue id="flexCheckDefault" />
+                        <label className="form-check-label" htmlFor="flexCheckDefault">
+                            Default checkbox
+                        </label>
+                    </div>
                 </Modal.Body>
 
                 <Modal.Footer>

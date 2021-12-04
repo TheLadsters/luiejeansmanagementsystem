@@ -7,6 +7,7 @@ const CustomerInfo = () => {
         <Form>
             <Form.Group>
                 <Form.Control
+                    style={{margin:'10% 0% 0% 0%'}}
                     type="text"
                     placeholder="Name"
                     required
@@ -15,6 +16,7 @@ const CustomerInfo = () => {
 
             <Form.Group>
                 <Form.Control
+                    style={{margin:'10% 0% 0% 0%'}}
                     type="text"
                     placeholder="Contact Number"
                     required
@@ -23,13 +25,14 @@ const CustomerInfo = () => {
 
             <Form.Group>
                 <Form.Control
+                    style={{margin:'10% 0% 0% 0%'}}
                     type="text"
                     placeholder="Address"
                     required
                 />
             </Form.Group >
 
-            <Button variant="success" type="submit" block>
+            <Button variant="success" type="submit" lock style={{margin:'10% 0% 0% 0%'}}>
                 Confirm
             </Button>
         </Form>
