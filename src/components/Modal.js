@@ -75,7 +75,6 @@ const Mods = () => {
                     />
                 </Container>
             </Container>
-            {customer.map((customer) => (
                 <FormGroup className="w-50 d-flex flex-col formSelect">  
                 <Form.Select className=" w-50" name="timezones" id="timezones">
                         <optgroup label="size">
@@ -115,8 +114,6 @@ const Mods = () => {
                                 className="w-50"
                     />
                 </FormGroup>
-            ))}
-
             <Container className="mt-0" style={{padding:'10 % 0% 5% 0%'}}>
                 <Row>
                     <Col>Quantity:  10</Col>
