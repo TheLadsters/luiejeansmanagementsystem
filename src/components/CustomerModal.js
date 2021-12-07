@@ -1,18 +1,13 @@
-import React from "react";
-import {Form,Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, FormGroup} from "react-bootstrap";
+import React, {useState} from "react";
+import {Form,InputGroup,Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, FormGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
+import data from "./customers-order.json"
 
-// function changeBtn(ID,sizebtn) {
-//     this.ID = ID;
-//     this.sizebtn.title =  ID;
-// }
 
 const Mods = () => {
-    // const [newsize,setNewsize] = useState(false);
-    // // const handleShow = () => setNewsize(true);
-    // // const handleClose = () => setNewsize(false);
+    const [customer, setCustomer] = useState(data);
 
     return(
         <Container>
@@ -35,7 +30,7 @@ const Mods = () => {
                 </ButtonGroup>
             </Row>
             <Container className="d-flex justify-content-center mt-10">
-                <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
+                <Card style={{ width: '50%'},{margin:'5% 20% 5% 20%'}}>
                     <Nav>
                         <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong" href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>
                     </Nav>
@@ -51,7 +46,7 @@ const Mods = () => {
                     {/* <div className="upload-photo"src="holder.js/171x180" thumbnailxs={6} md={4}><h3>Upload Photo</h3></div>
                     <input className="form-control" type="text" placeholder="product_name" /> */}
             </Container >
-            <Container className="d-flex justify-content-between" style={{width:'100%', margin:'0% 0% 5%'}}>
+            <Container className="d-flex justify-content-between" style={{width:'35%'},{margin:'0% 0% 5%'}}>
                 <Container className="d-inline-flex"    >
                     <label>Price</label>
                     <FormControl
