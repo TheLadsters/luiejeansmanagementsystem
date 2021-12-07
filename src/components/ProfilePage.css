@@ -4,9 +4,8 @@ h1{
     margin: 0;
     padding: 0;
     overflow: hidden;
-    background-color: rgb(30, 26, 83);
     display: block;
-    color: white;
+    color: black;
     text-align: 200px;
     padding: 14px 16px;
     text-decoration: none;
@@ -38,6 +37,7 @@ h1{
     cursor: pointer;
     overflow: hidden;
     outline: none;
+    color: blue;
     position: relative;
     left: 70px;
     font-size: 105%;
@@ -93,6 +93,7 @@ td{
 
  
 }
+
 #time{
  
     padding: 8px;
@@ -115,6 +116,144 @@ td{
     outline: none;
     color: blue;
     position: relative;
-    left: 0px;
+    left: -5px;
     font-size: 105%;
+}
+
+div {
+    display: block;
+}
+
+.closeXbutton{
+    background-color: transparent;
+    background-repeat: no-repeat;
+    border: none;
+    cursor: pointer;
+    overflow: hidden;
+    outline: none;
+    position: relative;
+    left: 420px;
+    bottom: 80px;
+}
+
+.passChange{
+    background-color: transparent;
+    border: 1px solid black;
+    color: blue;
+    position: relative;
+    left: 180px;
+    font-size: 105%;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    font-weight: 400;
+    cursor: pointer;
+    line-height: 1.5;
+}
+.passChange:hover{
+
+    background: #383;
+
+}
+
+.phone{
+
+    padding: 8px;
+    margin: 5px;
+    width: 65%;
+    border-radius: 1px;
+    overflow: hidden;
+    background-color: #fff;
+    background: #fff;
+    position: relative;
+   
+}
+
+.stName{
+    width: 50%;
+    padding: 12px 20px;
+
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.Brgy{
+    width: 50%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.cityMun{
+    width: 50%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+.zipp{
+
+    width: 50%;
+    padding: 12px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.adj{
+
+    position: relative;
+    right: 25%;
+    top: 16px;
+    
+    
+}
+.NameEdit{
+    width: 52%;
+    padding: 6px 20px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+ 
+}
+.pazWord{
+    width: 52%;
+    padding: 6px;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    position: relative;
+    left: 7%;
+}
+
+.SubmitBut{
+
+    width: 25%;
+    background-color: #0070BA;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.CloseBut{
+
+    width: 25%;
+    background-color: #91a0ac;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+
 }
