@@ -1,0 +1,44 @@
+[
+    {
+        "id": 1,
+        "name": "Janmel D. Mangubat",
+        "address": "6095 babag llc",
+        "contactNumber": "09994963095",
+        "orders": [{
+            "order-number": "x01200",
+            "price": 200,
+            "quantity": 10,
+            "total": "price + ",
+            "downpayment": 1000,
+            "sizes":[{
+                "kids": [{
+                    "14": 12,
+                    "16": 1,
+                    "18": 12,
+                    "20": 1,
+                    "22": 12,
+                    "24": 1,
+                    "26": 12
+                }],
+                "male":[{
+                    "XS": 12,
+                    "S": 1,
+                    "M": 12,
+                    "L": 1,
+                    "XL": 12,   
+                    "XXL": 1,
+                    "XXXL": 12
+                }],
+                "female":[{
+                    "XSf": 12,
+                    "Sf": 1,
+                    "Mf": 12,
+                    "Lf": 1,
+                    "XLf": 12,
+                    "XXLf": 1,
+                    "XXXLf": 12
+                }]
+            }]
+        }]
+    }
+]

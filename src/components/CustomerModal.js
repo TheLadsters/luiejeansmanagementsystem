@@ -3,7 +3,6 @@ import {Form,InputGroup,Dropdown , DropdownButton  ,Nav,Button, ButtonGroup, Con
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
-import { FaColumns } from "react-icons/fa";
 import data from "./customers-order.json"
 
 

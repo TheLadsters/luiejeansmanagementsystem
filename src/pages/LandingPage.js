@@ -83,29 +83,30 @@ const LandingPage = () => {
                 </thead>
                 <tbody>
                     <tr>
-                        <td>October 29, 2021</td>
-                        <td>Janmel Mangubat</td>
-                        <td>X000001</td>
-                        <td>21</td>
-                        <td>100</td>
-                        <td>1000</td>
-                        <td>Pick-up</td>
-                        <td>2100</td>
-                    <td>
-                        <button className="btn btn-success mx-1">
-                            Delivered
-                        </button>
+                        {}
+                            <td>October 29, 2021</td>
+                            <td>Janmel Mangubat</td>
+                            <td>X000001</td>
+                            <td>21</td>
+                            <td>100</td>
+                            <td>1000</td>
+                            <td>Pick-up</td>
+                            <td>2100</td>
+                            <td>
+                                <button className="btn btn-success mx-1">
+                                    Delivered
+                                </button>
 
-                        <button className="btn btn-dark mx-1">
-                            Edit
-                        </button>
+                                <button className="btn btn-dark mx-1">
+                                    Edit
+                                </button>
 
-                        <button className="btn btn-danger mx-1">
-                            Delete
-                        </button>
-                    </td>
-
-                    </tr>
+                                <button className="btn btn-danger mx-1">
+                                    Delete
+                                </button>
+                            </td>
+                        </tr>
+                        
                 </tbody>
             </Table>
         </Container>
