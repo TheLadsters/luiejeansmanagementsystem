@@ -31,7 +31,6 @@ const Mods = () => {
                         <Button className="w-50" variant = "primary">P</Button>
                         <Button className="w-50" variant = "secondary">D</Button>
                     </ButtonGroup>
-                    
                 </ButtonGroup>
             </Row>
             <Container className="d-flex justify-content-center mt-10">

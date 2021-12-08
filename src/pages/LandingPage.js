@@ -58,10 +58,19 @@ export class Customer extends Component {
     handleClose(){
         this.setState({show: false})
     }
+    
+    handleCloseInfo(){
+        this.setState({showInfo: false})
+    }
 
     handleShow(){
         this.setState({show: true})
     }
+
+    handleShowInfo(){
+        this.setState({showInfo: true})
+    }
+
 
     onChangefirstName(e) {
         this.setState({
@@ -135,41 +144,43 @@ export class Customer extends Component {
             <>
                 <Navbar />
 
-             <Container>
-                 <Row style={{textAlign:'center', marginTop:'30px'}}>
-                     <Col>
-                         <h1>Customer's Orders</h1>
-                     </Col>
-                 </Row>
-             </Container>  
+                <Container>
+                    <Row style={{textAlign:'center', marginTop:'30px'}}>
+                        <Col>
+                            <h1>Customer's Orders</h1>
+                        </Col>
+                    </Row>
+                </Container>  
 
-             <Container>
-                 <Row className="my-3" style={{textAlign:'end'}}>
-                         <Col>
-                            <input type="text" className="my-2 w-25" placeholder="Search a Customer"/>
-                             <Button variant="dark" className="mx-2">
-                             <IoIcons.IoIosSearch />Search
-                             </Button>
-                         </Col>
-                     </Row>
-             </Container>
+                <Container>
+                    <Row className="my-3" style={{textAlign:'end'}}>
+                            <Col>
+                                <input type="text" className="my-2 w-25" placeholder="Search a Customer"/>
+                                <Button variant="dark" className="mx-2">
+                                <IoIcons.IoIosSearch />Search
+                                </Button>
+                            </Col>
+                    </Row>
+                </Container>
 
-             <Container className="my-4">
-                 <Row>
-                     <Col>
-                         <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add New Customer</button>
-                     </Col>
-                 </Row>
-             </Container>
+                <Container className="my-4">
+                    <Row>
+                        <Col>
+                            <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add New Customer</button>
+                        </Col>
+                    </Row>
+                </Container>
 
          {/* Modal for adding new staff */}
-             <Modal show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
-                <Modal.Header closeButton>
-                    <Button onClick={()=>this.handleClose()} variant="info">Customer Info</Button>
-                    <Form.Select title="Delivery Type" id="bg-nested-dropdown">
-                        <option eventKey="1">Pick-Up</option>
-                        <option eventKey="2">Deliver</option>
-                    </Form.Select>
+            <Modal show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
+                <Modal.Header className="justify-content-start m-0">
+                    <Container className="d-flex justify-content-start w-50 d-inline-flex ">
+                        <Button onClick={()=>this.handleShowInfo()} variant="info">Customer Info</Button>
+                    </Container>
+                    <Container className="d-flex justify-content-end w-50 d-inline-flex ">
+                        <label style={{ margin:'1% ​5% 0% 25' ,padding:'2% 0% 0% 0%'}} >Deadline</label>
+                        <input className="w-50" type="text" value={this.state.customerFirstName} onChange={this.onChangeDeadline} required className="form-control" />
+                    </Container>
                 </Modal.Header>
                 <Modal.Body>
                     <Mods/>
@@ -182,7 +193,19 @@ export class Customer extends Component {
                         Save Changes
                     </button>
                 </Modal.Footer>
-             </Modal>
+            </Modal>
+
+            <Modal show={this.state.showInfo} onHide={()=>this.handleCloseInfo()}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Customer Info
+                    </Modal.Title>]
+                </Modal.Header>
+                <Modal.Body >
+                    <CustomerInfo />
+                </Modal.Body>
+            </Modal>
+            
 
              
 
