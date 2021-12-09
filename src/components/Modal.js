@@ -16,24 +16,34 @@ const Mods = () => {
 
     return(
         <Container>
-            <Row className="justify-content-start m-0" >
-                <Container className="w-50 flex-row">
-                    <FormControl    
-                        className="w-50"
+            <Row className="d-flex justify-content-between" >
+                <Container style={{width:'30%'}}>
+                    <Form.Group>
+                        <Form.Control
+                            type="date"
+                            name="deadline"
+                            required
+                            placeholder="Deadline"
+                        />
+                    </Form.Group>
+                </Container>
+                        
+                <Container style={{width:'30%'}}>
+                    <FormControl
                         placeholder="Order-Code"
                         aria-label="Username"
                         aria-describedby="basic-addon1"
-                        size = "sm"
                     />
                 </Container>
-                <ButtonGroup as={Row} className="w-50 flex-row-reverse m-0" size="sm">
-                    <ButtonGroup className="w-50" as={Row} size="sm">
+
+                <ButtonGroup as={Row} style={{width:'30%',margin:'0% 2%'}} size="sm">
+                    <ButtonGroup as={Row} size="sm">
                         <Button className="w-50" variant = "primary">P</Button>
                         <Button className="w-50" variant = "secondary">D</Button>
                     </ButtonGroup>
                 </ButtonGroup>
             </Row>
-            <Container className="d-flex justify-content-center mt-10">
+            <Container className="d-flex mt-10">
                 <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
                     <Nav>
                         <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong" href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>

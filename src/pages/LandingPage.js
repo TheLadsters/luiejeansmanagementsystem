@@ -3,7 +3,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';  
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Col, Row, Table, Button, Modal, Form} from "react-bootstrap";
+import { Container, Col, Row, Table, Button, Modal,Accordion    } from "react-bootstrap";
 import * as IoIcons from 'react-icons/io';
 import Mods from '../components/Modal';
 import CustomerInfo from '../components/CustomerInfo';
@@ -166,22 +166,21 @@ export class Customer extends Component {
                 <Container className="my-4">
                     <Row>
                         <Col>
-                            <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add New Customer</button>
+                            <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add</button>
                         </Col>
                     </Row>
                 </Container>
 
          {/* Modal for adding new staff */}
-            <Modal show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
-                <Modal.Header className="justify-content-start m-0">
-                    <Container className="d-flex justify-content-start w-50 d-inline-flex ">
-                        <Button onClick={()=>this.handleShowInfo()} variant="info">Customer Info</Button>
-                    </Container>
-                    <Container className="d-flex justify-content-end w-50 d-inline-flex ">
-                        <label style={{ margin:'1% ​5% 0% 25' ,padding:'2% 0% 0% 0%'}} >Deadline</label>
-                        <input className="w-50" type="text" value={this.state.customerFirstName} onChange={this.onChangeDeadline} required className="form-control" />
-                    </Container>
-                </Modal.Header>
+            <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
+                <Accordion>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Customer Info</Accordion.Header>
+                        <Accordion.Body>
+                        <CustomerInfo />
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
                 <Modal.Body>
                     <Mods/>
                 </Modal.Body>
@@ -195,7 +194,7 @@ export class Customer extends Component {
                 </Modal.Footer>
             </Modal>
 
-            <Modal show={this.state.showInfo} onHide={()=>this.handleCloseInfo()}>
+            {/* <Modal show={this.state.showInfo} onHide={()=>this.handleCloseInfo()}>
                 <Modal.Header closeButton>
                     <Modal.Title>
                         Customer Info
@@ -205,7 +204,7 @@ export class Customer extends Component {
                     <CustomerInfo />
                 </Modal.Body>
             </Modal>
-            
+             */}
 
              
 
