@@ -5,6 +5,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import Box from '@material-ui/core/Box'
 import PhoneInput from 'react-phone-number-input'
+import '../components/ProfilePage.css'
 
 
 
@@ -94,23 +95,24 @@ padding: '15px'
  </Modal>
 
 {/* THIRD MODAL (phone numbers) */}
- <Modal isOpen={Modal2} onRequestClose={() => setModal2(false)}
+
+<Modal isOpen={Modal2} onRequestClose={() => setModal2(false)}
 style={{
     overlay: {
  backgroundColor: 'rgba(128,128,128, 0.5)'
 
 },
 content: {
-    position: 'absolute',
-    bottom:'420px',
-    left: '700px',
-    top: '200px',
-    width: '26%',
-    border: '1px solid #ccc',
-    background: '#fff',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '10px',
-    padding: '15px'
+  position: 'absolute',
+  bottom:'420px',
+  left: '700px',
+  top: '200px',
+  width: '26%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '15px'
 }
 }}>
 
@@ -139,7 +141,6 @@ content: {
   </div>
   </center>
  </Modal>
-
  {/* FOURTH MODAL (home address) */}
 
  <Modal isOpen={Modal3} onRequestClose={() => setModal3(false)}
@@ -177,42 +178,6 @@ padding: '15px'
   </div>
     </center>
  </Modal>
-
- {/* FIFTH MODAL (Transaction Logs) */}
- <Modal isOpen={Modal4} onRequestClose={() => setModal4(false)}
-style={{
-    overlay: {
- backgroundColor: 'rgba(128,128,128, 0.5)'
-
-},
-content: {
-position: 'absolute',
-bottom:'350px',
-left: '600px',
-top: '200px',
-width: '40%',
-border: '1px solid #ccc',
-background: '#fff',
-WebkitOverflowScrolling: 'touch',
-borderRadius: '10px',
-padding: '15px'
-}
-}}>
-
- 
- <center>
-  <h2> Transaction Logs  </h2>
-    <table className="transactions"> 
-        <td className="transactcontent"> unifinished product </td>
-    
-    </table>
-  <div>
-     <Button className="SubmitBut"> Submit </Button>
-    <Button className="CloseBut" onClick={() => setModal4(false)}> Close </Button>
-  </div>
-    </center>
- </Modal>
-
 
  {/* SIXTH MODAL (EMAIL ADD) */}
  <Modal isOpen={Modal5} onRequestClose={() => setModal5(false)}
@@ -306,18 +271,7 @@ padding: '15px'
                           </td>
                     <Box p={1}> </Box>
                     <td>
-                    <Box>
-                        Transaction Logs:
-                        <Button className="transact" onClick={() => setModal4(true)}> View Transactions </Button>
-
-                    </Box>
-                    <Box p={1}> </Box>
-                   
-                        </td>
-                       
-                        <Box p={1}> </Box>
-
-                        <td>
+          
                         <Box> Change your password? <Button className="passChange" onClick={() => setModal1(true)}> Edit </Button></Box>
                         </td>
                         
@@ -329,7 +283,7 @@ padding: '15px'
                 
                        
             </div>
-            <div style={{marginLeft: '51%', marginTop: '-590px', width: '25%'}} className="text">
+            <div style={{marginLeft: '51%', marginTop: '-522px', width: '25%'}} className="text">
             
                 <Box color="black" bgcolor="White" p={5}>   
                 <td> 
@@ -342,7 +296,7 @@ padding: '15px'
                 </Box>
     
             </div>
-            <div style={{marginLeft: '51%', marginTop: '34px', width: '25%'}} className="text">
+            <div style={{marginLeft: '51%', marginTop: '44px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={5}>   
                 <td>
                     Email Addresses: 
@@ -371,7 +325,7 @@ padding: '15px'
           
             </div>
 
-            <div style={{marginLeft: '0%', marginTop: '130px', width: '0%'}} className="text">
+            <div style={{marginLeft: '0%', marginTop: '0px', width: '0%'}} className="text">
                 <Box color="black" bgcolor="White" p={1}>
                 </Box>
             
@@ -379,10 +333,7 @@ padding: '15px'
 
            
             
-            <footer> 
-            <h6> <center> COPYRIGHT LuieJeans™ © 2021. ALL RIGHTS RESERVED. </center> </h6>
             
-            </footer>
         </div>
                   
        
