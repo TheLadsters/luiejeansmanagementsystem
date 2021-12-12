@@ -1,5 +1,5 @@
 import React from "react";
-import {Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup} from "react-bootstrap";
+import {Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, Form, FormGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
