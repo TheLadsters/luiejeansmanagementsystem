@@ -9,6 +9,7 @@ h1{
     text-align: 200px;
     padding: 14px 16px;
     text-decoration: none;
+    left: -17px;
       
       
 }
@@ -28,7 +29,7 @@ h1{
     color: blue;
     position: relative;
     right: 7px;
-    font-size: 105%;
+    font-size: 90%;
 }
 .nameButton{
     background-color: transparent;
@@ -40,7 +41,7 @@ h1{
     color: blue;
     position: relative;
     left: 70px;
-    font-size: 105%;
+    font-size: 90%;
 }
 
 .transact{
@@ -71,6 +72,7 @@ td{
     border-bottom: 0px;
     position: relative;
 }
+
 .belowjoin{
     width: 20%;
    
@@ -89,7 +91,7 @@ td{
     background-color: #fff;
     background: #fff;
     position: relative;
-   
+    left: 20px;
 
  
 }
@@ -99,12 +101,13 @@ td{
     padding: 8px;
     margin: 5px;
     border: 1px solid #ccc;
-    width: 65%;
+    width: 75%;
     border-radius: 1px;
     overflow: hidden;
     background-color: #fff;
     background: #fff;
     position: relative;
+    left: 15px;
  
 }
 .Featmis{
@@ -151,11 +154,6 @@ div {
     cursor: pointer;
     line-height: 1.5;
 }
-.passChange:hover{
-
-    background: #383;
-
-}
 
 .phone{
 
@@ -168,12 +166,12 @@ div {
     background: #fff;
     position: relative;
    
+   
 }
 
 .stName{
     width: 50%;
     padding: 12px 20px;
-
     display: inline-block;
     border: 1px solid #ccc;
     border-radius: 4px;
@@ -243,17 +241,16 @@ div {
     border: none;
     border-radius: 4px;
     cursor: pointer;
+    
 }
 
 .CloseBut{
-
     width: 25%;
-    background-color: #91a0ac;
     color: white;
     padding: 14px 20px;
     margin: 8px 0;
     border: none;
     border-radius: 4px;
     cursor: pointer;
-
+ 
 }

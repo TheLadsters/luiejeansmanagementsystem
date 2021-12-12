@@ -1,118 +1,239 @@
-import React, { useState } from 'react';
-import { CloseButton,Table, Container, Row, Col,Modal, ButtonGroup,Button,DropdownButton,Dropdown} from "react-bootstrap";
-import './LandingPage.css';
+import React, { Component } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
+import Navbar from '../components/Navbar';  
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { Container, Col, Row, Table, Button, Modal,Accordion    } from "react-bootstrap";
 import * as IoIcons from 'react-icons/io';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from '../components/Navbar';
 import Mods from '../components/Modal';
 import CustomerInfo from '../components/CustomerInfo';
 
-const LandingPage = () => {
-    const [show,setShow] = useState(false);
-    const handleShow = () => setShow(true);
-    const handleClose = () => setShow(false);
+const Customers = props => (
+    <tr>
+        <td>{props.customer.customerFirstName} {props.customer.customerLastName} </td>
+        <td>{props.customer.numberOfOrders} </td>
+        <td>{props.customer.contactNumber} </td>
+        <td>
+            <Link to={"/edit/"+props.customer._id}>
+                <Button variant="warning">Edit</Button>
+            </Link>
+
+            <a href="/customer" variant="danger" onClick={() => {props.deleteCustomers(props.customer._id)}} className="mx-2">Delete</a></td>
+    </tr>
+
+)
+
+export class Customer extends Component {
+
+    constructor(props){
+        super(props);
+
+        this.onChangefirstName = this.onChangefirstName.bind(this);
+        this.onChangelastName = this.onChangelastName.bind(this);
+        this.onChangenumberOfOrders = this.onChangenumberOfOrders.bind(this);
+        this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+
+        this.state = {
+            customerFirstName: '',
+            customerLastName: '',
+            numberOfOrders: 0,
+            contactNumber: '',
+            show: false
+        }
+
+        this.state = {customers: []};
+    }
+
+    componentDidMount(){
+        axios.get('http://localhost:5000/customers/')
+        .then(response => {
+            this.setState({ customers: response.data })
+        })
+        .catch((error) => {
+            console.log(error);
+        })
+    }
+
+    handleClose(){
+        this.setState({show: false})
+    }
     
-    const [showInfo,setShowInfo] = useState(false);
-    const handleShowInfo = () => setShowInfo(true);
-    const handleCloseInfo = () => setShowInfo(false);
-    return (
-    <>
-            <Routes>
-                <Route path="/" exact/>
-            </Routes>
-        
-        <Navbar />
+    handleCloseInfo(){
+        this.setState({showInfo: false})
+    }
 
-        <Container style={{marginBottom:"20px"}}>
-            <Row className="text-end">
-                <Col md={4} className="mt-5 pt-3 pr-5 text-start">
-                <Button variant="dark" onClick={handleShow} className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</Button>
-                </Col>
+    handleShow(){
+        this.setState({show: true})
+    }
 
-                <Col className="mt-5">
-                    <input type="text" className="my-3 mx-2" placeholder="Search"/>
-                    <Button variant="dark"><IoIcons.IoIosSearch />Search</Button>
-                </Col>
-            </Row>
-        </Container>
+    handleShowInfo(){
+        this.setState({showInfo: true})
+    }
 
-        <Modal show={show} className="h-100" >
-            <Modal.Header>
-                <Button onClick={handleShowInfo} variant="info">Customer Info</Button>
-                <DropdownButton as={ButtonGroup} title="Delivery Type" id="bg-nested-dropdown">
-                    <Dropdown.Item eventKey="1">Pick-Up</Dropdown.Item>
-                    <Dropdown.Item eventKey="2">Deliver</Dropdown.Item>
-                </DropdownButton>
-            </Modal.Header>
-            <Modal.Body>
-                <Mods />
-            </Modal.Body>
-            <Modal.Footer>
-                    <Button variant="secondary" onClick={handleClose}>Cancel</Button>
-                    <Button variant="success" onClick={handleClose} >Add</Button>
-            </Modal.Footer>
-        </Modal>
 
-        <Modal show={showInfo}>
-            <Modal.Header>
-                <Modal.Title>
-                    Customer Info
-                </Modal.Title>
-                <CloseButton onClick={handleCloseInfo} />
-            </Modal.Header>
-            <Modal.Body >
-                <CustomerInfo />
-            </Modal.Body>
-        </Modal>
-        
-        <Container>
-            <Table className="text-center">
-                <thead style={{backgroundColor:'grey', color:'white', height:'60px',
-                    borderTop:'solid black 2px', borderBottom:'solid black 2px', verticalAlign:'middle'}}>
-                    <tr>
-                        <th>Deadline</th>
-                        <th>Customer's Name</th>
-                        <th>Order Code</th>
-                        <th>Quantity</th>
-                        <th>Price</th>
-                        <th>Downpayment</th>
-                        <th>Delivery Type</th>
-                        <th>Total Balance</th>
-                        <th>Actions</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    <tr>
-                        {}
-                            <td>October 29, 2021</td>
-                            <td>Janmel Mangubat</td>
-                            <td>X000001</td>
-                            <td>21</td>
-                            <td>100</td>
-                            <td>1000</td>
-                            <td>Pick-up</td>
-                            <td>2100</td>
-                            <td>
-                                <button className="btn btn-warning mx-1">
-                                    Delivered
-                                </button>
+    onChangefirstName(e) {
+        this.setState({
+            customerFirstName: e.target.value
+        });
+    }
 
-                                <button className="btn btn-success mx-1">
-                                    Edit
-                                </button>
+    onChangelastName(e) {
+        this.setState({
+            customerLastName: e.target.value
+        });
+    }
 
-                                <button className="btn btn-danger mx-1">
-                                    Delete
-                                </button>
-                            </td>
-                        </tr>
-                        
-                </tbody>
-            </Table>
-        </Container>
-    </>
-    )
+    onChangenumberOfOrders(e) {
+        this.setState({
+            numberOfOrders: e.target.value
+        });
+    }
+
+    onChangecontactNumber(e) {
+        this.setState({
+            contactNumber: e.target.value
+        });
+    }
+
+    onSubmit(e){
+
+        const customer = {
+            customerFirstName: this.state.customerFirstName,
+            customerLastName: this.state.customerLastName,
+            numberOfOrders: this.state.numberOfOrders,
+            contactNumber: this.state.contactNumber
+        }
+
+        console.log(customer);
+        axios.post('http://localhost:5000/customers/add', customer)
+        .then(res => console.log(res.data));
+
+        this.setState({
+            customerFirstName: ''
+        });
+        this.setState({
+            customerLastName: ''
+        });
+        this.setState({
+            numberOfOrders: 0
+        });
+        this.setState({
+            contactNumber: ''
+        });
+        this.setState({show: false})
+    }
+
+    deleteCustomers(id){
+        axios.delete('http://localhost:5000/customers/'+id)
+        .then(res => console.log(res.data));
+
+        this.setState({
+            customers: this.state.customers.filter(el => el._id !== id)
+        })
+    }
+
+    customerList(){
+        return this.state.customers.map(currentCustomer => {
+            return <Customers customer = {currentCustomer} deleteCustomers={this.deleteCustomers} key={currentCustomer._id}/>;
+        })
+    }
+    
+    render() {
+        return (
+            <>
+                <Navbar />
+
+                <Container>
+                    <Row style={{textAlign:'center', marginTop:'30px'}}>
+                        <Col>
+                            <h1>Customer's Orders</h1>
+                        </Col>
+                    </Row>
+                </Container>  
+
+                <Container>
+                    <Row className="my-3" style={{textAlign:'end'}}>
+                            <Col>
+                                <input type="text" className="my-2 w-25" placeholder="Search a Customer"/>
+                                <Button variant="dark" className="mx-2">
+                                <IoIcons.IoIosSearch />Search
+                                </Button>
+                            </Col>
+                    </Row>
+                </Container>
+
+                <Container className="my-4">
+                    <Row>
+                        <Col>
+                            <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add</button>
+                        </Col>
+                    </Row>
+                </Container>
+
+         {/* Modal for adding new staff */}
+            <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
+                <Accordion>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Customer Info</Accordion.Header>
+                        <Accordion.Body>
+                        <CustomerInfo />
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
+                <Modal.Body>
+                    <Mods/>
+                </Modal.Body>
+                <Modal.Footer>
+                    <Button variant="secondary" onClick={()=>this.handleClose()}>
+                        Close
+                    </Button>
+                    <button type="submit" className="btn btn-success mx-2">
+                        Save Changes
+                    </button>
+                </Modal.Footer>
+            </Modal>
+
+            {/* <Modal show={this.state.showInfo} onHide={()=>this.handleCloseInfo()}>
+                <Modal.Header closeButton>
+                    <Modal.Title>
+                        Customer Info
+                    </Modal.Title>]
+                </Modal.Header>
+                <Modal.Body >
+                    <CustomerInfo />
+                </Modal.Body>
+            </Modal>
+             */}
+
+             
+
+             
+             {/* End of modal */}
+
+             <Container>
+                 <Row style={{textAlign:'center', marginTop:'30px'}}>
+                     <Col>
+                         <Table>
+                                 <thead style={{backgroundColor:'grey', color:'white'}}>
+                                     <tr>
+                                     <th>Customer Name</th>
+                                     <th>Number of Orders</th>
+                                     <th>Contact Number</th>
+                                     <th>Action</th>
+                                    </tr>
+                                 </thead>
+
+                                 <tbody>
+                                     { this.customerList() }
+                                 </tbody>
+                            </Table>
+                     </Col>
+                 </Row>
+             </Container> 
+            </>
+        )
+    }
 }
 
-export default LandingPage
+export default Customer

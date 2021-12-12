@@ -8,11 +8,14 @@ import Staff from "./pages/Staff";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Route, Routes } from "react-router-dom";
-
+import './components/ProfilePage.css';
+import Footer from "./components/Footer"
 
 const App = () => {
   return(
-    <>
+   <div className="page-container">
+   <div className="content-wrap">
+    
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/landing-page" element={<LandingPage />} />
@@ -22,7 +25,12 @@ const App = () => {
       <Route path="/customer" element={<Customer />} />
       <Route path="/staff" element={<Staff />} />
     </Routes>
-    </>
+    </div>
+
+    <Footer />
+    
+    </div>
+  
   )
 }
 

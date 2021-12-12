@@ -30,11 +30,7 @@ const CustomerInfo = () => {
                     placeholder="Address"
                     required
                 />
-            </Form.Group >
-
-            <Button variant="success" type="submit" lock style={{margin:'10% 0% 0% 0%'}}>
-                Confirm
-            </Button>
+            </Form.Group>
         </Form>
     );
 }

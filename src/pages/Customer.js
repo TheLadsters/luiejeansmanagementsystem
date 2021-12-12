@@ -13,10 +13,13 @@ const Customers = props => (
         <td>{props.customer.contactNumber} </td>
         <td>
             <Link to={"/edit/"+props.customer._id}>
-                <Button variant="warning">Edit</Button>
+                <Button variant="success" style={{color:"white"}}>Edit</Button>
             </Link>
 
-            <a href="/customer" variant="danger" onClick={() => {props.deleteCustomers(props.customer._id)}} className="mx-2">Delete</a></td>
+            <Link to="/customer" onClick={() => {props.deleteCustomers(props.customer._id)}}>
+                <Button variant="danger" className="mx-2">Delete</Button>
+            </Link>
+        </td>
     </tr>
 
 )
@@ -99,18 +102,12 @@ export class Customer extends Component {
         .then(res => console.log(res.data));
 
         this.setState({
-            customerFirstName: ''
+            customerFirstName: '',
+            customerLastName: '',
+            numberOfOrders: 0,
+            contactNumber: '',
+            show: false
         });
-        this.setState({
-            customerLastName: ''
-        });
-        this.setState({
-            numberOfOrders: 0
-        });
-        this.setState({
-            contactNumber: ''
-        });
-        this.setState({show: false})
     }
 
     deleteCustomers(id){
@@ -134,7 +131,7 @@ export class Customer extends Component {
                 <Navbar />
 
              <Container>
-                 <Row style={{textAlign:'center', marginTop:'30px'}}>
+                 <Row style={{textAlign:'center', marginTop:'10px'}}>
                      <Col>
                          <h1>Customer Page</h1>
                      </Col>
@@ -142,9 +139,13 @@ export class Customer extends Component {
              </Container>  
 
              <Container>
-                 <Row className="my-3" style={{textAlign:'end'}}>
-                         <Col>
-                            <input type="text" className="my-2 w-25" placeholder="Search a Customer"/>
+                 <Row className="my-4">
+                        <Col md={6}>
+                        <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add New Customer</button>
+                        </Col>
+
+                         <Col style={{textAlign:'right'}} md={{span:4, offset: 2}}>
+                            <input type="text" className="my-2 w-50" placeholder="Search a Customer"/>
                              <Button variant="dark" className="mx-2">
                              <IoIcons.IoIosSearch />Search
                              </Button>
@@ -155,7 +156,7 @@ export class Customer extends Component {
              <Container className="my-4">
                  <Row>
                      <Col>
-                         <button className="btn btn-dark" onClick={()=>this.handleShow()}>Add New Customer</button>
+                        
                      </Col>
                  </Row>
              </Container>
@@ -203,7 +204,8 @@ export class Customer extends Component {
                  <Row style={{textAlign:'center', marginTop:'30px'}}>
                      <Col>
                          <Table>
-                                 <thead style={{backgroundColor:'grey', color:'white'}}>
+                                 <thead style={{backgroundColor:'grey', color:'white', height:'60px',
+                                borderTop:'solid black 2px', borderBottom:'solid black 2px', verticalAlign:'middle'}}>
                                      <tr>
                                      <th>Customer Name</th>
                                      <th>Number of Orders</th>
