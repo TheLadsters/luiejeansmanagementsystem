@@ -24,10 +24,10 @@ const LandingPage = () => {
         
         <Navbar />
 
-        <Container>
+        <Container style={{marginBottom:"20px"}}>
             <Row className="text-end">
                 <Col md={4} className="mt-5 pt-3 pr-5 text-start">
-                <Button variant="primary" onClick={handleShow} className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</Button>
+                <Button variant="dark" onClick={handleShow} className="btn btn-dark"><IoIcons.IoIosAddCircleOutline /> Add</Button>
                 </Col>
 
                 <Col className="mt-5">
@@ -68,7 +68,8 @@ const LandingPage = () => {
         
         <Container>
             <Table className="text-center">
-                <thead>
+                <thead style={{backgroundColor:'grey', color:'white', height:'60px',
+                    borderTop:'solid black 2px', borderBottom:'solid black 2px', verticalAlign:'middle'}}>
                     <tr>
                         <th>Deadline</th>
                         <th>Customer's Name</th>
@@ -93,11 +94,11 @@ const LandingPage = () => {
                             <td>Pick-up</td>
                             <td>2100</td>
                             <td>
-                                <button className="btn btn-success mx-1">
+                                <button className="btn btn-warning mx-1">
                                     Delivered
                                 </button>
 
-                                <button className="btn btn-dark mx-1">
+                                <button className="btn btn-success mx-1">
                                     Edit
                                 </button>
 

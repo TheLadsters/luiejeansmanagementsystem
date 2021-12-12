@@ -1,5 +1,5 @@
 import React from "react";
-import {Form,Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, FormGroup} from "react-bootstrap";
+import {Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup} from "react-bootstrap";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
@@ -75,7 +75,7 @@ const Mods = () => {
                     />
                 </Container>
             </Container>
-            {customer.map((customer) => (
+            {/* {customer.map((customer) => (
                 <FormGroup className="w-50 d-flex flex-col formSelect">  
                 <Form.Select className=" w-50" name="timezones" id="timezones">
                         <optgroup label="size">
@@ -115,7 +115,7 @@ const Mods = () => {
                                 className="w-50"
                     />
                 </FormGroup>
-            ))}
+            ))} */}
 
             <Container className="mt-0" style={{padding:'10 % 0% 5% 0%'}}>
                 <Row>
