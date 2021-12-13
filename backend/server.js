@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const { notFound, errorHandler } = require('./middlewares/errorMiddleware');
 
 require('dotenv').config();
 
@@ -25,6 +26,9 @@ const customersRouter = require('./routes/customers');
 app.use('/luiejeans', luiejeansRouter);
 app.use('/users', usersRouter);
 app.use('/customers', customersRouter);
+
+app.use(notFound);
+app.use(errorHandler);
 
 app.listen(port, () => {
     console.log(`Server is running on port: ${port}`);
