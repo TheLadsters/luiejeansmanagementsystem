@@ -1,4 +1,5 @@
 import Login from "./components/Login";
+import Register from "./pages/Register";
 import LandingPage from "./pages/LandingPage";
 import OrderHistory from "./pages/OrderHistory";
 import OrderStatus from "./pages/OrderStatus";
@@ -18,6 +19,7 @@ const App = () => {
     
     <Routes>
       <Route path="/" element={<Login />} />
+      <Route path="/register" element={<Register />} />
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/order-history" element={<OrderHistory />} />
       <Route path="/order-status" element={<OrderStatus />} />
