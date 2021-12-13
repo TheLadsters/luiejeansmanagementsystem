@@ -18,14 +18,6 @@ const Login = () => {
 
     const navigate = useNavigate();
 
-    // useEffect(()=>{
-    //     const userInfo = localStorage.getItem("userInfo");
-
-    //     if(userInfo){
-    //         history.push("/landing-page");
-    //     }
-    // }, [history]);
-
     const submitHandler = async (e) => {
         e.preventDefault();
       
