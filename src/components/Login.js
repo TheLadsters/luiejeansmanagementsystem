@@ -71,11 +71,7 @@ const Login = () => {
                             <Form.Group controlId="formBasicPassword">
                                 <Form.Control type="password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                             </Form.Group>
-
-                            {/* The link is temporary, need to add verification logic */}
-                            {/* <Link to='/landing-page'> */}
                                 <Button variant="btn btn-primary w-100" type="submit">Login</Button>
-                            {/* </Link> */}
                             </Form>
 
                             <div className="text-start mt-3">
