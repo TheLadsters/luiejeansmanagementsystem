@@ -214,7 +214,7 @@ export class Customer extends Component {
              <Container>
                  <Row style={{textAlign:'center', marginTop:'30px'}}>
                      <Col>
-                         <Table>
+                         <Table style={{marginBottom: "80px"}}>
                                  <thead style={{backgroundColor:'grey', color:'white'}}>
                                      <tr>
                                      <th>Customer Name</th>
