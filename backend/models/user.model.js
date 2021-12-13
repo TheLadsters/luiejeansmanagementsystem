@@ -23,6 +23,11 @@ const userSchema = new Schema({
         required: true,
         default:false,
     },
+    role: {
+        type:String,
+        required: true,
+        default:"Tailor",
+    },
     pic:{
         type: String,
         required: true,
