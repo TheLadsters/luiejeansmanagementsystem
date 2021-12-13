@@ -7,16 +7,12 @@ import Box from '@material-ui/core/Box'
 import PhoneInput from 'react-phone-number-input'
 import '../components/ProfilePage.css'
 
-
-
 const Account = () => {
   
-
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [Modal1, setModal1] = useState(false);
     const [Modal2, setModal2] = useState(false);
     const [Modal3, setModal3] = useState(false);
-    const [Modal4, setModal4] = useState(false);
     const [Modal5, setModal5] = useState(false);
     const [value, setValue] = useState();
     return (
@@ -49,16 +45,17 @@ content: {
 }}>
 
 {/* <CloseButton onClick={() => setModalIsOpen(false)} className="closebutton" /> */}
-
-  <h2> <center> Edit your name </center> </h2>
+<center>
+  <h2>  Edit your name </h2>
+ 
   <p> Change Name: <input type="text" className="NameEdit" placeholder="Input your name"/> </p>
 
      <p> Password: <input type="password" className="pazWord" placeholder="Input your password to confirm"/> </p>
   <div>
-    <Button className="SubmitBut"> Submit </Button>
+    <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModalIsOpen(false)}> Close </Button>
   </div>
-
+  </center> 
  </Modal>
 {/* SECOND MODAL (password change)*/}
  <Modal isOpen={Modal1} onRequestClose={() => setModal1(false)}
@@ -82,16 +79,16 @@ padding: '15px'
 }
 }}>
 
- 
-  <h2> <center>  Change your Password: </center> </h2>
-  <p> Old password: <input type="password" name="oldPass" className="passStyle" /> </p>
-  <p> New password: <input type="password" name="oldPass" className="passStyle"/> </p>
-  <p> Confirm your new password: <input type="password" name="password" className="passStyle"/> </p>
+  <center> 
+  <h2>  Change your Password: </h2>
+  <p> Old password: <input type="password"  className="passStyle" /> </p>
+  <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"/> </p>
+  
   <div>
-     <Button className="SubmitBut"> Submit </Button>
+     <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModal1(false)}> Close </Button>
   </div>
-
+  </center>
  </Modal>
 
 {/* THIRD MODAL (phone numbers) */}
@@ -126,7 +123,7 @@ content: {
         onChange={setValue} />
        <p>Your phone number will be: {value} </p>
        <p className="adj"> Category: </p>
-       <select name="language" id="lang">
+       <select name="language" id="lang2">
        <option value="" disabled selected hidden> Select Category </option>
                             <option value="0">Mobile</option>
                             <option value="1">Work</option>
@@ -135,7 +132,7 @@ content: {
         </div>
        
   <div>
-     <Button className="SubmitBut"> Submit </Button>
+     <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModal2(false)}> Close </Button>
     
   </div>
@@ -172,7 +169,7 @@ padding: '15px'
   <p> <input type="text" pattern="[0-9]{5}" className="zipp" placeholder="Zip Code"/> </p>
   <div>
       
-     <Button className="SubmitBut"> Submit </Button>
+     <Button variant="none" className="SubmitBut"> Submit </Button>
      
     <Button className="CloseBut" onClick={() => setModal3(false)}> Close </Button>
   </div>
@@ -188,7 +185,7 @@ style={{
 },
 content: {
 position: 'absolute',
-bottom:'350px',
+bottom:'500px',
 left: '600px',
 top: '200px',
 width: '40%',
@@ -206,7 +203,7 @@ padding: '15px'
   <p> <input type="text" className="stName" placeholder="example@example.com"/> </p>
   <div>
       
-     <Button className="SubmitBut"> Submit </Button>
+     <Button variant="none" className="SubmitBut"> Submit </Button>
      
     <Button className="CloseBut" onClick={() => setModal5(false)}> Close </Button>
   </div>
@@ -217,7 +214,7 @@ padding: '15px'
 
       <h1> <center> Profile Page </center> </h1>
     
-            <div style={{marginLeft: '25%', marginTop: '35px', width: '25%'}} className="text">
+            <div style={{marginLeft: '25%', marginTop: '0px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={4} fontFamily="verdana"> 
                    
                         <Box color="black" bgcolor="white" p={0} fontFamily="verdana"> Credentials </Box>
@@ -228,7 +225,7 @@ padding: '15px'
                        
                        <td> Name: </td>
 
-                    <td> <Box p={0} fontFamily="verdana"> <Button className="nameButton" onClick={() => setModalIsOpen(true)}> + Edit your name </Button> </Box> </td>
+                    <td> <Box p={0} fontFamily="verdana"> <Button className="nameButton" variant="light" onClick={() => setModalIsOpen(true)}> + Edit your name </Button> </Box> </td>
                    
                     <Box p={1}> </Box>
                  
@@ -272,7 +269,7 @@ padding: '15px'
                     <Box p={1}> </Box>
                     <td>
           
-                        <Box> Change your password? <Button className="passChange" onClick={() => setModal1(true)}> Edit </Button></Box>
+                        <Box> Change your password? <Button className="passChange" variant="light" onClick={() => setModal1(true)}> Edit </Button></Box>
                         </td>
                         
                         <Box p={1}> </Box> 
@@ -291,7 +288,7 @@ padding: '15px'
                     <Box p={1}> </Box>
                     </td> 
                     <Box p={1}> </Box>
-                    <Box><Button className="submitButton" onClick={() => setModal3(true)}> + Add a home address? </Button> </Box>
+                    <Box><Button className="submitButton" variant="light" onClick={() => setModal3(true)}> + Add a home address? </Button> </Box>
                     
                 </Box>
     
@@ -304,7 +301,7 @@ padding: '15px'
                     <Box p={1}> </Box>
                     </td> 
                     <Box p={1}> </Box>
-                    <Button className="submitButton" onClick={() => setModal5(true)}> + Add another email address? </Button>
+                    <Button className="submitButton" variant="light" onClick={() => setModal5(true)}> + Add another email address? </Button>
                    
                     
                 </Box>
@@ -319,13 +316,13 @@ padding: '15px'
                     <Box p={1}> </Box>
                     </td> 
                     <Box p={1}> </Box>
-                    <Button className="submitButton" onClick={() => setModal2(true)}> + Add another phone number? </Button>
+                    <Button className="submitButton" variant="light" onClick={() => setModal2(true)}> + Add another phone number? </Button>
                   
                 </Box>
           
             </div>
 
-            <div style={{marginLeft: '0%', marginTop: '0px', width: '0%'}} className="text">
+            <div style={{marginLeft: '0%', marginTop: '-6px', width: '0%'}} className="text">
                 <Box color="black" bgcolor="White" p={1}>
                 </Box>
             
