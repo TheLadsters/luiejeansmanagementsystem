@@ -12,6 +12,12 @@ const Navbar = () => {
     const[sidebar, setSidebar] = useState(false);
 
     const showSidebar = () => setSidebar(!sidebar);
+
+    const userInfo = localStorage.getItem('userInfo');
+    const newInfo = JSON.parse(userInfo);
+
+
+
     return (
         <>
         <IconContext.Provider value={{color: '#fff'}}>
@@ -36,9 +42,24 @@ const Navbar = () => {
                             <AiIcons.AiOutlineClose />
                         </Link>
                     </li>  
+
+                    
+                    <li className="nav-text" style={{paddingLeft:"60px"}}>
+                        <img src={newInfo.pic} style={{width:"50px", height:"50px"}}/>
+                    </li>
+
+                    <li className="nav-text" style={{color:"white", paddingLeft:"30px"}}>
+                        Hello, {newInfo.name}!
+                    </li>
+
+
                     {SidebarData.map((item, index) => {
                         return (
-                            <li key={index} className={item.cName}>
+                            <li key={index} className={item.cName} id={item.id} onClick={()=>{
+                                if(item.id){
+                                localStorage.removeItem("userInfo");
+                                }
+                            }}>
                                 <Link to={item.path}>
                                     {item.icon}
                                     <span>{item.title}</span>
