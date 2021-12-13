@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-// import { Col, Row, Container } from 'react-bootstrap';
 import * as FaIcons from "react-icons/fa";
 import * as AiIcons from 'react-icons/ai';
 import { Link } from 'react-router-dom';
@@ -43,14 +42,15 @@ const Navbar = () => {
                         </Link>
                     </li>  
 
-                    
-                    <li className="nav-text" style={{paddingLeft:"60px"}}>
-                        <img src={newInfo.pic} style={{width:"50px", height:"50px"}}/>
-                    </li>
+                        <li className="nav-text" style={{paddingLeft:"60px"}}>
+                            <img src={newInfo.pic} style={{width:"70px", height:"60px",
+                             borderRadius:"50%", border:"2px white solid"}}
+                             alt="userImage"/>
+                        </li>
 
-                    <li className="nav-text" style={{color:"white", paddingLeft:"30px"}}>
-                        Hello, {newInfo.name}!
-                    </li>
+                        <li className="nav-text" style={{color:"white", paddingLeft:"10px"}}>
+                            <b>Hello, {newInfo.name}!</b>
+                        </li>
 
 
                     {SidebarData.map((item, index) => {
