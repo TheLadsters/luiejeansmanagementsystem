@@ -43,6 +43,15 @@ export const SidebarData = [
         title:'Order Status',
         path: '/order-status',
         icon: <FaIcons.FaEnvelopeOpenText />,
-        cName: 'nav-text'
+        cName: 'nav-text',
+
+    },
+
+    {
+        title:'Logout',
+        path: '/',
+        icon: <IoIcons.IoIosLogOut />,
+        cName: 'nav-text',
+        id: 'logoutBtn'
     },
 ]
