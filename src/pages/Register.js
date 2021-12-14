@@ -63,7 +63,7 @@ const Register = () => {
             );
 
                 setLoading(false);
-                // localStorage.setItem("userInfo", JSON.stringify(data));
+                localStorage.setItem("userInfo", JSON.stringify(data));
                 setRegisterSuccess("You have Registered Successfully! You are now redirected to the Login Page...");
                 alert('You have Registered Successfully! You are now redirected to the Login Page...');
                 navigate("/");
@@ -95,6 +95,7 @@ const Register = () => {
             .then((res) => res.json())
             .then((data) => {
                 setPic(data.url.toString());
+                console.log("data succesfully uploaded");
             })
             .catch((err) => {
                 console.log(err);
