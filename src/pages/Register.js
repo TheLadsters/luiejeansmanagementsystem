@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, {useState} from 'react'
-import {Form, Button, Container, Navbar, Row, Col} from 'react-bootstrap';
+import {Form, Button, Container, Navbar} from 'react-bootstrap';
 import { useNavigate } from "react-router-dom";
 import * as FaIcons from "react-icons/fa";
 import "./Register.css";
@@ -33,9 +33,11 @@ const Register = () => {
     const [loading, setLoading] = useState(false);
 
     const Roles = [
+        { label: "Designer", value: "Designer" },
+        { label: "Sewer", value: "Sewer" },
         { label: "Tailor", value: "Tailor" },
+        { label: "Packager", value: "Packager" },
         { label: "Printer", value: "Printer" },
-        { label: "Delivery", value: "Delivery" },
     ]
 
     const submitHandler = async (e) => {
