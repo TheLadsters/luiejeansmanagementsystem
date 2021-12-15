@@ -3,3 +3,16 @@ background-color: gray;
 color:white;
 cursor:pointer;
 }
+
+.card-detail{
+    text-align:center;
+}
+
+.card-text{
+    padding-top:20px;
+}
+
+.check-list{
+    height:80vh;
+    overflow-y: auto;
+}
