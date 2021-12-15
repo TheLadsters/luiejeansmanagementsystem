@@ -1,3 +1,10 @@
 Card:hover{
 background-color: blue;
 }
+
+.staff-container{
+    columns: 2 auto;
+    margin-top: 20px;
+    margin-bottom: 30px;
+    column-gap: none;
+}
