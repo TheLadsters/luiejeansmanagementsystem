@@ -1,49 +1,67 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import './Cards.css';
 import axios from 'axios';
-import { Card, Container, Col, Row, Modal, Button } from "react-bootstrap";
+import * as AiIcons from 'react-icons/ai';
+import { Card, Container, Col, Row, Modal, Button, Form } from "react-bootstrap";
 const Cards = ( {staff} ) => {
 
     const [show, setShow] = useState(false);
-
+    const [task, setTask] = useState("");
+    const [taskKey, setTaskKey] = useState(null);
     const handleClose = () => setShow(false);
-    const handleShow = () => {
-        setShow(true);
-        console.log(staff._id);
-    } 
-    const [tasks, setTasks] = useState([]);
-
-
+    const handleShow = () => setShow(true);
+    const reload=()=>window.location.reload();
+    
     const addTask = async (e) => {
         e.preventDefault();
+        const config = {
+            headers: {
+            "Content-type": "application/json",
+            },
+        };
+
+        return axios.post(
+            "http://localhost:5000/users/addTask",
+            {
+                email:staff.email, 
+                task
+            },
+            config
+        )
+        .then(reload())
+        .catch((err) => {
+            console.log(err);
+        });
         
-            try{
-                const config = {
-                    headers: {
-                    "Content-type": "application/json",
-                    },
-                };
+    } 
 
+    const deleteTask = async (task) => {
+        console.log(task);
+        
+        const config = {
+            headers: {
+            "Content-type": "application/json",
+            },
+        };
 
-            const { data } = await axios.post(
-                "http://localhost:5000/users/",
-                {
-                    tasks
-                },
-                config
-            );
-
-                localStorage.setItem("userInfo", JSON.stringify(data));
- 
-
-            } catch (error){
-                console.log(error);
-            }
-    }
+        return axios.post(
+            "http://localhost:5000/users/deleteTask",
+            {
+                email:staff.email, 
+                task,
+            },
+            config
+        )
+        .then(reload())
+        .catch((err) => {
+            console.log(err);
+        });
+        
+    } 
 
     return (
         <>
-            <Card style={{ width: '25rem', height:'10rem'}} className="real-card" onClick={handleShow}>
+            <Card style={{ width: '25rem', height:'10rem'}} className="real-card" onClick={ handleShow }>
                         <Container>
                             <Card.Body>
                                 <Row>
@@ -68,30 +86,44 @@ const Cards = ( {staff} ) => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    <Row>
+                <Form onSubmit={addTask}>
+                        <Row>
+                            <Col md={8}>
+                                <Form.Control type="text" value={task} onChange={(e) => setTask(e.target.value)} placeholder="Add a task" />
+                            </Col>
+                            <Col>
+                                <Button type="submit" variant="success">
+                                <AiIcons.AiOutlineCheckCircle />
+                                </Button>
+                            </Col>
+                        </Row>
+                </Form>
+                    
+                    <Row className="py-4">
                         <Col>
-                            <Button variant="dark">
-                                Add task
-                            </Button>
+                            {staff.tasks.map(tasks => (
+                                <ul style={{listStyleType:"none"}}>
+                                    <li>
+                                    <Card style={{border:"1px solid dark", width:"390px"}}>
+                                        <Card.Body>    
+                                            {tasks}
+                                            <Button
+                                            variant="danger" value={tasks} onClick={(e) => deleteTask(tasks)} className="mx-2">
+                                                <AiIcons.AiFillCloseSquare />
+                                            </Button>
+                                        </Card.Body>
+                                    </Card>
+                                    </li>
+                                </ul>
+                                ))}
+                            
                         </Col>
                     </Row>
-                
-                <Row className="py-4">
-                   <Col>
-                        <input className="form-check-input" type="checkbox" defaultValue id="flexCheckDefault" />
-                        <label className="form-check-label" htmlFor="flexCheckDefault">
-                            Default checkbox
-                        </label>
-                    </Col>
-                </Row>
                 </Modal.Body>
 
                 <Modal.Footer>
                     <Button variant="secondary" onClick={handleClose}>
                         Close
-                    </Button>
-                    <Button variant="success" onClick={handleClose}>
-                        Save Changes
                     </Button>
                 </Modal.Footer>
             </Modal>

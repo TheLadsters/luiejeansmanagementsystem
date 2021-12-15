@@ -3,7 +3,7 @@ const User = require('../models/user.model.js')
 const generateToken = require('../utils/generateToken');
 
 const registerUser = asyncHandler(async(req, res) => {
-    const { name, email, password, role, pic, tasks} = req.body;
+    const { name, email, password, role, pic} = req.body;
 
     const userExists = await User.findOne({email});
 
@@ -13,7 +13,7 @@ const registerUser = asyncHandler(async(req, res) => {
     }
 
     const user = await User.create({
-        name, email, password, role, pic, tasks
+        name, email, password, role, pic
     });
 
         if(user){
@@ -24,7 +24,6 @@ const registerUser = asyncHandler(async(req, res) => {
                 isAdmin: user.isAdmin,
                 role: user.role,
                 pic:user.pic,
-                tasks:user.tasks,
                 token: generateToken(user._id),
             });
         } else {
@@ -55,24 +54,65 @@ const authUser = asyncHandler(async (req, res) => {
     }
 });
 
-const addTaskUser = asyncHandler(async (req, res) => {
+const addTask = asyncHandler(async (req, res) => {
 
-    const user = await User.findbyId( req.user._id );
+    const { email, task } = req.body;
+    
+    const user = await User.findOne({email});
 
-    if(user){
-        user.tasks = req.body.tasks ||user.tasks;
+    if(user){    
 
-        const updateUser = await user.save();
-
-        res.json({
-            _id: updateUser._id,
-            tasks: updateUser.tasks
-        })
-
-    } else{
-        res.status(404);
-        throw new Error("User not found!");
+         User.updateOne(
+            { email: email },
+            { $push: { tasks : [ task ] } },
+            function(err, result) {
+              if (err) {
+                return res.sendstatus(400);
+              } else {
+                res.send(result);
+                return;
+              }
+            }
+        );
     }
+
 });
 
-module.exports = { registerUser, authUser, addTaskUser };
+const deleteTask = asyncHandler(async (req, res) => {
+
+    const { email, task } = req.body;
+    
+    const user = await User.findOne({email});
+
+    if(user){   
+
+        User.updateOne({email: email}, 
+            { "$pull": { "tasks": task } },
+            function(err, result) {
+                if (err) {
+                  return res.sendstatus(400);
+                } else {
+                  res.send(result);
+                  return;
+                }
+              }
+            
+            );
+
+        //  User.updateOne(
+        //     {  },
+        //     { $pull: { tasks : [ task ] } },
+        //     function(err, result) {
+        //       if (err) {
+        //         return res.sendstatus(400);
+        //       } else {
+        //         res.send(result);
+        //         return;
+        //       }
+        //     }
+        // );
+    }
+
+});
+
+module.exports = { registerUser, authUser, addTask, deleteTask };
