@@ -39,20 +39,8 @@ h1{
     outline: none;
     color: blue;
     position: relative;
-    left: 70px;
+    left: 50px;
     font-size: 90%;
-}
-
-.transact{
-
-    background-repeat: no-repeat;
-    border: none;
-    cursor: pointer;
-    overflow: hidden;
-    outline: none;
-    color: blue;
-    position: relative;
-    left: 20px;
 }
 
 
@@ -113,7 +101,7 @@ td{
     padding: 8px;
     margin: 5px;
     border: 1px solid #ccc;
-    width: 75%;
+    width: 66%;
     border-radius: 1px;
     overflow: hidden;
     background-color: #fff;
@@ -155,7 +143,7 @@ div {
     background-color: transparent;
     color: blue;
     position: relative;
-    left: 180px;
+    left: 75px;
     font-size: 105%;
     text-align: center;
     text-decoration: none;
@@ -224,7 +212,7 @@ div {
     
 }
 .NameEdit{
-    width: 52%;
+    width: 50%;
     padding: 6px 20px;
     display: inline-block;
     border: 1px solid #ccc;
@@ -232,7 +220,7 @@ div {
  
 }
 .pazWord{
-    width: 52%;
+    width: 48%;
     padding: 6px;
     display: inline-block;
     border: 1px solid #ccc;
@@ -267,7 +255,7 @@ div {
  
 }
 .passStyle{
-    width: 32%;
+    width: 50%;
     padding: 6px;
     display: inline-block;
     border: 1px solid #ccc;
@@ -279,7 +267,7 @@ div {
 }
 
 .passStyle2{
-    width: 27%;
+    width: 66%;
     padding: 6px;
     display: inline-block;
     border: 1px solid #ccc;
@@ -292,4 +280,17 @@ div {
 #conf{
     position: relative;
     left: 50px;
+}
+.roles{
+    background-color: transparent;
+    color: blue;
+    position: relative;
+    left: 75px;
+    font-size: 105%;
+    text-align: center;
+    text-decoration: none;
+    vertical-align: middle;
+    display: inline-block;
+    cursor: pointer;
+    line-height: 1.5;
 }
