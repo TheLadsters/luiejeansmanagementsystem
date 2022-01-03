@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button} from "react-bootstrap";
+import { Button, Form, Col} from "react-bootstrap";
 import Modal from 'react-modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
@@ -18,6 +18,10 @@ const Account = () => {
     const [value, setValue] = useState();
     const [Modal4, setModal4] = useState();
     const [inputs, setInputs] = useState({});
+    const [password, setPassword] = useState(""); 
+    const [changePassword, setChangePassword] = useState(""); 
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
 
     const userInfo = localStorage.getItem('userInfo');
     const newInfo = JSON.parse(userInfo);
@@ -33,6 +37,37 @@ const Account = () => {
       console.log(inputs);
     }
 
+    const submitHandler = async (e) => {
+        e.preventDefault();
+      
+        try {
+            const config = {
+                headers: {
+                    "Content-type": "application/json"
+                }
+            }
+
+            setLoading(true)
+
+            const { data } = await axios.post(
+                "http://localhost:5000/users/login",
+                {
+                    password
+                },
+                config
+            );
+            
+            console.log(data);
+            localStorage.setItem("userInfo", JSON.stringify(data));
+            setLoading(false)
+
+        
+
+        } catch (error){
+            setError(error.response.data.message);
+            setLoading(false)
+        }
+    };
 
     return (
     <>
@@ -100,14 +135,16 @@ content: {
 }}>
 
   <center> 
+  <Form onSubmit={submitHandler}>
   <h2>  Change your Password: </h2>
-  <p> Old password: <input type="password"  className="passStyle" /> </p>
-  <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"/> </p>
-  
+  <p> Old password: <input type="password"  className="passStyle" onChange={(e) => setPassword(e.target.value)} /> </p>
+  <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"
+  value ={changePassword} onChange={(e) => setChangePassword(e.target.value)}/> </p>
   <div>
      <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModal1(false)}> Close </Button>
   </div>
+  </Form>
   </center>
  </Modal>
 
