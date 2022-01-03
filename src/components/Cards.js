@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useCallback } from 'react'
 import './Cards.css';
 import axios from 'axios';
 import * as AiIcons from 'react-icons/ai';
@@ -9,8 +9,10 @@ const Cards = ( {staff} ) => {
     const [task, setTask] = useState("");
     const [taskKey, setTaskKey] = useState(null);
     const handleClose = () => setShow(false);
-    const handleShow = () => setShow(true);
+    const handleShow = () => {setShow(true)};
     const reload=()=>window.location.reload();
+    // const [,updateState] = useState();
+    // const forceUpdate = useCallback(() => updateState({}), []);
     
     const addTask = async (e) => {
         e.preventDefault();
@@ -108,7 +110,7 @@ const Cards = ( {staff} ) => {
                                         <Card.Body>    
                                             {tasks}
                                             <Button
-                                            variant="danger" value={tasks} onClick={(e) => deleteTask(tasks)} className="mx-2">
+                                            variant="danger" value={tasks} onClick={(e) => {deleteTask(tasks)}} className="mx-2">
                                                 <AiIcons.AiFillCloseSquare />
                                             </Button>
                                         </Card.Body>
