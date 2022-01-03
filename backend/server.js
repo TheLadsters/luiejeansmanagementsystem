@@ -22,10 +22,12 @@ connection.once('open', () => {
 const luiejeansRouter = require('./routes/luiejeans');
 const usersRouter = require('./routes/users'); 
 const customersRouter = require('./routes/customers');
+const landingPageRouter = require('./routes/landingPage');
 
 app.use('/luiejeans', luiejeansRouter);
 app.use('/users', usersRouter);
 app.use('/customers', customersRouter);
+app.use('/landing-page', landingPageRouter);
 
 app.use(notFound);
 app.use(errorHandler);
