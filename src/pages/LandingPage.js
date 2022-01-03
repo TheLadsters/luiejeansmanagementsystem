@@ -3,9 +3,10 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';  
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Container, Col, Row, Table, Button, Modal,Accordion, Form    } from "react-bootstrap";
+import { Container, Col, Row, Table, Button, Modal,Accordion, Form,
+FormControl, Card, Nav,ListGroup    } from "react-bootstrap";
 import * as IoIcons from 'react-icons/io';
-// import Upload from '../images/add-files.svg';
+import Upload from '../images/add-files.svg';
 // import Select from "react-select";
 // import IconButton from "@material-ui/core/IconButton";
 import Mods from '../components/Modal';
@@ -519,7 +520,7 @@ export class LandingPage extends Component {
                     <button type="submit" className="btn btn-success mx-2">
                         Save Changes
                     </button>
-                </Modal.Body >
+                </Modal.Footer >
 
             </Modal>
  
