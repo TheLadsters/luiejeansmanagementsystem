@@ -33,6 +33,7 @@ export class Customer extends Component {
         this.onChangelastName = this.onChangelastName.bind(this);
         this.onChangenumberOfOrders = this.onChangenumberOfOrders.bind(this);
         this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
+        this.onChangecustomerAddress = this.onChangecustomerAddress.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
 
         this.state = {
@@ -40,6 +41,7 @@ export class Customer extends Component {
             customerLastName: '',
             numberOfOrders: 0,
             contactNumber: '',
+            customerAddress: '',
             show: false
         }
 
@@ -88,13 +90,19 @@ export class Customer extends Component {
         });
     }
 
-    onSubmit(e){
+    onChangecustomerAddress(e) {
+        this.setState({
+            customerAddress: e.target.value
+        });
+    }
 
+    onSubmit(e){
         const customer = {
             customerFirstName: this.state.customerFirstName,
             customerLastName: this.state.customerLastName,
             numberOfOrders: this.state.numberOfOrders,
-            contactNumber: this.state.contactNumber
+            contactNumber: this.state.contactNumber,
+            customerAddress: this.state.customerAddress
         }
 
         console.log(customer);
@@ -106,6 +114,7 @@ export class Customer extends Component {
             customerLastName: '',
             numberOfOrders: 0,
             contactNumber: '',
+            customerAddress: '',
             show: false
         });
     }
@@ -181,6 +190,8 @@ export class Customer extends Component {
 
                          <label>Contact Number </label>
                          <input type="text"  value={this.state.contactNumber} onChange={this.onChangecontactNumber} required className="form-control" />
+                         <label>Customer Address </label>
+                         <input type="text"  value={this.state.customerAddress} onChange={this.onChangecustomerAddress} required className="form-control" />
                      </div>
                     
 
