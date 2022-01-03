@@ -12,7 +12,6 @@ router.route("/").post(registerUser);
 router.route("/login").post(authUser);
 router.route("/addTask").post(addTask);    
 router.route("/deleteTask").post(deleteTask); 
-
 router.route('/add').post(registerUser);
 
 module.exports = router;

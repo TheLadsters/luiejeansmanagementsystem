@@ -3,16 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';  
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
-import { Container, Col, Row, Table, Button, 
-        Modal,Accordion, Form,FormControl, Nav,
-        Card, FormGroup, ButtonGroup, ListGroup   } from "react-bootstrap";
+import { Container, Col, Row, Table, Button, Modal,Accordion, Form    } from "react-bootstrap";
 import * as IoIcons from 'react-icons/io';
-import Upload from '../images/add-files.svg';
-import Select from "react-select";
-import IconButton from "@material-ui/core/IconButton";
+// import Upload from '../images/add-files.svg';
+// import Select from "react-select";
+// import IconButton from "@material-ui/core/IconButton";
 import Mods from '../components/Modal';
-import CustomerInfo from '../components/CustomerInfo';
+// import CustomerInfo from '../components/CustomerInfo';
 
 const options = [
     {
@@ -75,6 +72,8 @@ const Customers = props => (
 
 )
 
+
+
 export class LandingPage extends Component {
 
     constructor(props){
@@ -82,7 +81,6 @@ export class LandingPage extends Component {
 
         this.onChangefirstName = this.onChangefirstName.bind(this);
         this.onChangelastName = this.onChangelastName.bind(this);
-        this.onChangenumberOfOrders = this.onChangenumberOfOrders.bind(this);
         this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
         this.onChangecustomerAddress = this.onChangecustomerAddress.bind(this);
         this.onChangeproductName = this.onChangeproductName.bind(this);
@@ -100,26 +98,15 @@ export class LandingPage extends Component {
         this.state = {
             customerFirstName: '',
             customerLastName: '',
-            numberOfOrders: '0',
             contactNumber: '',
-            customerAddress:'',
-            productName:'',
-            orderDate: '',
-            price:'0',
-            orderCode:'',
-            productSize:'',
-            deliveryType:'',
-            productPic:'',
-            downPayment:'',
+            
             show: false
         }
 
         this.state = {orders:{size:'', sizeQuantity:''}}
 
-        this.state = {customers: []};
-
-        
-        }
+        this.state = {customers: []};   
+    }
 
     componentDidMount(){
         axios.get('http://localhost:5000/landing-page/')
@@ -159,16 +146,16 @@ export class LandingPage extends Component {
             customerLastName: e.target.value
         });
     }
+    
+    onChangecontactNumber(e) {
+        this.setState({
+            contactNumber: e.target.value
+        });
+    }
 
     onChangenumberOfOrders(e) {
         this.setState({
             numberOfOrders: e.target.value
-        });
-    }
-
-    onChangecontactNumber(e) {
-        this.setState({
-            contactNumber: e.target.value
         });
     }
 
@@ -188,7 +175,6 @@ export class LandingPage extends Component {
         this.setState({
             orderDate: e.target.value
         });
-
     }
 
     onChangeprice(e) {
@@ -202,42 +188,42 @@ export class LandingPage extends Component {
             orderCode: e.target.value
         });
     }
-    
-     onChangeproductSize(e) {
+
+    onChangeproductSize(e) {
         this.setState({
             productSize: e.target.value
         });
-     }
-
-    //  onChangedeliveryType(e) {
-    //     this.setState({
-    //         deliveryType: e.target.value
-    //     });
-    //  }
+    }
 
     onChangePickUp(e) {
         this.setState({
-            deliveryType: "Pick-up"
+            PickUp: e.target.value
         });
-     }
+    }
 
-     onChangeDelivery(e) {
+    onChangeDelivery(e) {
         this.setState({
-            deliveryType: "Delivery"
+            Delivery: e.target.value
         });
-     }
+    }
 
-     onChangeproductPic(e) {
+    onChangeproductPic(e) {
         this.setState({
             productPic: e.target.value
         });
-     }
+    }
 
-     onChangedownPayment(e) {
+    onChangedownPayment(e) {
         this.setState({
             downPayment: e.target.value
         });
-     }
+    }
+
+    
+
+
+
+
 
     onSubmit(e){
         const customer = {
@@ -347,197 +333,63 @@ export class LandingPage extends Component {
                 </Container>
 
          {/* Modal for adding new staff */}
-            <Modal  show={this.state.show} onHide={()=>this.handleClose()}>
-            <form onSubmit={this.onSubmit}>
-                <Accordion>
-                    <Accordion.Item eventKey="0">
-                        <Accordion.Header>Customer Info</Accordion.Header>
-                        <Accordion.Body>
-                        {/* <CustomerInfo /> */}
-                        {/* <form onSubmit={this.onSubmit}>
-                                <Form.Control
-                                    style={{margin:'10% 0% 0% 0%'}}
-                                    type="text"
-                                    placeholder="First Name"
-                                    required
-                                    value={this.state.customerFirstName}
-                                     onChange={this.onChangefirstName}
-                                />
-
-                                <Form.Control
-                                    style={{margin:'10% 0% 0% 0%'}}
-                                    type="text"
-                                    placeholder="Last Name"
-                                    required
-                                    value={this.state.customerLastName} 
-                                    onChange={this.onChangelastName}
-                                />
-
-                                <Form.Control
-                                    style={{margin:'10% 0% 0% 0%'}}
-                                    type="text"
-                                    placeholder="Contact Number"
-                                    required
-                                    value={this.state.contactNumber} 
-                                    onChange={this.onChangecontactNumber}
-                                />
-
-                                <Form.Control
-                                    style={{margin:'10% 0% 0% 0%'}}
-                                    type="text"
-                                    placeholder="Address"
-                                    required
-                                    value={this.state.customerAddress} 
-                                    onChange={this.onChangecustomerAddress}
-                                />
-                            <button type="submit" className="btn btn-success mx-2">
-                            Save Changes
-                            </button>
-                            </form> */}
-                        <div className="form-group">
-                            <label>First Name </label>
-                            <input type="text" value={this.state.customerFirstName} onChange={this.onChangefirstName} required className="form-control" />
-                            <label>Last Name </label>
-                            <input type="text"  value={this.state.customerLastName} onChange={this.onChangelastName} required className="form-control" />
-                            <label>Contact Number </label>
-                            <input type="text"  value={this.state.contactNumber} onChange={this.onChangecontactNumber} required className="form-control" />
-                            <input type="hidden" value={this.state.numberOfOrders} onChange={this.onChangenumberOfOrders} required className="form-control" />
-                            <label>Customer Address </label>
-                            <input type="text"  value={this.state.customerAddress} onChange={this.onChangecustomerAddress} required className="form-control" />
-                        </div>
-                        </Accordion.Body>
-                    </Accordion.Item>
-                </Accordion>
-
+            <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
                 <Modal.Body>
+                    <Accordion style={{margin:"2%"}}>
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>Customer Info</Accordion.Header>
+                            <Accordion.Body>
+                                <Form>
+                                    <Form.Group>
+                                        <Form.Control
+                                            style={{margin:'10% 0% 0% 0%'}}
+                                            type="text"
+                                            placeholder="First name"
+                                            value={this.state.customerFirstName} 
+                                            onChange={this.onChangefirstName} 
+                                            required 
+                                        />
+                                    </Form.Group>
 
-                    {/* <Mods/> */}
-                <Container>
-                    <Row className="d-flex justify-content-between" >
-                        <Container style={{width:'30%'}}>
-                            <Form.Group>
-                                <Form.Control
-                                    type="date"
-                                    required
-                                    placeholder="Deadline"
-                                    value={this.state.orderDate} 
-                                    onChange={this.onChangeorderDate}
-                                />
-                            </Form.Group>
-                        </Container>
-                                
-                        <Container style={{width:'30%'}}>
-                            <FormControl
-                                placeholder="Order-Code"
-                                aria-label="Username"
-                                aria-describedby="basic-addon1"
-                                value={this.state.orderCode} 
-                                onChange={this.onChangeorderCode}
-                            />
-                        </Container>
+                                    <Form.Group>
+                                        <Form.Control
+                                            style={{margin:'10% 0% 0% 0%'}}
+                                            type="text"
+                                            placeholder="Last name"
+                                            value={this.state.customerLastName} 
+                                            onChange={this.onChangeLastName} 
+                                            required 
+                                        />
+                                    </Form.Group>
 
-                        {/* <ButtonGroup as={Row} style={{width:'30%',margin:'0% 2%'}} size="sm">
-                            <ButtonGroup as={Row} size="sm"> */}
-                        <Container style={{width:'40%'}}>
-                                {/* <Button className="w-50" variant = "success">P</Button>
-                                <Button className="w-50" variant = "warning">D</Button> */}
-                                <input className="form-check-input" value="Pick-up" onClick={this.onChangePickUp} type="radio" name="deliveryTypes" />
-                                <label className="form-check-label" for="flexRadioDefault1">
-                                        Pick-up
-                                 </label>
+                                    <Form.Group>
+                                        <Form.Control
+                                            style={{margin:'10% 0% 0% 0%'}}
+                                            type="text"
+                                            placeholder="Contact Number"
+                                            required
+                                        />
+                                    </Form.Group>
 
-                                 <input className="form-check-input" value="Delivery" onClick={this.onChangeDelivery} type="radio" name="deliveryTypes" />
-                                <label className="form-check-label" for="flexRadioDefault1">
-                                       Delivery
-                                 </label>
-                        </Container>
-                            {/* </ButtonGroup>
-                        </ButtonGroup> */}
-                    </Row>
-                    <Container className="d-flex mt-10">
-                        <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
-                            <Nav>
-                                <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong" href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>
-                            </Nav>
-                            <ListGroup className="list-group-flush">
-                                <FormControl
-                                    placeholder="Product Name"
-                                    aria-label="Username"
-                                    aria-describedby="basic-addon1"
-                                    size = "sm"
-                                    value={this.state.productName} 
-                                    onChange={this.onChangeproductName}
-                                />
-                            </ListGroup>
-                        </Card>
-                    </Container >
-                    <Container className="d-flex justify-content-between" style={{width:'100%', margin:'0% 0% 5%'}}>
-                        <Container className="d-inline-flex"    >
-                            <label>Price: </label>
-                            <FormControl
-                                        className="w-50"
-                                        placeholder="ex:1354"
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        size = "sm"
-                                        type = "number"
-                                        value={this.state.price} 
-                                    onChange={this.onChangeprice}
-                            />
-                        </Container>
-                        <Container className="d-inline-flex" size="sm">
-                            <label>Downpayment: </label>
-                            <FormControl
-                                        className="w-50"
-                                        placeholder="ex:1354"
-                                        aria-label="Username"
-                                        aria-describedby="basic-addon1"
-                                        size = "sm"
-                                        type ="number"
-                                        value={this.state.downPayment} 
-                                    onChange={this.onChangedownPayment}
-                            />
-                        </Container>
-                </Container>
-                
-                {/* {this.orders.map((order,index) =>{
-                    return(
-                    <FormGroup className=" d-flex flex-col align-items-center" key={index}>
-                        <Select className="w-50" onChange={event => handleChangeSelect(index,event)} options={options} label="Choose size" />
-                        <Form.Control
-                                    id="size-quantity"
-                                    type="number"
-                                    placeholder="12345"
-                                    className="w-50"
-                                    style={{height:"11%"}}
-                        />
-
-                        <IconButton>
-                            <AiOutlineMinus
-                                onClick={() => handleRemoveSize()}
-                            />
-                        </IconButton>
-                        <IconButton>
-                            <AiOutlinePlus
-                                
-                                onClick={() => handleAddSize(index)}
-                            />
-                        </IconButton>
-                    </FormGroup>
-                    )
-                })} */}
-
-                <Container className="mt-0" style={{padding:'10 % 0% 5% 0%'}}>
-                    <Row>
-                        <Col>Quantity:  10</Col>
-                        <Col>Total: 1000</Col>
-                        <Col>Balance: 500</Col>
-                    </Row>
-                </Container>
-        </Container>
-                </Modal.Body>
-
-                <Modal.Footer>
+                                    <Form.Group>
+                                        <Form.Control
+                                            style={{margin:'10% 0% 0% 0%'}}
+                                            type="text"
+                                            placeholder="Address"
+                                            required
+                                        />
+                                    </Form.Group>
+                                </Form>
+                            </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
+                    <Accordion style={{margin:"2%"}}>
+                        <Accordion.Item eventKey="0">
+                            <Accordion.Header>Customer's Order</Accordion.Header>
+                            <Accordion.Body> <Mods  value={{}} /> </Accordion.Body>
+                        </Accordion.Item>
+                    </Accordion>
+                        {/* <Mods  value={{}} /> */}
                     <Button variant="secondary" onClick={()=>this.handleClose()}>
                         Close
                     </Button>
@@ -545,25 +397,10 @@ export class LandingPage extends Component {
                     <button type="submit" className="btn btn-success mx-2">
                         Save Changes
                     </button>
-                </Modal.Footer>
-        </form>
+                </Modal.Body >
+
             </Modal>
-
-            {/* <Modal show={this.state.showInfo} onHide={()=>this.handleCloseInfo()}>
-                <Modal.Header closeButton>
-                    <Modal.Title>
-                        Customer Info
-                    </Modal.Title>]
-                </Modal.Header>
-                <Modal.Body >
-                    <CustomerInfo />
-                </Modal.Body>
-            </Modal>
-             */}
-
-             
-
-             
+ 
              {/* End of modal */}
 
              <Container>

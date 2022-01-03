@@ -1,12 +1,13 @@
 import React, {useState} from "react";
-import {Nav , ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, Form, FormGroup,Accordion} from "react-bootstrap";
+import {Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, Form, FormGroup,Accordion} from "react-bootstrap";
+import { IoAddCircle } from "react-icons/io5"
+import { GrAdd } from "react-icons/gr";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import IconButton from "@material-ui/core/IconButton";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './Mods.css';
 import Upload from '../images/add-files.svg';
 import Select from "react-select";
-import { Radio, RadioGroup} from 'react-radio-group';
 
 const options = [
     {
@@ -77,48 +78,51 @@ const Mods = () => {
     return(
         <Container>
             <Accordion style={{margin:"2%"}}>
-                <Accordion.Body>
-                    <Form>
-                        <Form.Group>
-                            <Form.Control
-                                style={{margin:'10% 0% 0% 0%'}}
-                                type="text"
-                                placeholder="First name"
-                                required
-                            />
-                        </Form.Group>
+                <Accordion.Item eventKey="0">
+                    <Accordion.Header>Customer Info</Accordion.Header>
+                        <Accordion.Body>
+                        <Form>
+                            <Form.Group>
+                                <Form.Control
+                                    style={{margin:'10% 0% 0% 0%'}}
+                                    type="text"
+                                    placeholder="Name"
+                                    required
+                                />
+                            </Form.Group>
 
-                        <Form.Group>
-                            <Form.Control
-                                style={{margin:'10% 0% 0% 0%'}}
-                                type="text"
-                                placeholder="Last name"
-                                required
-                            />
-                        </Form.Group>
+                            <Form.Group>
+                                <Form.Control
+                                    style={{margin:'10% 0% 0% 0%'}}
+                                    type="text"
+                                    placeholder="Name"
+                                    required
+                                />
+                            </Form.Group>
 
-                        <Form.Group>
-                            <Form.Control
-                                style={{margin:'10% 0% 0% 0%'}}
-                                type="text"
-                                placeholder="Contact Number"
-                                required
-                            />
-                        </Form.Group>
+                            <Form.Group>
+                                <Form.Control
+                                    style={{margin:'10% 0% 0% 0%'}}
+                                    type="text"
+                                    placeholder="Contact Number"
+                                    required
+                                />
+                            </Form.Group>
 
-                        <Form.Group>
-                            <Form.Control
-                                style={{margin:'10% 0% 0% 0%'}}
-                                type="text"
-                                placeholder="Address"
-                                required
-                            />
-                        </Form.Group>
-                    </Form>
-                </Accordion.Body>
+                            <Form.Group>
+                                <Form.Control
+                                    style={{margin:'10% 0% 0% 0%'}}
+                                    type="text"
+                                    placeholder="Address"
+                                    required
+                                />
+                            </Form.Group>
+                        </Form>
+                        </Accordion.Body>
+                </Accordion.Item>
             </Accordion>
             <Row className="d-flex justify-content-between" >
-                <Container style={{width:'42%'}}>
+                <Container style={{width:'30%'}}>
                     <Form.Group>
                         <Form.Control
                             type="date"
@@ -129,7 +133,7 @@ const Mods = () => {
                     </Form.Group>
                 </Container>
                         
-                <Container style={{width:'35%'}}>
+                <Container style={{width:'30%'}}>
                     <FormControl
                         placeholder="Order-Code"
                         aria-label="Username"
@@ -137,21 +141,12 @@ const Mods = () => {
                     />
                 </Container>
 
-                {/* <ButtonGroup as={Row} style={{width:'30%',margin:'0% -3% 0% 9%'}} size="sm">
+                <ButtonGroup as={Row} style={{width:'30%',margin:'0% -3% 0% 9%'}} size="sm">
                     <ButtonGroup as={Row} size="sm">
-                        <Radio className="w-50" variant = "success">Pick-up</Radio>
-                        <Radio className="w-50" variant = "warning">Delivery</Radio>
+                        <Button className="w-50" variant = "primary">P</Button>
+                        <Button className="w-50" variant = "secondary">D</Button>
                     </ButtonGroup>
-                </ButtonGroup> */}
-
-                <RadioGroup as={Row} style={{width:'23%',margin:'-1% 0% 0% 0%'}} size="sm">
-                    <div className="radio-button-background">
-                        <Radio value="Pick-up" className="radio-button" />Pick-up
-                    </div>
-                    <div className="radio-button-background">
-                        <Radio value="Deliver" className="radio-button" />Deliver
-                    </div>
-                </RadioGroup>
+                </ButtonGroup>
             </Row>
             <Container className="d-flex mt-10">
                 <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
@@ -178,7 +173,6 @@ const Mods = () => {
                                 aria-describedby="basic-addon1"
                                 size = "sm"
                                 type = "number"
-                                min = "0"
                     />
                 </Container>
                 <Container className="d-inline-flex" size="sm">
@@ -190,7 +184,6 @@ const Mods = () => {
                                 aria-describedby="basic-addon1"
                                 size = "sm"
                                 type ="number"
-                                min = "0"
                     />
                 </Container>
             </Container>
@@ -204,7 +197,6 @@ const Mods = () => {
                                 placeholder="12345"
                                 className="w-50"
                                 style={{height:"11%"}}
-                                min = "0"
                     />
 
                     <IconButton>

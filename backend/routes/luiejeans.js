@@ -8,24 +8,30 @@ router.route('/').get((req, res) => {
 });
 
 router.route('/add').post((req, res) => {
+    const customer_info = req.body.customer_info;
     const deadline = Date.parse(req.body.deadline);
-    const customerName = req.body.customerName;
     const orderCode = req.body.orderCode;
-    const quantity = Number(req.body.quantity);
+    const deliveryType = req.body.deliveryType;
+    const productName = req.body.productName;
     const price = Number(req.body.price);
     const downpayment = Number(req.body.downpayment);
-    const deliveryType = req.body.deadline;
+    const sizes_quantity = req.body.sizes_quantity;
+    const quantity = Number(req.body.quantity);
+    const total = Number(req.body.total);
     const totalBalance = Number(req.body.totalBalance);
 
     const newProduct = new Product({
+        customer_info,
         deadline,
-        customerName,
         orderCode,
-        quantity,
-        price,
-        downpayment,
         deliveryType,
-        totalBalance
+        productName,
+        price,   
+        downpayment,
+        sizes_quantity,
+        quantity,
+        total,
+        totalBalance,
     });
 
     newProduct.save()
@@ -48,13 +54,15 @@ router.route('/:id').delete((req, res) => {
 router.route('/update/:id').post((req, res) => {
     Product.findById(req.params.id)
     .then(product => {
+        product.customer_info = req.body.customer_info;
         product.deadline = Date.parse(req.body.deadline);
-        product.customerName = req.body.customerName;
         product.orderCode = req.body.orderCode;
-        product.quantity = Number(req.body.quantity);
+        product.deliveryType = req.body.deadline;
         product.price = Number(req.body.price);
         product.downpayment = Number(req.body.downpayment);
-        product.deliveryType = req.body.deadline;
+        product.sizes_quantity = req.body.sizes_quantity;
+        product.quantity = Number(req.body.quantity);
+        product.total = Number(req.body.total);
         product.totalBalance = Number(req.body.totalBalance);
 
         product.save()
