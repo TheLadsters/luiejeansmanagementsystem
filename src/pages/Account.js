@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Button} from "react-bootstrap";
 import Modal from 'react-modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -6,6 +6,7 @@ import Navbar from '../components/Navbar';
 import Box from '@material-ui/core/Box'
 import PhoneInput from 'react-phone-number-input'
 import '../components/ProfilePage.css'
+import axios from 'axios';
 
 const Account = () => {
   
@@ -15,6 +16,24 @@ const Account = () => {
     const [Modal3, setModal3] = useState(false);
     const [Modal5, setModal5] = useState(false);
     const [value, setValue] = useState();
+    const [Modal4, setModal4] = useState();
+    const [inputs, setInputs] = useState({});
+
+    const userInfo = localStorage.getItem('userInfo');
+    const newInfo = JSON.parse(userInfo);
+
+    const handleChange = (event) =>{
+      const name = event.target.name;
+      const value =  event.target.value;
+      setInputs (values => ({...values, [name]: value}))
+    }
+
+    const handleSubmit = (event) =>{
+      event.preventDefault();
+      console.log(inputs);
+    }
+
+
     return (
     <>
             
@@ -31,30 +50,32 @@ style={{
 
 },
 content: {
-    position: 'absolute',
-    bottom:'450px',
-    left: '700px',
-    top: '200px',
-    width: '26%',
-    border: '1px solid #ccc',
-    background: '#fff',
-    WebkitOverflowScrolling: 'touch',
-    borderRadius: '10px',
-    padding: '20px'
+  position: 'absolute',
+  bottom:'180px',
+  left: '340px',
+  top: '150px',
+  width: '52%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '20px'
 }
 }}>
 
 {/* <CloseButton onClick={() => setModalIsOpen(false)} className="closebutton" /> */}
 <center>
   <h2>  Edit your name </h2>
- 
-  <p> Change Name: <input type="text" className="NameEdit" placeholder="Input your name"/> </p>
+ <form onSubmit={handleSubmit}>
+  <p> Change Name: <input type="text" className="NameEdit" value={inputs.name} onChange={handleChange} /> </p>
 
-     <p> Password: <input type="password" className="pazWord" placeholder="Input your password to confirm"/> </p>
+     <p>Password:<input type="password" className="pazWord" placeholder="Input your password to confirm"/> </p>
   <div>
     <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModalIsOpen(false)}> Close </Button>
+    
   </div>
+  </form>
   </center> 
  </Modal>
 {/* SECOND MODAL (password change)*/}
@@ -65,17 +86,16 @@ style={{
 
 },
 content: {
-position: 'absolute',
-bottom:'450px',
-left: '600px',
-top: '200px',
-width: '35%',
-border: '1px solid #ccc',
-background: '#fff',
-overflow: 'auto',
-WebkitOverflowScrolling: 'touch',
-borderRadius: '10px',
-padding: '15px'
+  position: 'absolute',
+  bottom:'180px',
+  left: '340px',
+  top: '150px',
+  width: '52%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '20px'
 }
 }}>
 
@@ -101,15 +121,15 @@ style={{
 },
 content: {
   position: 'absolute',
-  bottom:'420px',
-  left: '700px',
-  top: '200px',
-  width: '26%',
+  bottom:'150px',
+  left: '340px',
+  top: '150px',
+  width: '52%',
   border: '1px solid #ccc',
   background: '#fff',
   WebkitOverflowScrolling: 'touch',
   borderRadius: '10px',
-  padding: '15px'
+  padding: '20px'
 }
 }}>
 
@@ -147,26 +167,26 @@ style={{
 
 },
 content: {
-position: 'absolute',
-bottom:'325px',
-left: '600px',
-top: '200px',
-width: '40%',
-border: '1px solid #ccc',
-background: '#fff',
-WebkitOverflowScrolling: 'touch',
-borderRadius: '10px',
-padding: '15px'
+  position: 'absolute',
+  bottom:'120px',
+  left: '340px',
+  top: '90px',
+  width: '52%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '20px'
 }
 }}>
 
  
  <center>
   <h2> Add a new address: </h2>
-  <p> <input type="text" className="stName" placeholder="Street name, house number, subdivision"/> </p>
-  <p> <input type="text"  className="Brgy" placeholder="Barangay"/> </p>
-  <p> <input type="text" className="cityMun" placeholder="City / Municipality"/> </p>
-  <p> <input type="text" pattern="[0-9]{5}" className="zipp" placeholder="Zip Code"/> </p>
+  <p> <input type="text" className="stName" placeholder="Street name, house number, subdivision" onChange={handleChange}/> </p>
+  <p> <input type="text"  className="Brgy" placeholder="Barangay" onChange={handleChange}/> </p>
+  <p> <input type="text" className="cityMun" placeholder="City / Municipality" onChange={handleChange}/> </p>
+  <p> <input type="number"  className="zipp" placeholder="Zip Code" onChange={handleChange}/> </p>
   <div>
       
      <Button variant="none" className="SubmitBut"> Submit </Button>
@@ -184,23 +204,23 @@ style={{
 
 },
 content: {
-position: 'absolute',
-bottom:'500px',
-left: '600px',
-top: '200px',
-width: '40%',
-border: '1px solid #ccc',
-background: '#fff',
-WebkitOverflowScrolling: 'touch',
-borderRadius: '10px',
-padding: '15px'
+  position: 'absolute',
+  bottom:'220px',
+  left: '340px',
+  top: '120px',
+  width: '52%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '20px'
 }
 }}>
 
  
  <center>
   <h2> Add a new Email address: </h2>
-  <p> <input type="text" className="stName" placeholder="example@example.com"/> </p>
+  <p> <input type="text" className="stName" placeholder="example@example.com" onChange={handleChange}/> </p>
   <div>
       
      <Button variant="none" className="SubmitBut"> Submit </Button>
@@ -208,6 +228,51 @@ padding: '15px'
     <Button className="CloseBut" onClick={() => setModal5(false)}> Close </Button>
   </div>
     </center>
+ </Modal>
+{/* ROLES MODAL */}
+ <Modal isOpen={Modal4} onRequestClose={() => setModal4(false)}
+style={{
+    overlay: {
+ backgroundColor: 'rgba(128,128,128, 0.5)'
+
+},
+content: {
+  position: 'absolute',
+  bottom:'150px',
+  left: '380px',
+  top: '150px',
+  width: '45%',
+  border: '1px solid #ccc',
+  background: '#fff',
+  WebkitOverflowScrolling: 'touch',
+  borderRadius: '10px',
+  padding: '20px'
+}
+}}>
+
+  <center> 
+  <h2>  Select Roles </h2>
+<p> Select Employee:
+  <select id="lang">
+      <option value="role1"> test</option>
+      <option value="role1">  test</option>
+      <option value="role1"> test  </option>
+      <option value="role1">  test </option>
+    </select>
+    </p>
+    <select id="lang">
+      <option value="role1"> Tailor </option>
+      <option value="role1"> Seamstress </option>
+      <option value="role1"> Printer </option>
+      <option value="role1"> Delivery </option>
+    </select>
+ 
+
+  <div>
+     <Button variant="none" className="SubmitBut"> Submit </Button>
+    <Button className="CloseBut" onClick={() => setModal4(false)}> Close </Button>
+  </div>
+  </center>
  </Modal>
  
 {/* END OF MODAL SETUP */}
@@ -223,7 +288,7 @@ padding: '15px'
                         <Box p={1}> </Box>
                       
                        
-                       <td> Name: </td>
+                       <td> Name: {newInfo.name} </td>
 
                     <td> <Box p={0} fontFamily="verdana"> <Button className="nameButton" variant="light" onClick={() => setModalIsOpen(true)}> + Edit your name </Button> </Box> </td>
                    
@@ -256,11 +321,8 @@ padding: '15px'
                    <td>            
                 <Box> Time Zone:   
                             <select name="gmt" id="time">
-                            <option value="" disabled selected hidden> Select Option </option>
-                            <option value="gmt+7">(GMT +7:00) Cambodia / Indonesia</option>
+                            <option value="" disabled selected hidden> (GMT +8:00) Philippines / Singapore </option>
                             <option value="gmt+8">(GMT +8:00) Philippines / Singapore</option>
-                            <option value="gmt+9">(GMT +9:00) Korea / Japan</option>
-                            
                             </select>
                           
                             </Box>
@@ -271,16 +333,17 @@ padding: '15px'
           
                         <Box> Change your password? <Button className="passChange" variant="light" onClick={() => setModal1(true)}> Edit </Button></Box>
                         </td>
-                        
+                       
                         <Box p={1}> </Box> 
             
-               
+                        <Box> Employee roles <Button className="roles" variant="light" onClick={() => setModal4(true)}> Select Roles </Button></Box>
+                        
                 </Box>
 
                 
                        
             </div>
-            <div style={{marginLeft: '51%', marginTop: '-522px', width: '25%'}} className="text">
+            <div style={{marginLeft: '51%', marginTop: '-589px', width: '25%'}} className="text">
             
                 <Box color="black" bgcolor="White" p={5}>   
                 <td> 
@@ -293,7 +356,7 @@ padding: '15px'
                 </Box>
     
             </div>
-            <div style={{marginLeft: '51%', marginTop: '44px', width: '25%'}} className="text">
+            <div style={{marginLeft: '51%', marginTop: '42px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={5}>   
                 <td>
                     Email Addresses: 
@@ -329,7 +392,7 @@ padding: '15px'
             </div>
 
            
-            
+         
             
         </div>
                   

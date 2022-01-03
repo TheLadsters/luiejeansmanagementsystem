@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';  
 import axios from 'axios';
@@ -55,7 +55,7 @@ const options = [
 const Customers = props => (
     <tr>
         <td>{props.customer.customerFirstName} {props.customer.customerLastName} </td>
-        <td>{props.customer.numberOfOrders} </td>
+        <td>{props.customer.orderCode} </td>
         <td>{props.customer.contactNumber} </td>
         <td>
             <Link to={"/edit/"+props.customer._id}>
@@ -79,6 +79,8 @@ export class LandingPage extends Component {
     constructor(props){
         super(props);
 
+        this.picRef = createRef();
+
         this.onChangefirstName = this.onChangefirstName.bind(this);
         this.onChangelastName = this.onChangelastName.bind(this);
         this.onChangecontactNumber = this.onChangecontactNumber.bind(this);
@@ -99,7 +101,16 @@ export class LandingPage extends Component {
             customerFirstName: '',
             customerLastName: '',
             contactNumber: '',
-            
+            customerAddress:'',
+            productName:'',
+            orderDate: '',
+            price:'0',
+            orderCode:'',
+            productSize:'',
+            deliveryType:'',
+            productPic:'https://graciefernandina.com/wp-content/uploads/2017/04/default-image.jpg',
+            downPayment:'',
+            selectedFile:null,
             show: false
         }
 
@@ -209,9 +220,11 @@ export class LandingPage extends Component {
 
     onChangeproductPic(e) {
         this.setState({
-            productPic: e.target.value
+            productPic: e
         });
-    }
+
+        
+     }
 
     onChangedownPayment(e) {
         this.setState({
@@ -223,6 +236,11 @@ export class LandingPage extends Component {
 
 
 
+
+
+     productPicClick() {
+        this.picRef.current.click();
+     }
 
 
     onSubmit(e){
@@ -279,6 +297,35 @@ export class LandingPage extends Component {
             return <Customers customer = {currentCustomer} deleteCustomers={this.deleteCustomers} key={currentCustomer._id}/>;
         })
     }
+
+     postDetails = (pics) => {
+        // if(!pics) {
+        //     return setPicMessage("Please Select an Image");
+        // }
+
+        // setPicMessage(null);
+        console.log(pics);
+        if(pics.type === 'image/jpeg' || pics.type === 'image/png'){
+            const data = new FormData();
+            data.append('file', pics)
+            data.append('upload_preset', 'luiejeans')
+            data.append('cloud_name', 'dhvbaxacn')
+            fetch("https://api.cloudinary.com/v1_1/dhvbaxacn/image/upload", {
+                method:"post",
+                body:data,
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                this.onChangeproductPic(data.url.toString()); 
+                console.log("data succesfully uploaded");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        } else{
+            // return setPicMessage("Please Select an Image");
+        }
+    };
     
     render() {
         const { orders, size, sizeQuantity } = this.state;
@@ -335,61 +382,136 @@ export class LandingPage extends Component {
          {/* Modal for adding new staff */}
             <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
                 <Modal.Body>
-                    <Accordion style={{margin:"2%"}}>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Customer Info</Accordion.Header>
-                            <Accordion.Body>
-                                <Form>
-                                    <Form.Group>
-                                        <Form.Control
-                                            style={{margin:'10% 0% 0% 0%'}}
-                                            type="text"
-                                            placeholder="First name"
-                                            value={this.state.customerFirstName} 
-                                            onChange={this.onChangefirstName} 
-                                            required 
-                                        />
-                                    </Form.Group>
 
-                                    <Form.Group>
-                                        <Form.Control
-                                            style={{margin:'10% 0% 0% 0%'}}
-                                            type="text"
-                                            placeholder="Last name"
-                                            value={this.state.customerLastName} 
-                                            onChange={this.onChangeLastName} 
-                                            required 
-                                        />
-                                    </Form.Group>
+                    {/* <Mods/> */}
+                <Container>
+                    <Row className="d-flex justify-content-between" >
+                        <Container style={{width:'30%'}}>
+                            <Form.Group>
+                                <Form.Control
+                                    type="date"
+                                    required
+                                    placeholder="Deadline"
+                                    value={this.state.orderDate} 
+                                    onChange={this.onChangeorderDate}
+                                />
+                            </Form.Group>
+                        </Container>
+                                
+                        <Container style={{width:'30%'}}>
+                            <FormControl
+                                placeholder="Order-Code"
+                                aria-label="Username"
+                                aria-describedby="basic-addon1"
+                                value={this.state.orderCode} 
+                                onChange={this.onChangeorderCode}
+                            />
+                        </Container>
 
-                                    <Form.Group>
-                                        <Form.Control
-                                            style={{margin:'10% 0% 0% 0%'}}
-                                            type="text"
-                                            placeholder="Contact Number"
-                                            required
-                                        />
-                                    </Form.Group>
+                        {/* <ButtonGroup as={Row} style={{width:'30%',margin:'0% 2%'}} size="sm">
+                            <ButtonGroup as={Row} size="sm"> */}
+                        <Container style={{width:'40%'}}>
+                                {/* <Button className="w-50" variant = "success">P</Button>
+                                <Button className="w-50" variant = "warning">D</Button> */}
+                                <input className="form-check-input" value="Pick-up" onClick={this.onChangePickUp} type="radio" name="deliveryTypes" />
+                                <label className="form-check-label" for="flexRadioDefault1">
+                                        Pick-up
+                                 </label>
 
-                                    <Form.Group>
-                                        <Form.Control
-                                            style={{margin:'10% 0% 0% 0%'}}
-                                            type="text"
-                                            placeholder="Address"
-                                            required
-                                        />
-                                    </Form.Group>
-                                </Form>
-                            </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                    <Accordion style={{margin:"2%"}}>
-                        <Accordion.Item eventKey="0">
-                            <Accordion.Header>Customer's Order</Accordion.Header>
-                            <Accordion.Body> <Mods  value={{}} /> </Accordion.Body>
-                        </Accordion.Item>
-                    </Accordion>
-                        {/* <Mods  value={{}} /> */}
+                                 <input className="form-check-input" value="Delivery" onClick={this.onChangeDelivery} type="radio" name="deliveryTypes" />
+                                <label className="form-check-label" for="flexRadioDefault1">
+                                       Delivery
+                                 </label>
+                        </Container>
+                            {/* </ButtonGroup>
+                        </ButtonGroup> */}
+                    </Row>
+                    <Container className="d-flex mt-10">
+                        <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
+            
+                                <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong">
+                                    <Card.Img className="" id="productPic" variant="top" src={Upload} onClick={() => this.productPicClick()} />
+                                </Nav.Link>
+                            <Form.Control type="file" onChange={(e) => this.postDetails(e.target.files[0])} ref={this.picRef} label="Upload Profile Picture" />
+                            <ListGroup className="list-group-flush">
+                                <FormControl
+                                    placeholder="Product Name"
+                                    aria-label="Username"
+                                    aria-describedby="basic-addon1"
+                                    size = "sm"
+                                    value={this.state.productName} 
+                                    onChange={this.onChangeproductName}
+                                />
+                            </ListGroup>
+                        </Card>
+                    </Container >
+                    <Container className="d-flex justify-content-between" style={{width:'100%', margin:'0% 0% 5%'}}>
+                        <Container className="d-inline-flex"    >
+                            <label>Price: </label>
+                            <FormControl
+                                        className="w-50"
+                                        placeholder="ex:1354"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        size = "sm"
+                                        type = "number"
+                                        value={this.state.price} 
+                                    onChange={this.onChangeprice}
+                            />
+                        </Container>
+                        <Container className="d-inline-flex" size="sm">
+                            <label>Downpayment: </label>
+                            <FormControl
+                                        className="w-50"
+                                        placeholder="ex:1354"
+                                        aria-label="Username"
+                                        aria-describedby="basic-addon1"
+                                        size = "sm"
+                                        type ="number"
+                                        value={this.state.downPayment} 
+                                    onChange={this.onChangedownPayment}
+                            />
+                        </Container>
+                </Container>
+                
+                {/* {this.orders.map((order,index) =>{
+                    return(
+                    <FormGroup className=" d-flex flex-col align-items-center" key={index}>
+                        <Select className="w-50" onChange={event => handleChangeSelect(index,event)} options={options} label="Choose size" />
+                        <Form.Control
+                                    id="size-quantity"
+                                    type="number"
+                                    placeholder="12345"
+                                    className="w-50"
+                                    style={{height:"11%"}}
+                        />
+
+                        <IconButton>
+                            <AiOutlineMinus
+                                onClick={() => handleRemoveSize()}
+                            />
+                        </IconButton>
+                        <IconButton>
+                            <AiOutlinePlus
+                                
+                                onClick={() => handleAddSize(index)}
+                            />
+                        </IconButton>
+                    </FormGroup>
+                    )
+                })} */}
+
+                <Container className="mt-0" style={{padding:'10 % 0% 5% 0%'}}>
+                    <Row>
+                        <Col>Quantity:  10</Col>
+                        <Col>Total: 1000</Col>
+                        <Col>Balance: 500</Col>
+                    </Row>
+                </Container>
+        </Container>
+                </Modal.Body>
+
+                <Modal.Footer>
                     <Button variant="secondary" onClick={()=>this.handleClose()}>
                         Close
                     </Button>
@@ -410,7 +532,7 @@ export class LandingPage extends Component {
                                  <thead style={{backgroundColor:'grey', color:'white'}}>
                                      <tr>
                                      <th>Customer Name</th>
-                                     <th>Number of Orders</th>
+                                     <th>Order Code</th>
                                      <th>Contact Number</th>
                                      <th>Action</th>
                                     </tr>
