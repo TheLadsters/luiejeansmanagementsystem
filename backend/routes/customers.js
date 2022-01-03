@@ -12,12 +12,14 @@ router.route('/add').post((req, res) => {
     const customerLastName = req.body.customerLastName;
     const numberOfOrders = Number(req.body.numberOfOrders);
     const contactNumber = req.body.contactNumber;
+    const customerAddress = req.body.customerAddress;
 
     const newCustomers = new Customer({
         customerFirstName,
         customerLastName,
         numberOfOrders,
         contactNumber,
+        customerAddress
     });
 
     newCustomers.save()
