@@ -1,7 +1,7 @@
 import React, {useState} from "react";
 import {Nav ,Button, ButtonGroup, Container,Row,FormControl,Card,Col, ListGroup, Form, FormGroup} from "react-bootstrap";
-import { IoAddCircle } from "react-icons/io5"
-import { GrAdd } from "react-icons/gr";
+// import { IoAddCircle } from "react-icons/io5"
+// import { GrAdd } from "react-icons/gr";
 import { AiOutlineMinus, AiOutlinePlus } from "react-icons/ai";
 import IconButton from "@material-ui/core/IconButton";
 import 'bootstrap/dist/css/bootstrap.min.css';
@@ -98,8 +98,8 @@ const Mods = () => {
 
                 <ButtonGroup as={Row} style={{width:'30%',margin:'0% 2%'}} size="sm">
                     <ButtonGroup as={Row} size="sm">
-                        <Button className="w-50" variant = "primary">P</Button>
-                        <Button className="w-50" variant = "secondary">D</Button>
+                        <Button className="w-50" variant = "success">P</Button>
+                        <Button className="w-50" variant = "warning">D</Button>
                     </ButtonGroup>
                 </ButtonGroup>
             </Row>
