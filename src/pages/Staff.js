@@ -82,6 +82,13 @@ const Staff = () => {
             }
         }
 
+        setName("");
+        setEmail("");
+        setPassword("");
+        setConfirmPassword("");
+        setRole("");
+        setPic("");
+
     }
 
     const postDetails = (pics) => {
