@@ -58,7 +58,7 @@ const options = [
 const Customers = props => (
     <tr>
         <td>{props.customer.customerFirstName} {props.customer.customerLastName} </td>
-        <td>{props.customer.numberOfOrders} </td>
+        <td>{props.customer.orderCode} </td>
         <td>{props.customer.contactNumber} </td>
         <td>
             <Link to={"/edit/"+props.customer._id}>
@@ -80,7 +80,7 @@ export class LandingPage extends Component {
     constructor(props){
         super(props);
 
-        this.componentRef = createRef();
+        this.picRef = createRef();
 
         this.onChangefirstName = this.onChangefirstName.bind(this);
         this.onChangelastName = this.onChangelastName.bind(this);
@@ -111,8 +111,9 @@ export class LandingPage extends Component {
             orderCode:'',
             productSize:'',
             deliveryType:'',
-            productPic:'',
+            productPic:'https://graciefernandina.com/wp-content/uploads/2017/04/default-image.jpg',
             downPayment:'',
+            selectedFile:null,
             show: false
         }
 
@@ -231,8 +232,10 @@ export class LandingPage extends Component {
 
      onChangeproductPic(e) {
         this.setState({
-            productPic: e.target.value
+            productPic: e
         });
+
+        
      }
 
      onChangedownPayment(e) {
@@ -241,17 +244,10 @@ export class LandingPage extends Component {
         });
      }
 
-     setProduct(e) {
-        var file = document.getElementsByClassName('theFileInput');
-        file[0].click();
-        console.log(file);
+     productPicClick() {
+        this.picRef.current.click();
      }
 
-     setPicMessage(e){
-          this.setState({
-            downPayment: e.target.value
-        });
-     }
 
     onSubmit(e){
         const customer = {
@@ -307,6 +303,35 @@ export class LandingPage extends Component {
             return <Customers customer = {currentCustomer} deleteCustomers={this.deleteCustomers} key={currentCustomer._id}/>;
         })
     }
+
+     postDetails = (pics) => {
+        // if(!pics) {
+        //     return setPicMessage("Please Select an Image");
+        // }
+
+        // setPicMessage(null);
+        console.log(pics);
+        if(pics.type === 'image/jpeg' || pics.type === 'image/png'){
+            const data = new FormData();
+            data.append('file', pics)
+            data.append('upload_preset', 'luiejeans')
+            data.append('cloud_name', 'dhvbaxacn')
+            fetch("https://api.cloudinary.com/v1_1/dhvbaxacn/image/upload", {
+                method:"post",
+                body:data,
+            })
+            .then((res) => res.json())
+            .then((data) => {
+                this.onChangeproductPic(data.url.toString()); 
+                console.log("data succesfully uploaded");
+            })
+            .catch((err) => {
+                console.log(err);
+            });
+        } else{
+            // return setPicMessage("Please Select an Image");
+        }
+    };
     
     render() {
         const { orders, size, sizeQuantity } = this.state;
@@ -472,10 +497,9 @@ export class LandingPage extends Component {
                         <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
             
                                 <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong">
-                                    <Card.Img className="" id="productPic" onClick={this.setProduct} variant="top" src={Upload} />
-                                {/* <input type="file" className="theFileInput" style={{display:"none"}} /> */}
-                                <Form.Control type="file" label="Upload Profile Picture" custom/>
+                                    <Card.Img className="" id="productPic" variant="top" src={Upload} onClick={() => this.productPicClick()} />
                                 </Nav.Link>
+                            <Form.Control type="file" onChange={(e) => this.postDetails(e.target.files[0])} ref={this.picRef} label="Upload Profile Picture" />
                             <ListGroup className="list-group-flush">
                                 <FormControl
                                     placeholder="Product Name"
@@ -590,7 +614,7 @@ export class LandingPage extends Component {
                                  <thead style={{backgroundColor:'grey', color:'white'}}>
                                      <tr>
                                      <th>Customer Name</th>
-                                     <th>Number of Orders</th>
+                                     <th>Order Code</th>
                                      <th>Contact Number</th>
                                      <th>Action</th>
                                     </tr>
