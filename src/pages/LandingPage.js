@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { Component, createRef } from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';  
 import axios from 'axios';
@@ -79,6 +79,8 @@ export class LandingPage extends Component {
 
     constructor(props){
         super(props);
+
+        this.componentRef = createRef();
 
         this.onChangefirstName = this.onChangefirstName.bind(this);
         this.onChangelastName = this.onChangelastName.bind(this);
@@ -235,6 +237,18 @@ export class LandingPage extends Component {
 
      onChangedownPayment(e) {
         this.setState({
+            downPayment: e.target.value
+        });
+     }
+
+     setProduct(e) {
+        var file = document.getElementsByClassName('theFileInput');
+        file[0].click();
+        console.log(file);
+     }
+
+     setPicMessage(e){
+          this.setState({
             downPayment: e.target.value
         });
      }
@@ -456,9 +470,12 @@ export class LandingPage extends Component {
                     </Row>
                     <Container className="d-flex mt-10">
                         <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
-                            <Nav>
-                                <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong" href="/"><Card.Img className="" variant="top" src={Upload} /></Nav.Link>
-                            </Nav>
+            
+                                <Nav.Link className="bg-image hover-overlay ripple shadow-1-strong">
+                                    <Card.Img className="" id="productPic" onClick={this.setProduct} variant="top" src={Upload} />
+                                {/* <input type="file" className="theFileInput" style={{display:"none"}} /> */}
+                                <Form.Control type="file" label="Upload Profile Picture" custom/>
+                                </Nav.Link>
                             <ListGroup className="list-group-flush">
                                 <FormControl
                                     placeholder="Product Name"
