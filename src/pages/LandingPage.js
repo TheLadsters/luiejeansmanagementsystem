@@ -209,13 +209,13 @@ export class LandingPage extends Component {
 
     onChangePickUp(e) {
         this.setState({
-            PickUp: e.target.value
+            deliveryType: "Pick-up"
         });
     }
 
     onChangeDelivery(e) {
         this.setState({
-            Delivery: e.target.value
+            deliveryType: "Delivery"
         });
     }
 
@@ -233,18 +233,13 @@ export class LandingPage extends Component {
         });
     }
 
-    
-
-
-
-
-
      productPicClick() {
         this.picRef.current.click();
      }
 
 
     onSubmit(e){
+        e.preventDefault();
         const customer = {
             customerFirstName: this.state.customerFirstName,
             customerLastName: this.state.customerLastName,
@@ -381,12 +376,47 @@ export class LandingPage extends Component {
                 </Container>
 
          {/* Modal for adding new staff */}
-            <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
+            <Modal  show={this.state.show} onHide={()=>this.handleClose()}>
+                <Form onSubmit={this.onSubmit}>
                 <Accordion>
                     <Accordion.Item eventKey="0">
                         <Accordion.Header>Customer Info</Accordion.Header>
                         <Accordion.Body>
-                            <CustomerInfo />
+                            {/* <CustomerInfo /> */}
+                <Form.Group>
+                <Form.Label>First Name</Form.Label>
+                    <Form.Control
+                        type="text"
+                        placeholder="First Name"
+                        required
+                        value={this.state.customerFirstName} 
+                        onChange={this.onChangefirstName}
+                    />
+
+                    <Form.Control
+                        type="text"
+                        placeholder="Last Name"
+                        required
+                        value={this.state.customerLastName} 
+                        onChange={this.onChangelastName}
+                    />
+
+                    <Form.Control
+                        type="text"
+                        placeholder="Contact Number"
+                        required
+                        value={this.state.contactNumber} 
+                        onChange={this.onChangecontactNumber}
+                    />
+
+                    <Form.Control
+                        type="text"
+                        placeholder="Address"
+                        required
+                        value={this.state.customerAddress} 
+                        onChange={this.onChangecustomerAddress}
+                    />
+                </Form.Group>
                         </Accordion.Body>
                     </Accordion.Item>
                 </Accordion>
@@ -529,7 +559,7 @@ export class LandingPage extends Component {
                         Save Changes
                     </button>
                 </Modal.Footer >
-
+        </Form>
             </Modal>
  
              {/* End of modal */}
