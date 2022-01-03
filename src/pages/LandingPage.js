@@ -10,7 +10,7 @@ import Upload from '../images/add-files.svg';
 // import Select from "react-select";
 // import IconButton from "@material-ui/core/IconButton";
 import Mods from '../components/Modal';
-// import CustomerInfo from '../components/CustomerInfo';
+import CustomerInfo from '../components/CustomerInfo';
 
 const options = [
     {
@@ -382,8 +382,16 @@ export class LandingPage extends Component {
 
          {/* Modal for adding new staff */}
             <Modal  show={this.state.show} onHide={()=>this.handleClose()} onSubmit={this.onSubmit}>
+                <Accordion>
+                    <Accordion.Item eventKey="0">
+                        <Accordion.Header>Customer Info</Accordion.Header>
+                        <Accordion.Body>
+                            <CustomerInfo />
+                        </Accordion.Body>
+                    </Accordion.Item>
+                </Accordion>
                 <Modal.Body>
-
+                
                     {/* <Mods/> */}
                 <Container>
                     <Row className="d-flex justify-content-between" >
