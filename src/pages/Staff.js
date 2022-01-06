@@ -41,7 +41,7 @@ const Staff = () => {
 
     const Roles = [
         { label: "Designer", value: "Designer" },
-        { label: "Sewer", value: "Sewer" },
+        { label: "Seamstress", value: "Seamstress" },
         { label: "Tailor", value: "Tailor" },
         { label: "Packager", value: "Packager" },
         { label: "Printer", value: "Printer" },
@@ -72,7 +72,7 @@ const Staff = () => {
             );
 
                 setLoading(false);
-                // localStorage.setItem("userInfo", JSON.stringify(data));
+                localStorage.setItem("userInfo", JSON.stringify(data));
                 setRegisterSuccess("You have Registered Successfully!");
  
 
@@ -81,13 +81,6 @@ const Staff = () => {
                 setLoading(false)
             }
         }
-
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        setRole("");
-        setPic("");
 
     }
 
