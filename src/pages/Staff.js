@@ -20,9 +20,7 @@ const Staff = () => {
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [pic, setPic] = useState(
-    "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-    );
+    const [pic, setPic] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState(null);
