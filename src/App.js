@@ -5,10 +5,11 @@ import OrderHistory from "./pages/OrderHistory";
 import OrderStatus from "./pages/OrderStatus";
 import Account from "./pages/Account";
 import Customer from "./pages/Customer";
+import EditLandingPage from "./pages/EditLandingPage";
 import Staff from "./pages/Staff";
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useParams } from "react-router-dom";
 import './components/ProfilePage.css';
 import Footer from "./components/Footer"
 
@@ -20,6 +21,7 @@ const App = () => {
     <Routes>
       <Route path="/" element={<Login />} />
       <Route path="/register" element={<Register />} />
+      <Route path="/edit/:id" element={<EditLandingPage />} />
       <Route path="/landing-page" element={<LandingPage />} />
       <Route path="/order-history" element={<OrderHistory />} />
       <Route path="/order-status" element={<OrderStatus />} />
