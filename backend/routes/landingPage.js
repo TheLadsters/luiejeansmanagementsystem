@@ -60,10 +60,19 @@ router.route('/update/:id').post((req, res) => {
     .then(customer => {
         customer.customerFirstName = req.body.customerFirstName;
         customer.customerLastName = req.body.customerLastName;
-        customer.numberOfOrders = Number(req.body.numberOfOrders);
+        customer.numberOfOrders = req.body.numberOfOrders;
         customer.contactNumber = req.body.contactNumber;
+        customer.customerAddress = req.body.customerAddress;
+        customer.productName = req.body.productName;
+        customer.orderDate = req.body.orderDate;
+        customer.price = req.body.price;
+        customer.orderCode = req.body.orderCode;
+        customer.productSize = req.body.productSize;
+        customer.deliveryType = req.body.deliveryType;
+        customer.productPic = req.body.productPic;
+        customer.downPayment = req.body.downPayment; 
 
-        Customer.save()
+        customer.save()
         .then( () => res.json('Product Updated!'))
         .catch(err => res.status(400).json('Error: ' + err));
     })
