@@ -44,7 +44,7 @@ router.route('/update/:id').post((req, res) => {
     .then(customer => {
         customer.customerFirstName = req.body.customerFirstName;
         customer.customerLastName = req.body.customerLastName;
-        customer.numberOfOrders = Number(req.body.numberOfOrders);
+        // customer.numberOfOrders = Number(req.body.numberOfOrders);
         customer.contactNumber = req.body.contactNumber;
 
         Customer.save()
