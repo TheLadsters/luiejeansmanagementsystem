@@ -7,6 +7,8 @@ import { Container, Col, Row, Table, Button, Modal,Accordion, Form,
 FormControl, Card, Nav,ListGroup    } from "react-bootstrap";
 import * as IoIcons from 'react-icons/io';
 import Upload from '../images/add-files.svg';
+import DatePicker from 'react-datepicker';
+import "react-datepicker/dist/react-datepicker.css"
 // import Select from "react-select";
 // import IconButton from "@material-ui/core/IconButton";
 import Mods from '../components/Modal';
@@ -53,6 +55,11 @@ const options = [
     
 ];
 
+const refreshPage = (id)=>{
+    console.log(id);
+    // window.location.reload();
+ }
+
 const Customers = props => (
     <tr>
         <td>{props.customer.customerFirstName} {props.customer.customerLastName} </td>
@@ -60,7 +67,7 @@ const Customers = props => (
         <td>{props.customer.contactNumber} </td>
         <td>
             <Link to={"/edit/"+props.customer._id}>
-                <Button variant="warning" style={{color:"white"}}>Edit</Button>
+                <Button variant="warning" onClick={refreshPage(props.customer._id)}  style={{color:"white"}}>Edit</Button>
             </Link>
 
             <a href="/landing-page" onClick={() => {props.deleteCustomers(props.customer._id)}} className="mx-2">
@@ -72,7 +79,6 @@ const Customers = props => (
     </tr>
 
 )
-
 
 
 export class LandingPage extends Component {
@@ -130,6 +136,10 @@ export class LandingPage extends Component {
         })
     }
 
+    // reloadPage(){
+    //     window.location.reload();
+    // }
+
     handleClose(){
         this.setState({show: false})
     }
@@ -183,9 +193,9 @@ export class LandingPage extends Component {
         });
     }
 
-    onChangeorderDate(e) {
+    onChangeorderDate(date) {
         this.setState({
-            orderDate: e.target.value
+            orderDate: date
         });
     }
 
@@ -239,7 +249,7 @@ export class LandingPage extends Component {
 
 
     onSubmit(e){
-        e.preventDefault();
+        // e.preventDefault();
         const customer = {
             customerFirstName: this.state.customerFirstName,
             customerLastName: this.state.customerLastName,
@@ -268,7 +278,7 @@ export class LandingPage extends Component {
             contactNumber: '',
             customerAddress:'',
             productName:'',
-            orderDate: '',
+            orderDate: new Date(),
             price:'0',
             orderCode:'',
             productSize:'',
@@ -384,38 +394,47 @@ export class LandingPage extends Component {
                         <Accordion.Body>
                             {/* <CustomerInfo /> */}
                 <Form.Group>
-                <Form.Label>First Name</Form.Label>
-                    <Form.Control
-                        type="text"
-                        placeholder="First Name"
-                        required
-                        value={this.state.customerFirstName} 
-                        onChange={this.onChangefirstName}
-                    />
+                    <Form.Label>First Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="First Name"
+                            required
+                            value={this.state.customerFirstName} 
+                            onChange={this.onChangefirstName}
+                        />
+                </Form.Group>
 
-                    <Form.Control
-                        type="text"
-                        placeholder="Last Name"
-                        required
-                        value={this.state.customerLastName} 
-                        onChange={this.onChangelastName}
-                    />
+                <Form.Group>
+                    <Form.Label>Last Name</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Last Name"
+                            required
+                            value={this.state.customerLastName} 
+                            onChange={this.onChangelastName}
+                        />
+                </Form.Group>
+                
+                <Form.Group>
+                    <Form.Label>Contact Number</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Contact Number"
+                            required
+                            value={this.state.contactNumber} 
+                            onChange={this.onChangecontactNumber}
+                        />
+                </Form.Group>
 
-                    <Form.Control
-                        type="text"
-                        placeholder="Contact Number"
-                        required
-                        value={this.state.contactNumber} 
-                        onChange={this.onChangecontactNumber}
-                    />
-
-                    <Form.Control
-                        type="text"
-                        placeholder="Address"
-                        required
-                        value={this.state.customerAddress} 
-                        onChange={this.onChangecustomerAddress}
-                    />
+                <Form.Group>
+                    <Form.Label>Address</Form.Label>
+                        <Form.Control
+                            type="text"
+                            placeholder="Address"
+                            required
+                            value={this.state.customerAddress} 
+                            onChange={this.onChangecustomerAddress}
+                        />
                 </Form.Group>
                         </Accordion.Body>
                     </Accordion.Item>
@@ -424,8 +443,8 @@ export class LandingPage extends Component {
                 
                     {/* <Mods/> */}
                 <Container>
-                    <Row className="d-flex justify-content-between" >
-                        <Container style={{width:'30%'}}>
+                    <Row className="" >
+                        {/* <Container style={{width:'30%'}}>
                             <Form.Group>
                                 <Form.Control
                                     type="date"
@@ -435,7 +454,7 @@ export class LandingPage extends Component {
                                     onChange={this.onChangeorderDate}
                                 />
                             </Form.Group>
-                        </Container>
+                        </Container> */}
                                 
                         <Container style={{width:'30%'}}>
                             <FormControl
@@ -449,21 +468,26 @@ export class LandingPage extends Component {
 
                         {/* <ButtonGroup as={Row} style={{width:'30%',margin:'0% 2%'}} size="sm">
                             <ButtonGroup as={Row} size="sm"> */}
-                        <Container style={{width:'40%'}}>
-                                {/* <Button className="w-50" variant = "success">P</Button>
-                                <Button className="w-50" variant = "warning">D</Button> */}
+                        <Container style={{width:'40%', marginTop:"5px"}}>
                                 <input className="form-check-input" value="Pick-up" onClick={this.onChangePickUp} type="radio" name="deliveryTypes" />
-                                <label className="form-check-label" for="flexRadioDefault1">
+                                <label className="form-check-label">
                                         Pick-up
                                  </label>
 
-                                 <input className="form-check-input" value="Delivery" onClick={this.onChangeDelivery} type="radio" name="deliveryTypes" />
-                                <label className="form-check-label" for="flexRadioDefault1">
+                                 <input className="form-check-input" style={{marginLeft:"10px"}} value="Delivery" onClick={this.onChangeDelivery} type="radio" name="deliveryTypes" />
+                                <label className="form-check-label">
                                        Delivery
                                  </label>
                         </Container>
                             {/* </ButtonGroup>
                         </ButtonGroup> */}
+                    </Row>
+                    <Row style={{paddingLeft:"130px"}}>
+                        Deadline
+                        <DatePicker
+                                selected={this.state.orderDate}
+                                 onChange={this.onChangeorderDate}
+                        />
                     </Row>
                     <Container className="d-flex mt-10">
                         <Card style={{ width: '100%',margin:'5% 20% 5% 20%'}}>
