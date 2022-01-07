@@ -66,12 +66,10 @@ export class EditLandingPage extends Component {
             if(response.data.deliveryType == "Delivery"){
                 this.deliverRef.current.click();
                 console.log(this.deliverRef);
-                console.log("hello delivery!");
             }
 
             if(response.data.deliveryType == "Pick-up"){
                 this.pickupRef.current.click();
-                console.log("hello pick-up!");
             }
 
             
@@ -404,9 +402,6 @@ export class EditLandingPage extends Component {
                     </Form.Group>
 
                     <ButtonGroup style={{marginTop:"20px"}}>
-                    <Button variant="secondary" onClick={()=>this.handleClose()}>
-                        Close
-                    </Button>
 
                     <button type="submit" className="btn btn-success mx-2">
                         Save Changes

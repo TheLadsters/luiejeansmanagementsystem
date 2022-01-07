@@ -70,7 +70,7 @@ const Staff = () => {
             );
 
                 setLoading(false);
-                localStorage.setItem("userInfo", JSON.stringify(data));
+                // localStorage.setItem("userInfo", JSON.stringify(data));
                 setRegisterSuccess("You have Registered Successfully!");
  
 

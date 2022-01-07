@@ -66,9 +66,9 @@ const Customers = props => (
         <td>{props.customer.orderCode} </td>
         <td>{props.customer.contactNumber} </td>
         <td>
-            <Link to={"/edit/"+props.customer._id}>
-                <Button variant="warning" onClick={refreshPage(props.customer._id)}  style={{color:"white"}}>Edit</Button>
-            </Link>
+            {/* <Link to={"/edit/"+props.customer._id}> */}
+                <Button variant="warning" href={"/edit/"+props.customer._id} onClick={refreshPage(props.customer._id)}  style={{color:"white"}}>Edit</Button>
+            {/* </Link> */}
 
             <a href="/landing-page" onClick={() => {props.deleteCustomers(props.customer._id)}} className="mx-2">
                 <Button variant="danger">
