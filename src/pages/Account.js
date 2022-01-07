@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Button} from "react-bootstrap";
+import { Button, Form, Col} from "react-bootstrap";
 import Modal from 'react-modal'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
@@ -9,7 +9,7 @@ import '../components/ProfilePage.css'
 import axios from 'axios';
 
 const Account = () => {
-  
+ 
     const [modalIsOpen, setModalIsOpen] = useState(false);
     const [Modal1, setModal1] = useState(false);
     const [Modal2, setModal2] = useState(false);
@@ -18,6 +18,16 @@ const Account = () => {
     const [value, setValue] = useState();
     const [Modal4, setModal4] = useState();
     const [inputs, setInputs] = useState({});
+    const [password, setPassword] = useState(""); 
+    const [changePassword, setChangePassword] = useState(""); 
+    const [error, setError] = useState(false);
+    const [loading, setLoading] = useState(false);
+    const [email, setEmail] = useState("");
+    const [name, setName] = useState("");
+    const [role, setRole] = useState("");
+    const [message, setMessage] = useState(null);
+    const [confirmpassword, setConfirmPassword] = useState("");
+
 
     const userInfo = localStorage.getItem('userInfo');
     const newInfo = JSON.parse(userInfo);
@@ -32,7 +42,51 @@ const Account = () => {
       event.preventDefault();
       console.log(inputs);
     }
+ function onChangeRole(role){
+        setRole(role.value);
+    }
+    const [tasks, setTasks] = useState([]);
 
+    const submitHandler = async (e) => {
+      e.preventDefault();
+      
+      if (password !== confirmpassword){
+          setMessage("Passwords Do not Match");
+      } else{
+          setMessage(null)
+          try{
+              const config = {
+                  headers: {
+                  "Content-type": "application/json",
+                  },
+              };
+
+          setLoading(true)
+
+          const { data } = await axios.post(
+              "http://localhost:5000/users/",
+              {
+                  name,email,password, role, 
+              },
+              config
+          );
+
+
+          } catch (error){
+              setError(error.response.data.message);
+              setLoading(false)
+          }
+      }
+
+  }
+
+  const [staff, setStaff] = useState([]);
+  useEffect(() => {
+      axios
+      .get("http://localhost:5000/users")
+      .then(res => setStaff(res.data))
+      .catch(error => console.log(error));
+  },[setStaff]);
 
     return (
     <>
@@ -67,7 +121,7 @@ content: {
 <center>
   <h2>  Edit your name </h2>
  <form onSubmit={handleSubmit}>
-  <p> Change Name: <input type="text" className="NameEdit" value={inputs.name} onChange={handleChange} /> </p>
+  <p> Change Name: <input type="text" className="NameEdit" onChange={(e) => setName(e.target.value)}/> </p>
 
      <p>Password:<input type="password" className="pazWord" placeholder="Input your password to confirm"/> </p>
   <div>
@@ -100,14 +154,16 @@ content: {
 }}>
 
   <center> 
+  <Form>
   <h2>  Change your Password: </h2>
-  <p> Old password: <input type="password"  className="passStyle" /> </p>
-  <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"/> </p>
-  
+  <p> Old password: <input type="password"  className="passStyle" onChange={(e) => setPassword(e.target.value)}/> </p>
+  <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"
+  value ={changePassword} onChange={(e) => setChangePassword(e.target.value)}/> </p>
   <div>
      <Button variant="none" className="SubmitBut"> Submit </Button>
     <Button className="CloseBut" onClick={() => setModal1(false)}> Close </Button>
   </div>
+  </Form>
   </center>
  </Modal>
 
@@ -220,13 +276,15 @@ content: {
  
  <center>
   <h2> Add a new Email address: </h2>
-  <p> <input type="text" className="stName" placeholder="example@example.com" onChange={handleChange}/> </p>
+  <form>
+  <p> <input type="text" className="stName" placeholder="example@example.com" value={email} onChange={(e) => setEmail(e.target.value)}/> </p>
   <div>
       
      <Button variant="none" className="SubmitBut"> Submit </Button>
      
     <Button className="CloseBut" onClick={() => setModal5(false)}> Close </Button>
   </div>
+  </form>
     </center>
  </Modal>
 {/* ROLES MODAL */}
@@ -254,10 +312,10 @@ content: {
   <h2>  Select Roles </h2>
 <p> Select Employee:
   <select id="lang">
-      <option value="role1"> test</option>
-      <option value="role1">  test</option>
-      <option value="role1"> test  </option>
-      <option value="role1">  test </option>
+      <option value="role1"> miss feat </option>
+      <option value="role1"> miss feat </option>
+      <option value="role1">  miss feat </option>
+      <option value="role1">  miss feat </option>
     </select>
     </p>
     <select id="lang">
@@ -340,8 +398,7 @@ content: {
                         
                 </Box>
 
-                
-                       
+       
             </div>
             <div style={{marginLeft: '51%', marginTop: '-589px', width: '25%'}} className="text">
             
@@ -391,12 +448,8 @@ content: {
             
             </div>
 
-           
-         
-            
         </div>
-                  
-       
+
     </>
     )
 }

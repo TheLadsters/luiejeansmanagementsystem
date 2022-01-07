@@ -20,9 +20,7 @@ const Staff = () => {
 
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
-    const [pic, setPic] = useState(
-    "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
-    );
+    const [pic, setPic] = useState("");
     const [password, setPassword] = useState("");
     const [confirmpassword, setConfirmPassword] = useState("");
     const [message, setMessage] = useState(null);
@@ -41,7 +39,7 @@ const Staff = () => {
 
     const Roles = [
         { label: "Designer", value: "Designer" },
-        { label: "Sewer", value: "Sewer" },
+        { label: "Seamstress", value: "Seamstress" },
         { label: "Tailor", value: "Tailor" },
         { label: "Packager", value: "Packager" },
         { label: "Printer", value: "Printer" },
@@ -72,7 +70,7 @@ const Staff = () => {
             );
 
                 setLoading(false);
-                // localStorage.setItem("userInfo", JSON.stringify(data));
+                localStorage.setItem("userInfo", JSON.stringify(data));
                 setRegisterSuccess("You have Registered Successfully!");
  
 
@@ -81,13 +79,6 @@ const Staff = () => {
                 setLoading(false)
             }
         }
-
-        setName("");
-        setEmail("");
-        setPassword("");
-        setConfirmPassword("");
-        setRole("");
-        setPic("");
 
     }
 
