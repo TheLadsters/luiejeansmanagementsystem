@@ -1,9 +1,19 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Form, Button} from "react-bootstrap";
 import Navbar from '../components/Navbar';
+import axios from 'axios';
 
 const OrderHistory = () => {
+
+    const [orders, setOrders] = useState([]);
+    useEffect(() => {
+        axios
+        .get("http://localhost:5000/customers/")
+        .then(res => setOrders(res.data))
+        .catch(error => console.log(error));
+    },[setOrders]);
+
     return (
         <>
             <Navbar />
@@ -38,25 +48,41 @@ const OrderHistory = () => {
             <Table className="text-center">
                 <thead>
                     <tr>
-                    <th>Order Number</th>
                     <th>Date</th>
                     <th>Customer's Name</th>
                     <th>Order Code</th>
-                    <th>Quantity</th>
+                    <th>Downpayment</th>
                     <th>Price</th>
                     <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                    <td>#00001</td>
+                    {/* <tr>
                     <td>October 29, 2021</td>
                     <td>Janmel Mangubat</td>
                     <td>X000001</td>
                     <td>21</td>
                     <td>100</td>
                     <td>24000</td>
-                    </tr>
+                    </tr> */}
+                    
+                    {orders.map((orders, key) => {
+                        var total = orders.price - orders.downPayment;
+                        return(
+                            
+                            <tr>
+                                <td>{orders.orderDate}</td>
+                                <td>{orders.customerFirstName} {orders.customerLastName}</td>
+                                <td>{orders.orderCode}</td>
+                                <td>{orders.downPayment}</td>
+                                <td>{orders.price}</td>
+                                <td>{total}</td>
+                                <td></td>
+                            </tr>
+                            
+                        )
+                    })}
+                    
                 </tbody>
             </Table>
         </Container>
