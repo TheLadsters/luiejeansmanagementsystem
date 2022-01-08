@@ -213,7 +213,7 @@ const Staff = () => {
                         return <div className="my-4"><Cards staff={staff}/></div>
                     })}
                 </div>
-            </div>
+            </div> 
             {/* end of cards */}
         </>
     )
