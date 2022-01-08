@@ -16,11 +16,13 @@ router.route('/add').post((req, res) => {
     const productName = req.body.productName;
     const orderDate = req.body.orderDate;
     const price = req.body.price;
+    const quantity = req.body.quantity;
     const orderCode = req.body.orderCode;
     const productSize = req.body.productSize;
     const deliveryType = req.body.deliveryType;
     const productPic = req.body.productPic;
-    const downPayment = req.body.downPayment; 
+    const downPayment = req.body.downPayment;
+    const status = req.body.status; 
 
     const newCustomers = new Customer({
         customerFirstName,
@@ -31,11 +33,13 @@ router.route('/add').post((req, res) => {
         productName,
         orderDate,
         price,
+        quantity,
         orderCode,
         productSize,
         deliveryType,
         productPic,
-        downPayment
+        downPayment,
+        status
     });
 
     newCustomers.save()
@@ -66,11 +70,13 @@ router.route('/update/:id').post((req, res) => {
         customer.productName = req.body.productName;
         customer.orderDate = req.body.orderDate;
         customer.price = req.body.price;
+        customer.quantity = req.body.quantity;
         customer.orderCode = req.body.orderCode;
         customer.productSize = req.body.productSize;
         customer.deliveryType = req.body.deliveryType;
         customer.productPic = req.body.productPic;
-        customer.downPayment = req.body.downPayment; 
+        customer.downPayment = req.body.downPayment;
+        customer.status = req.body.status; 
 
         customer.save()
         .then( () => res.json('Product Updated!'))
