@@ -56,7 +56,7 @@ const options = [
 ];
 
 const refreshPage = (id)=>{
-    console.log(id);
+    // console.log(id);
     // window.location.reload();
  }
 
@@ -267,7 +267,7 @@ export class LandingPage extends Component {
         }
 
 
-        console.log(customer);
+        // console.log(customer);
         axios.post('http://localhost:5000/landing-page/add', customer)
         .then(res => console.log(res.data));
 
@@ -310,7 +310,7 @@ export class LandingPage extends Component {
         // }
 
         // setPicMessage(null);
-        console.log(pics);
+        // console.log(pics);
         if(pics.type === 'image/jpeg' || pics.type === 'image/png'){
             const data = new FormData();
             data.append('file', pics)
