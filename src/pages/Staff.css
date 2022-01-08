@@ -1,4 +1,11 @@
 .staff-container{
-    column-count: 2;
-    column-fill: balance;
+    width: 100%;
+    margin: 20px auto;
+}
+
+
+.staff-container .row{
+    display: grid;
+    grid-auto-rows: auto;
+    grid-template-columns: repeat(3,1fr);    
 }

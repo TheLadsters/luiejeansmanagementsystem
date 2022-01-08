@@ -3,6 +3,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { Container, Row, Col, Table, Form, Button} from "react-bootstrap";
 import Navbar from '../components/Navbar';
 import axios from 'axios';
+import moment from 'moment';
+
+
 
 const OrderHistory = () => {
 
@@ -13,6 +16,7 @@ const OrderHistory = () => {
         .then(res => setOrders(res.data))
         .catch(error => console.log(error));
     },[setOrders]);
+
 
     return (
         <>
@@ -65,13 +69,15 @@ const OrderHistory = () => {
                     <td>100</td>
                     <td>24000</td>
                     </tr> */}
-                    
+                
                     {orders.map((orders, key) => {
                         var total = orders.price - orders.downPayment;
+                         const formattedDate = moment(orders.orderDate).utc().format('MM/DD/YYYY')
                         return(
                             
                             <tr>
-                                <td>{orders.orderDate}</td>
+                                
+                                <td> {formattedDate} </td>
                                 <td>{orders.customerFirstName} {orders.customerLastName}</td>
                                 <td>{orders.orderCode}</td>
                                 <td>{orders.downPayment}</td>
