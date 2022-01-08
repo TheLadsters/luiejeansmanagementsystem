@@ -64,22 +64,22 @@ const Cards = ( {staff} ) => {
     return (
         <>
             <Card style={{ width: '25rem', height:'10rem'}} className="real-card" onClick={ handleShow }>
-                        <Container>
-                            <Card.Body>
-                                <Row>
-                                    <Col align="center">
-                                        <Card.Img variant="top" style={{width:"8rem", height:"8rem"}} src={staff.pic} />
-                                    </Col>
+                <Container>
+                    <Card.Body>
+                        <Row>
+                            <Col align="center">
+                                <Card.Img variant="top" style={{width:"8rem", height:"8rem"}} src={staff.pic} />
+                            </Col>
 
-                                    <Col className="card-detail"> 
-                                        <Card.Text className="card-text">
-                                        <Card.Title>{staff.name}</Card.Title>
-                                        <Card.Text><b>{staff.role}</b></Card.Text>
-                                        </Card.Text>
-                                    </Col>
-                                </Row>
-                            </Card.Body>
-                        </Container>
+                            <Col className="card-detail"> 
+                                <Card.Text className="card-text">
+                                <Card.Title>{staff.name}</Card.Title>
+                                <Card.Text><b>{staff.role}</b></Card.Text>
+                                </Card.Text>
+                            </Col>
+                        </Row>
+                    </Card.Body>
+                </Container>
             </Card>
 
             <Modal show={show} onHide={handleClose}>
