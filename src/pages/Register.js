@@ -34,7 +34,7 @@ const Register = () => {
 
     const Roles = [
         { label: "Designer", value: "Designer" },
-        { label: "Sewer", value: "Sewer" },
+        { label: "Seamstress", value: "Seamstress" },
         { label: "Tailor", value: "Tailor" },
         { label: "Packager", value: "Packager" },
         { label: "Printer", value: "Printer" },
