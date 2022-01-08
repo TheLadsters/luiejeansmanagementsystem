@@ -91,7 +91,7 @@ const Cards = ( {staff} ) => {
                 <Form onSubmit={addTask}>
                         <Row>
                             <Col md={8}>
-                                <Form.Control type="text" value={task} onChange={(e) => setTask(e.target.value)} placeholder="Add a task" />
+                                <Form.Control type="text" value={task} onChange={(e) => setTask(e.target.value)} placeholder="Add a task" required/>
                             </Col>
                             <Col>
                                 <Button type="submit" variant="success">
