@@ -31,7 +31,7 @@ const Navbar = () => {
                 </ul>
             </nav>
 
-            <a className="brand-name" href="/#">Luie Jeans</a>
+            <a className="brand-name" href="/landing-page">Luie Jeans</a>
         </header>
 
             <nav className={sidebar ? 'nav-menu active' : 'nav-menu'}>
