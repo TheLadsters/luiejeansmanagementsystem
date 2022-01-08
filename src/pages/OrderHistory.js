@@ -72,11 +72,11 @@ const OrderHistory = () => {
                 
                     {orders.map((orders, key) => {
                         var total = orders.price - orders.downPayment;
-                         //const dateFromDB =  '{orders.orderDate}'
-                         const formattedDate = moment('2022-01-17T16:00:00.000Z').utc().format('MM/DD/YYYY')
+                         const formattedDate = moment(orders.orderDate).utc().format('MM/DD/YYYY')
                         return(
                             
                             <tr>
+                                
                                 <td> {formattedDate} </td>
                                 <td>{orders.customerFirstName} {orders.customerLastName}</td>
                                 <td>{orders.orderCode}</td>
