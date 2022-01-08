@@ -1,5 +1,5 @@
 const router = require('express').Router();
-const { registerUser, authUser, addTask, deleteTask } = require('../controllers/userControllers');
+const { registerUser, editName, editPassword, authUser, addTask, deleteTask } = require('../controllers/userControllers');
 let User = require('../models/user.model');
 
 router.route('/').get((req, res) => {
@@ -9,6 +9,8 @@ router.route('/').get((req, res) => {
 });
 
 router.route("/").post(registerUser);
+router.route("/editName").post(editName);
+router.route("/editPassword").post(editPassword);
 router.route("/login").post(authUser);
 router.route("/addTask").post(addTask);    
 router.route("/deleteTask").post(deleteTask); 
