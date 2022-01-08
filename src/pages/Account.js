@@ -5,7 +5,9 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import Navbar from '../components/Navbar';
 import Box from '@material-ui/core/Box'
 import PhoneInput from 'react-phone-number-input'
-import '../components/ProfilePage.css'
+import '../components/ProfilePage.css';
+import ErrorMessage from "../components/ErrorMessage";
+import Loading from "../components/Loading"
 import axios from 'axios';
 
 const Account = () => {
@@ -18,19 +20,21 @@ const Account = () => {
     const [value, setValue] = useState();
     const [Modal4, setModal4] = useState();
     const [inputs, setInputs] = useState({});
-    const [password, setPassword] = useState(""); 
-    const [changePassword, setChangePassword] = useState(""); 
     const [error, setError] = useState(false);
     const [loading, setLoading] = useState(false);
     const [email, setEmail] = useState("");
     const [name, setName] = useState("");
+    const [password, setPassword] = useState(""); 
+    const [changePassword, setChangePassword] = useState(""); 
     const [role, setRole] = useState("");
     const [message, setMessage] = useState(null);
     const [confirmpassword, setConfirmPassword] = useState("");
+    const [updateSuccess, setUpdateSuccess] = useState(null);
 
 
     const userInfo = localStorage.getItem('userInfo');
     const newInfo = JSON.parse(userInfo);
+    const emailUser = newInfo.email;
 
     const handleChange = (event) =>{
       const name = event.target.name;
@@ -38,10 +42,77 @@ const Account = () => {
       setInputs (values => ({...values, [name]: value}))
     }
 
-    const handleSubmit = (event) =>{
-      event.preventDefault();
-      console.log(inputs);
+
+    // function to handle editing of Account Name
+    const handleSubmitName = async (e) =>{
+      e.preventDefault();
+
+      try{
+        const config = {
+            headers: {
+            "Content-type": "application/json",
+            },
+        };
+
+        setLoading(true);
+
+    const { data } = await axios.post(
+        "http://localhost:5000/users/editName",
+        {
+            name,password, emailUser
+        },
+        config
+    );
+        localStorage.removeItem("userInfo");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setUpdateSuccess("You have Updated Info Successfully!");
+        setLoading(false);
+        setError(null);
+        setName("");
+        setPassword("");
+
+
+    } catch (error){
+        setError(error.response.data.message);
+        setLoading(false)
     }
+}
+
+   // function to handle editing of Password
+   const handleSubmitPassword = async (e) =>{
+    e.preventDefault();
+
+      try{
+        const config = {
+            headers: {
+            "Content-type": "application/json",
+            },
+        };
+
+        setLoading(true);
+
+    const { data } = await axios.post(
+        "http://localhost:5000/users/editPassword",
+        {
+            password, changePassword, emailUser
+        },
+        config
+    );
+        localStorage.removeItem("userInfo");
+        localStorage.setItem("userInfo", JSON.stringify(data));
+        setUpdateSuccess("You have Updated Password Successfully!");
+        setLoading(false);
+        setError(null);
+        setChangePassword("");
+        setPassword("");
+
+
+    } catch (error){
+        setError(error.response.data.message);
+        setLoading(false)
+    }
+}
+
  function onChangeRole(role){
         setRole(role.value);
     }
@@ -95,6 +166,7 @@ const Account = () => {
         <Navbar />
 
         <div className="background">
+
       {/* MODAL SETUP (name change) */}
 <Modal className="Modal1" isOpen={modalIsOpen} onRequestClose={() => setModalIsOpen(false)}
 style={{
@@ -116,22 +188,31 @@ content: {
   padding: '20px'
 }
 }}>
-
+{updateSuccess && <ErrorMessage variant="success">{updateSuccess}</ErrorMessage>}
+{error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+{loading && <Loading />}  
 {/* <CloseButton onClick={() => setModalIsOpen(false)} className="closebutton" /> */}
 <center>
   <h2>  Edit your name </h2>
- <form onSubmit={handleSubmit}>
-  <p> Change Name: <input type="text" className="NameEdit" onChange={(e) => setName(e.target.value)}/> </p>
+ <form onSubmit={handleSubmitName}>
+  <p> Change Name: <input type="text" className="NameEdit" value={name} onChange={(e) => setName(e.target.value)} required/> </p>
 
-     <p>Password:<input type="password" className="pazWord" placeholder="Input your password to confirm"/> </p>
+     <p>Password:<input type="password" className="pazWord" value={password}
+      onChange={(e) => setPassword(e.target.value)} placeholder="Input your password to confirm" required/> </p>
   <div>
-    <Button variant="none" className="SubmitBut"> Submit </Button>
-    <Button className="CloseBut" onClick={() => setModalIsOpen(false)}> Close </Button>
+    <Button type="submit" variant="none" className="SubmitBut"> Submit </Button>
+    <Button className="CloseBut" onClick={() => 
+      {setModalIsOpen(false); setUpdateSuccess(null);
+      setError(null)
+      }}> 
+      Close 
+    </Button>
     
   </div>
   </form>
   </center> 
  </Modal>
+
 {/* SECOND MODAL (password change)*/}
  <Modal isOpen={Modal1} onRequestClose={() => setModal1(false)}
 style={{
@@ -154,18 +235,26 @@ content: {
 }}>
 
   <center> 
-  <Form>
+  {updateSuccess && <ErrorMessage variant="success">{updateSuccess}</ErrorMessage>}
+  {error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+  {loading && <Loading />}  
+  <Form onSubmit={handleSubmitPassword}>
   <h2>  Change your Password: </h2>
-  <p> Old password: <input type="password"  className="passStyle" onChange={(e) => setPassword(e.target.value)}/> </p>
+  <p> Old password: <input type="password" value={password}  className="passStyle" onChange={(e) => setPassword(e.target.value)}/> </p>
   <p> New password: <input type="password" placeholder='number, character, letter' className="passStyle"
   value ={changePassword} onChange={(e) => setChangePassword(e.target.value)}/> </p>
   <div>
-     <Button variant="none" className="SubmitBut"> Submit </Button>
-    <Button className="CloseBut" onClick={() => setModal1(false)}> Close </Button>
+     <Button variant="none" type="submit" className="SubmitBut"> Submit </Button>
+    <Button className="CloseBut" onClick={() => 
+      {setModal1(false); setUpdateSuccess(null);
+      setError(null)
+      }}> Close </Button>
   </div>
   </Form>
   </center>
  </Modal>
+{/* END OF SECOND MODAL (password change)*/}
+
 
 {/* THIRD MODAL (phone numbers) */}
 
@@ -310,14 +399,14 @@ content: {
 
   <center> 
   <h2>  Select Roles </h2>
-<p> Select Employee:
+{/* <p> Select Employee:
   <select id="lang">
       <option value="role1"> miss feat </option>
       <option value="role1"> miss feat </option>
       <option value="role1">  miss feat </option>
       <option value="role1">  miss feat </option>
     </select>
-    </p>
+    </p> */}
     <select id="lang">
       <option value="role1"> Tailor </option>
       <option value="role1"> Seamstress </option>
@@ -340,19 +429,19 @@ content: {
             <div style={{marginLeft: '25%', marginTop: '0px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={4} fontFamily="verdana"> 
                    
-                        <Box color="black" bgcolor="white" p={0} fontFamily="verdana"> Credentials </Box>
+                        <Box color="black" bgcolor="white" p={0} fontFamily="verdana"> <b>Credentials</b> </Box>
                    
                        
                         <Box p={1}> </Box>
                       
                        
-                       <td> Name: {newInfo.name} </td>
+                       <td> <b>Name:</b> <br />{newInfo.name} </td>
 
                     <td> <Box p={0} fontFamily="verdana"> <Button className="nameButton" variant="light" onClick={() => setModalIsOpen(true)}> + Edit your name </Button> </Box> </td>
                    
                     <Box p={1}> </Box>
                  
-                     <Box p={0}> Joined in:  </Box>  
+                     <Box p={0}> <b>Joined in:</b> <br />{newInfo.createdAt} </Box>  
                   
    
                 </Box>
@@ -361,13 +450,13 @@ content: {
                 <div style={{marginLeft: '25%', marginTop: '35px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={5}>
                     
-                   Account Options:
+                   <b>Account Options:</b>
                    <Box p={1}> </Box>
                   
                     <td> 
                    <Box> 
                       
-                       Language: <select name="language" id="lang">
+                       <b>Language:</b> <select name="language" id="lang">
                             <option value="" disabled selected hidden>Select Option</option>
                             <option value="engUS">English (US)</option>
                             <option value="engUK">English (UK)</option>
@@ -377,7 +466,7 @@ content: {
                     </td> 
                     <Box p={1}> </Box>
                    <td>            
-                <Box> Time Zone:   
+                <Box> <b>Time Zone:</b>   
                             <select name="gmt" id="time">
                             <option value="" disabled selected hidden> (GMT +8:00) Philippines / Singapore </option>
                             <option value="gmt+8">(GMT +8:00) Philippines / Singapore</option>
@@ -389,12 +478,12 @@ content: {
                     <Box p={1}> </Box>
                     <td>
           
-                        <Box> Change your password? <Button className="passChange" variant="light" onClick={() => setModal1(true)}> Edit </Button></Box>
+                        <Box> <b>Change your password?</b> <Button className="passChange" variant="light" onClick={() => setModal1(true)}> Edit </Button></Box>
                         </td>
                        
                         <Box p={1}> </Box> 
             
-                        <Box> Employee roles <Button className="roles" variant="light" onClick={() => setModal4(true)}> Select Roles </Button></Box>
+                        <Box> <b>Employee roles</b> <Button className="roles" variant="light" onClick={() => setModal4(true)}> Select Roles </Button></Box>
                         
                 </Box>
 
@@ -404,7 +493,7 @@ content: {
             
                 <Box color="black" bgcolor="White" p={5}>   
                 <td> 
-                    Addresses:
+                    <b>Addresses:</b>
                     <Box p={1}> </Box>
                     </td> 
                     <Box p={1}> </Box>
@@ -416,7 +505,7 @@ content: {
             <div style={{marginLeft: '51%', marginTop: '42px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={5}>   
                 <td>
-                    Email Addresses: 
+                    <b>Email Addresses:</b> 
                     
                     <Box p={1}> </Box>
                     </td> 
@@ -431,7 +520,7 @@ content: {
             <div style={{marginLeft: '51%', marginTop: '40px', width: '25%'}} className="text">
                 <Box color="black" bgcolor="White" p={5}>   
                 <td>
-                    Phone Numbers:
+                    <b>Phone Numbers:</b>
                     
                     <Box p={1}> </Box>
                     </td> 
