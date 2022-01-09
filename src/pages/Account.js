@@ -10,6 +10,7 @@ import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading"
 import axios from 'axios';
 import Select from 'react-select';
+import moment from 'moment';
 
 const Account = () => {
  
@@ -49,8 +50,8 @@ const Account = () => {
       const value =  event.target.value;
       setInputs (values => ({...values, [name]: value}))
     }
-
-
+    const formattedDate = moment(newInfo.createdAt).utc().format('MM/DD/YYYY')
+    
     // function to handle editing of Account Name
     const handleSubmitName = async (e) =>{
       e.preventDefault();
@@ -461,7 +462,7 @@ content: {
                    
                     <Box p={1}> </Box>
                  
-                     <Box p={0}> <b>Joined in:</b> <br />{newInfo.createdAt} </Box>  
+                     <Box p={0}> Joined in: {formattedDate} </Box>  
                   
    
                 </Box>
