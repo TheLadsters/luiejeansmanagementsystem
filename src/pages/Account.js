@@ -9,6 +9,7 @@ import '../components/ProfilePage.css';
 import ErrorMessage from "../components/ErrorMessage";
 import Loading from "../components/Loading"
 import axios from 'axios';
+import Select from 'react-select';
 
 const Account = () => {
  
@@ -31,6 +32,13 @@ const Account = () => {
     const [confirmpassword, setConfirmPassword] = useState("");
     const [updateSuccess, setUpdateSuccess] = useState(null);
 
+    const Roles = [
+      { label: "Designer", value: "Designer" },
+      { label: "Seamstress", value: "Seamstress" },
+      { label: "Tailor", value: "Tailor" },
+      { label: "Packager", value: "Packager" },
+      { label: "Printer", value: "Printer" },
+  ]
 
     const userInfo = localStorage.getItem('userInfo');
     const newInfo = JSON.parse(userInfo);
@@ -113,43 +121,45 @@ const Account = () => {
     }
 }
 
+const handleSubmitRole = async (e) =>{
+  e.preventDefault();
+
+  try{
+    const config = {
+        headers: {
+        "Content-type": "application/json",
+        },
+    };
+
+    setLoading(true);
+
+const { data } = await axios.post(
+    "http://localhost:5000/users/editRole",
+    {
+        role, emailUser
+    },
+    config
+);
+    localStorage.removeItem("userInfo");
+    localStorage.setItem("userInfo", JSON.stringify(data));
+    setUpdateSuccess("You have Updated Info Successfully!");
+    setLoading(false);
+    setError(null);
+    setName("");
+    setPassword("");
+
+
+  } catch (error){
+      setError(error.response.data.message);
+      setLoading(false)
+  }
+}
+
  function onChangeRole(role){
         setRole(role.value);
     }
     const [tasks, setTasks] = useState([]);
 
-    const submitHandler = async (e) => {
-      e.preventDefault();
-      
-      if (password !== confirmpassword){
-          setMessage("Passwords Do not Match");
-      } else{
-          setMessage(null)
-          try{
-              const config = {
-                  headers: {
-                  "Content-type": "application/json",
-                  },
-              };
-
-          setLoading(true)
-
-          const { data } = await axios.post(
-              "http://localhost:5000/users/",
-              {
-                  name,email,password, role, 
-              },
-              config
-          );
-
-
-          } catch (error){
-              setError(error.response.data.message);
-              setLoading(false)
-          }
-      }
-
-  }
 
   const [staff, setStaff] = useState([]);
   useEffect(() => {
@@ -407,19 +417,29 @@ content: {
       <option value="role1">  miss feat </option>
     </select>
     </p> */}
-    <select id="lang">
+    {/* <select id="lang">
       <option value="role1"> Tailor </option>
       <option value="role1"> Seamstress </option>
       <option value="role1"> Printer </option>
       <option value="role1"> Delivery </option>
-    </select>
- 
-
-  <div>
-     <Button variant="none" className="SubmitBut"> Submit </Button>
-    <Button className="CloseBut" onClick={() => setModal4(false)}> Close </Button>
-  </div>
+    </select> */}
+  <Form  onSubmit={handleSubmitRole}>
+  {updateSuccess && <ErrorMessage variant="success">{updateSuccess}</ErrorMessage>}
+{error && <ErrorMessage variant="danger">{error}</ErrorMessage>}
+      <Form.Group className="mb-3" controlId="formBasicRole">
+        <Form.Label>Role</Form.Label>
+        <Select options={Roles} onChange={onChangeRole}/>
+      </Form.Group>
+    <div>
+      <Button variant="none" type="submit" className="SubmitBut"> Submit </Button>
+      <Button className="CloseBut" onClick={() => 
+      {setModal4(false); setUpdateSuccess(null);
+      setError(null)
+      }}> Close </Button>
+    </div>
+  </Form>
   </center>
+
  </Modal>
  
 {/* END OF MODAL SETUP */}

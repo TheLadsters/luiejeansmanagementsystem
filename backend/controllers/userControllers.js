@@ -186,4 +186,35 @@ const editPassword = asyncHandler(async (req, res) => {
     
 });
 
-module.exports = { registerUser, editName, editPassword, authUser, addTask, deleteTask };
+const editRole = asyncHandler(async (req, res) => {
+    const { role,emailUser } = req.body;
+
+    const userLoggedIn = await User.findOne({ email: emailUser });
+
+        if(userLoggedIn){
+
+        const updatedData = await User.findOneAndUpdate({ email: emailUser }, 
+            {role : role}, {
+            new: true
+          });
+             
+             res.json({
+                _id: updatedData._id,
+                name: updatedData.name,
+                email: updatedData.email,
+                isAdmin: updatedData.isAdmin,
+                role: updatedData.role,
+                pic: updatedData.pic,
+                token: generateToken(updatedData._id),
+                createdAt: updatedData.createdAt,
+            });
+              
+
+        } else {
+            res.status(400)
+            throw new Error("Invalid Role!")
+        }
+    
+});
+
+module.exports = { registerUser, editName, editPassword, editRole, authUser, addTask, deleteTask };
